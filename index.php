@@ -4,7 +4,7 @@ define('ITVERWALTUNG', 1);
 require_once('config.php');
 
 loadDir(LIB_DIR);
-loadDir(HOME_DIR);
+loadDir(PAGE_DIR);
 
 define('PAGE_LOGIN', 'login');
 define('PAGE_HOME', 'home');
@@ -16,7 +16,7 @@ function loadDir($directory)
     foreach($files as $file)
     {
         // skip meta files, hidden files, and subdirectories.
-        if (   is_dir($file)
+        if (   is_dir($directory . $file)
             || strncmp($file, '.', 1) == 0)
         {
             continue;
