@@ -2,16 +2,34 @@
 define('ITVERWALTUNG', 1);
 
 require_once('config.php');
+loadLib('DbConnector.php');
+loadLib('password.php');
+loadLib('Page.iface.php');
+loadAllPages();
 
-define('PAGE_DIR', HOME_DIR . 'page/');
 define('PAGE_LOGIN', 'login');
 define('PAGE_HOME', 'home');
 
-require_once(HOME_DIR . 'lib/DbConnector.php');
-require_once(HOME_DIR . 'lib/password.php');
-require_once(PAGE_DIR . 'Page.iface.php');
-require_once(PAGE_DIR . 'Login.class.php');
-require_once(PAGE_DIR . 'Home.class.php');
+function loadAllPages()
+{
+    $files = scandir(PAGE_DIR);
+    
+    foreach($files as $file)
+    {
+        if ($file == '.'
+            || $file == '..')
+        {
+            continue;
+        }
+        
+        require_once($file);
+    }
+}
+
+function loadLib($library)
+{
+    require_once(LIB_DIR . $library);
+}
 
 /**
  * Returns a Page object representing the page we want to display.
