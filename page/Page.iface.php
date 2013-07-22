@@ -12,7 +12,7 @@ interface Page {
      * 
      * @return string
      */
-    static function getTemplate();
+    function getTemplate();
     
     /**
      * Returns an associative array containing all data to be presented to the user.

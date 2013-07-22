@@ -1,6 +1,4 @@
 <?php
-require_once(PAGE_DIR . 'Page.iface.php');
-
 /**
  * 
  * @author Deaod
@@ -12,7 +10,7 @@ class Home implements Page
      * (non-PHPdoc)
      * @see Page::getTemplate()
      */
-    static function getTemplate()
+    public function getTemplate()
     {
         return 'home.tpl'; 
     }
@@ -21,7 +19,7 @@ class Home implements Page
      * (non-PHPdoc)
      * @see Page::getContent()
      */
-    function getContent()
+    public function getContent()
     {
         return array();
     }

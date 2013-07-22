@@ -7,6 +7,9 @@ define('PAGE_DIR', HOME_DIR . 'page/');
 define('PAGE_LOGIN', 'login');
 define('PAGE_HOME', 'home');
 
+require_once(HOME_DIR . 'lib/DbConnector.php');
+require_once(HOME_DIR . 'lib/password.php');
+require_once(PAGE_DIR . 'Page.iface.php');
 require_once(PAGE_DIR . 'Login.class.php');
 require_once(PAGE_DIR . 'Home.class.php');
 
