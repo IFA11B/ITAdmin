@@ -1,2 +1,2 @@
-/smarty/templates_c/*
-/smarty/cache/*
+/smarty/templates_c/*.php
+/smarty/cache/* 

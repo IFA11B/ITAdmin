@@ -2,33 +2,29 @@
 define('ITVERWALTUNG', 1);
 
 require_once('config.php');
-loadLib('DbConnector.php');
-loadLib('password.php');
-loadLib('Page.iface.php');
-loadAllPages();
+
+loadDir(LIB_DIR);
+loadDir(HOME_DIR);
 
 define('PAGE_LOGIN', 'login');
 define('PAGE_HOME', 'home');
 
-function loadAllPages()
+function loadDir($directory)
 {
-    $files = scandir(PAGE_DIR);
+    $files = scandir($directory);
     
     foreach($files as $file)
     {
-        if ($file == '.'
-            || $file == '..')
+        // skip meta files, hidden files, and subdirectories.
+        if (   is_dir($file)
+            || strncmp($file, '.', 1) == 0)
         {
             continue;
         }
-        
-        require_once($file);
+    
+        // load the target file
+        require_once($directory . $file);
     }
-}
-
-function loadLib($library)
-{
-    require_once(LIB_DIR . $library);
 }
 
 /**
@@ -58,7 +54,6 @@ function getPage()
     }
 }
 
-
 /**
  * Creates a Smarty instance and configures it for immediate use.
  * 
@@ -66,14 +61,12 @@ function getPage()
  */
 function createSmarty()
 {
-    require_once(HOME_DIR . 'lib/smarty/Smarty.class.php');
-    
     $smarty = new Smarty();
 
-    $smarty->setTemplateDir('./templates');
-    $smarty->setCompileDir('./smarty/templates_c');
-    $smarty->setCacheDir('./smarty/cache');
-    $smarty->setConfigDir('./smarty/configs');
+    $smarty->setTemplateDir(HOME_DIR . 'templates');
+    $smarty->setCompileDir(HOME_DIR . 'smarty/templates_c');
+    $smarty->setCacheDir(HOME_DIR . 'smarty/cache');
+    $smarty->setConfigDir(HOME_DIR . 'smarty/configs');
     
     return $smarty;
 }
