@@ -3,7 +3,7 @@
 /**
  * Class for database connection.
  * 
- * @author Thunraz
+ * @author Thunraz <julian.dinges@gmail.com>
  */
 
 class DbConnector
@@ -42,6 +42,50 @@ class DbConnector
 		}
 
 		return $instance;
+	}
+	
+	/**
+	 * Fetches all users from the database.
+	 * 
+	 * @return an array of users or false if an error occured.
+	 */
+	public function getUsers()
+	{
+		$query = "...";
+		$statement = $this->db->query($query);
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if($result == false)
+			return false;
+	
+		return $result;
+	}
+	
+	/**
+	 * Updates an user's password.
+	 * 
+	 * @param string $user
+	 * @param string $password
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function setUserPassword(string $user, string $password)
+	{
+		if($user == null || $password == null)
+		{
+			return false;
+		}
+	
+		$query =  "UPDATE ";
+		$query .= "  Benutzer (ben_pwdhash) ";
+		$query .= "VALUES (:password) ";
+		$query .= "WHERE ben_name = :user";
+	
+		$statement = $this->db->prepare($query);
+		$statement->bindparam(':user', $user);
+		$statement->bindparam(':password', $password);
+		$statement->execute();
 	}
 }
 
