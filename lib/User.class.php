@@ -44,7 +44,8 @@ class User implements Entity
     
     public function __construct(array $row = null)
     {
-        if ($row != null) {
+        if ($row != null)
+        {
             setId($row[DB_USER_ID]);
             setName($row[DB_USER_NAME]);
             setPassword($row[DB_USER_PWD]);
