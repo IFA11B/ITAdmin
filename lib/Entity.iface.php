@@ -1,6 +1,8 @@
 <?php
 interface Entity
 {
+    public function getId();
+    
     public function __construct(array $row = null);
     
     public function update();
@@ -10,7 +12,5 @@ interface Entity
     public function create();
     
     public function copy();
-    
-    public function getId();
 }
 ?>
