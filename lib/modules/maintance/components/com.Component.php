@@ -1,5 +1,5 @@
 <?php
-abstract class component
+abstract class Component
 {
 	private $Name;
 	private $Manufacturer;
@@ -13,9 +13,14 @@ abstract class component
 	private $HasParent;
 	private $HasChilds;
 	
-	public function __construct()
+	public function __construct(string $room)
 	{
-		
+		$this->Room=$room;
+	}
+	
+	public function __construct(string $room, $parent)
+	{
+		$this->Room=$room;
 	}
 	
 	public function getName()
@@ -43,7 +48,7 @@ abstract class component
 	
 	public function setManufacturer(string $manufacturer)
 	{
-		
+		$this->Manufacturer=$manufacturer;
 	}
 	
 	public function getRoom()
