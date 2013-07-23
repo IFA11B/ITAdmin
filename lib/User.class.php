@@ -13,38 +13,31 @@ class User implements Entity
     {
         return $this->id;
     }
-    
-    private function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
-    
     public function getName()
     {
         return $this->name;
     }
-    
     public function setName(string $name)
     {
         $this->name = $name;
     }
-    
     public function getPassword()
     {
         return $this->password;
     }
-    
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
     }
-    
     public function getCreateDate()
     {
         return $this->createDate;
     }
-    
-    private function setCreateDate($createDate)
+    public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
     }
@@ -62,13 +55,25 @@ class User implements Entity
     public function canReadModule(int $module)
     {
         $db = DbConnector::getInstance();
+        $result = $db->userModuleRead($this->getId(), $module);
         
+        if ($result === 1)
+        {
+            return true;
+        }
+        return false;
     }
     
     public function canWriteModule(int $module)
     {
         $db = DbConnector::getInstance();
+        $result = $db->userModuleWrite($this->getId(), $module);
         
+        if ($result === 1)
+        {
+            return true;
+        }
+        return false;
     }
 }
 ?>

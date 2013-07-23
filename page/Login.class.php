@@ -65,6 +65,7 @@ class Login implements Page
             {
                 if (checkPassword($user, $pwd))
                 {
+                    session_start();
                     header('Location: ' . HOME_DIR . 'index.php?page=home');
                 } 
                 else
