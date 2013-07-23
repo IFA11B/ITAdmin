@@ -13,14 +13,10 @@ abstract class Component
 	private $HasParent;
 	private $HasChilds;
 	
-	public function __construct(string $room)
+	public function __construct(string $room,$parent=NULL)
 	{
 		$this->Room=$room;
-	}
-	
-	public function __construct(string $room, $parent)
-	{
-		$this->Room=$room;
+		$this->Parent=$parent;
 	}
 	
 	public function getName()
