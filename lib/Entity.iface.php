@@ -8,5 +8,9 @@ interface Entity
     public function delete();
     
     public function create();
+    
+    public function copy();
+    
+    public function getId();
 }
 ?>

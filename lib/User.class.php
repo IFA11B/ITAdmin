@@ -75,5 +75,35 @@ class User implements Entity
         }
         return false;
     }
+    
+    public function update()
+    {
+        $db = DbConnector::getInstance();
+        $db->updateUser($this);
+    }
+    
+    public function delete()
+    {
+        $db = DbConnector::getInstance();
+        $db->deleteUser($this);
+    }
+    
+    public function create()
+    {
+        $db = DbConnector::getInstance();
+        $db->createUser($this);
+    }
+    
+    public function copy()
+    {
+        $copy = new User();
+        
+        $copy->setId($this->getId());
+        $copy->setName($this->getName());
+        $copy->setPassword($this->getPassword());
+        $copy->setCreateDate($this->getCreateDate());
+        
+        return $copy;
+    }
 }
 ?>
