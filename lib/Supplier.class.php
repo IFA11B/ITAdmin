@@ -140,6 +140,18 @@ class Supplier implements Entity
     
     public function copy()
     {
+    	$copy = new Supplier();
     	
+    	$copy->setId($this->getId());
+    	$copy->setCompanyame($this->getCompanyname());
+    	$copy->setStreet($this->getStreet());
+    	$copy->setZipcode($this->getZipcode());
+    	$copy->setCity($this->getCity());
+    	$copy->setPhone($this->getPhone());
+    	$copy->setMobile($this->getMobile());
+    	$copy->setFax($this->getFax());
+    	$copy->setEmail($this->getEmail());
+    	
+    	return $copy;
     }
 }
