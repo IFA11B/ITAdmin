@@ -45,7 +45,7 @@ class HardDrive extends Component
 		{
 			return '0 MB';
 		}
-		return sprintf('$s MB',$this->SpaceMbyte);
+		return sprintf('$d MB',$this->SpaceMbyte);
 	}
 	
 	public function setSpaceMbyte(double $spaceMbyte)
@@ -62,7 +62,7 @@ class HardDrive extends Component
 		return $this->DriveType;
 	}
 	
-	public function setSpaceMbyte(double $driveType)
+	public function setSpaceMbyte(string $driveType)
 	{
 		$this->DriveType=$driveType;
 	}
