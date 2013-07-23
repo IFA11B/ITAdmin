@@ -1,7 +1,7 @@
 <?php
 interface Entity
 {
-    public function __construct($row = null);
+    public function __construct(array $row = null);
     
     public function update();
     
