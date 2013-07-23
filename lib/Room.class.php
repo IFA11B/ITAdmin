@@ -11,7 +11,7 @@ class Supplier implements Entity
 	 * Sets the room's id.
 	 * @param string $id
 	 */
-	public function setId(string $id)
+	public function setId(int $id)
 	{
 		$this->id = $id;
 	}
