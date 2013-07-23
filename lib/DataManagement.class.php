@@ -1,5 +1,7 @@
 <?php
 require_once('DbConnector.class.php');
+require_once('Entity.iface.php');
+require_once('Component.class.php');
 
 class DataManagement
 {
