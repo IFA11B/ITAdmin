@@ -1,4 +1,5 @@
 <?php
+require_once ('com.Component.php');
 class Software extends Component
 {
 	private $Version;

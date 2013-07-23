@@ -1,4 +1,5 @@
 <?php
+require_once ('com.Component.php');
 class NetworkCard extends Component
 {
 	private $SpeedMbit;

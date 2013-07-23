@@ -1,4 +1,5 @@
 <?php
+require_once ('com.Component.php');
 class RaidController extends Component
 {
 	private $RaidLevel;
