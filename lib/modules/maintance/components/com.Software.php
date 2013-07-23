@@ -15,7 +15,7 @@ class Software extends Component
 	
 	public function getVersion()
 	{
-		if ($this->Version) {
+		if ($this->Version==null) {
 			return '';
 		}
 		return $this->Version;
@@ -28,7 +28,7 @@ class Software extends Component
 	
 	public function getLicenseType()
 	{
-		if ($this->LicenseType) {
+		if ($this->LicenseType==null) {
 			return '';
 		}
 		return $this->LicenseType;
@@ -41,7 +41,7 @@ class Software extends Component
 	
 	public function getLicenseCount()
 	{
-		if ($this->LicenseCount) {
+		if ($this->LicenseCount==null) {
 			return 0;
 		}
 		return $this->LicenseCount;
@@ -54,7 +54,7 @@ class Software extends Component
 	
 	public function getLicenseDuration()
 	{
-		if ($this->LicenseDuration) {
+		if ($this->LicenseDuration==null) {
 			return '';
 		}
 		return $this->LicenseDuration;
@@ -67,7 +67,7 @@ class Software extends Component
 	
 	public function getLicenseInformation()
 	{
-		if ($this->LicenseInformation) {
+		if ($this->LicenseInformation==null) {
 			return '';
 		}
 		return $this->LicenseInformation;
@@ -81,7 +81,7 @@ class Software extends Component
 	
 	public function getInstallHint()
 	{
-		if ($this->InstallHint) {
+		if ($this->InstallHint==null) {
 			return '';
 		}
 		return $this->InstallHint;
