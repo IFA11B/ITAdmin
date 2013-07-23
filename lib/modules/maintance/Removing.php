@@ -1,5 +1,5 @@
 <?php
-	class Removing
+	class ComponentRemover
 	{
 		private $IdComponent;
 		private $IdChildsList;
@@ -7,16 +7,16 @@
 		public function __construct($idComponent)
 		{
 			$this->IdComponent=$idComponent;
-			$this->$IdChildsList=CommonMaintainHelper::GetChildComponents($this->IdComponent);
+			$this->$IdChildsList=MaintanceCommonHelper::GetChildComponents($this->IdComponent);
 		}
 		public function MaintainComponent()
 		{
-			$idRoom=CommonMaintainHelper::GetStockRoomId();
+			$idRoom=MaintanceCommonHelper::GetStockRoomId();
 			
 		}
 		public function DiscardComponent()
 		{
-			$idRoom=CommonMaintainHelper::GetStockRoomId();
+			$idRoom=MaintanceCommonHelper::GetStockRoomId();
 				
 		}
 		

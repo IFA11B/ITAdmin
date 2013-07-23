@@ -1,12 +1,12 @@
 <?php
-class Mounting
+class ComponentMounter
 {
 		private $IdComponent;
 		private $IdParent;
 		public function __construct($idComponent)
 		{
 			$this->IdComponent=$idComponent;
-			$this->IdParent=CommonMaintainHelper::GetParentComponent($this->IdComponent);
+			$this->IdParent=MaintanceCommonHelper::GetParentComponent($this->IdComponent);
 		}
 		public function MountComponent($idRoom)
 		{

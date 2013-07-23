@@ -1,5 +1,5 @@
 <?php
-class Changing
+class ComponentChanger
 {
 	private $IdOldComponent;
 	private $IdNewComponent;
