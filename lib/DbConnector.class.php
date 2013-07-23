@@ -12,10 +12,10 @@ class DbConnector
 
 	private function __construct()
 	{
-		$DbHost = "";
-		$DbName = "";
-		$DbUser = "";
-		$DbPass = "";
+		$DbHost = "192.168.111.1:3306";
+		$DbName = "itv_v1";
+		$DbUser = "entwickler";
+		$DbPass = "entwickler12";
 
 		// Open connection to mysql database (using PDO)
 		$this->db = new PDO(
