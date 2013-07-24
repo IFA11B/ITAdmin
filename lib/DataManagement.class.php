@@ -1,14 +1,20 @@
 <?php
-require_once('DbConnector.class.php');
-require_once('Entity.iface.php');
+require_once ('DbConnector.class.php');
+require_once ('Entity.iface.php');
 
+/**
+ * Singleton class for bulk data access.
+ *
+ * @author Lukas Bagaric <lukas.bagaric@gmail.com>
+ *
+ */
 class DataManagement
 {
     private $rooms;
     private $suppliers;
     private $components;
     private $users;
-    
+
     private function __construct()
     {
         $this->rooms = null;
@@ -16,18 +22,18 @@ class DataManagement
         $this->components = null;
         $this->users = null;
     }
-    
+
     public static function getInstance()
     {
         static $instance = null;
-        if($instance === null)
+        if ($instance === null)
         {
             $instance = new DataManagement();
         }
         
         return $instance;
     }
-    
+
     public function getRooms()
     {
         if ($this->rooms !== null)
@@ -40,9 +46,9 @@ class DataManagement
         
         if ($rows !== false)
         {
-            foreach($rows as $row)
+            foreach ($rows as $row)
             {
-                $result []= new Room($row);
+                $result[] = new Room($row);
             }
             
             $this->rooms = $result;
@@ -50,7 +56,7 @@ class DataManagement
         }
         return false;
     }
-    
+
     public function getUsers()
     {
         if ($this->users !== null)
@@ -60,12 +66,12 @@ class DataManagement
         
         $result = array();
         $rows = DbConnector::getInstance()->getAllUsers();
-    
+        
         if ($rows !== false)
         {
-            foreach($rows as $row)
+            foreach ($rows as $row)
             {
-                $result []= new User($row);
+                $result[] = new User($row);
             }
             
             $this->users = $result;
@@ -73,7 +79,7 @@ class DataManagement
         }
         return false;
     }
-    
+
     public function getSuppliers()
     {
         if ($this->suppliers !== null)
@@ -86,9 +92,9 @@ class DataManagement
         
         if ($rows !== false)
         {
-            foreach($rows as $row)
+            foreach ($rows as $row)
             {
-                $result []= new Supplier($row);
+                $result[] = new Supplier($row);
             }
             
             $this->suppliers = $result;
@@ -96,7 +102,7 @@ class DataManagement
         }
         return false;
     }
-    
+
     public function getComponents()
     {
         if ($this->components !== null)
@@ -106,39 +112,91 @@ class DataManagement
         
         $result = array();
         $rows = DbConnector::getInstance()->getAllComponents();
-    
+        
         if ($rows !== false)
         {
-            foreach($rows as $row)
+            foreach ($rows as $row)
             {
                 switch($row[DB_COMPONENT_TYPE])
                 {
-                    case DB_COMPONENT_TYPE_PC:
-                        $result []= new ComPC($row);
-                        break;
-                    case DB_COMPONENT_TYPE_MAINBOARD:
-                        $result []= new ComMainboard($row);
-                        break;
-                    case DB_COMPONENT_TYPE_MEMORY:
-                        $result []= new ComMemory($row);
-                        break;
-                        // ...
-                        // add as needed
-                        // need to talk to DB about it again
-                    default:
-                        return false;
+                case DB_COMPONENT_TYPE_ACCESS_POINT:
+                    $result[] = new AccessPoint($row);
+                    break;
+                    
+                case DB_COMPONENT_TYPE_COMPUTER:
+                    $result[] = new Computer($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_CPU:
+                    $result[] = new CPU($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_DISK_CONTROLLER:
+                    $result[] = new DiskController($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_GRAPHICS_CARD:
+                    $result[] = new GraphicCard($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_HARD_DRIVE:
+                    $result[] = new HardDrive($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_HUB:
+                    $result[] = new Hub($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_MAINBOARD:
+                    $result[] = new Mainboard($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_NETWORK_CARD:
+                    $result[] = new NetworkCard($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_PRINTER:
+                    $result[] = new Printer($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_RAID_CONTROLLER:
+                    $result[] = new RaidController($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_RAM:
+                    $result[] = new RAM($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_ROUTER:
+                    $result[] = new Router($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_SOFTWARE:
+                    $result[] = new Software($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_SWITCH_COMPONENT:
+                    $result[] = new SwitchComponent($row);
+                    break;
+                
+                case DB_COMPONENT_TYPE_VLAN:
+                    $result[] = new Vlan($row);
+                    break;
+                    
+                default:
+                    return false;
                 }
             }
             
             // we need to set this now, so that getComponentById works
             $this->components = $result;
             
-            foreach($result as $component)
+            foreach ($result as $component)
             {
                 $rows = $db->getSubcomponentsOfComponent($component->getId());
                 if ($rows !== false)
                 {
-                    foreach($rows as $row)
+                    foreach ($rows as $row)
                     {
                         $subcomponent = $this->getComponentById($row);
                         
@@ -151,7 +209,7 @@ class DataManagement
                     // there was an error querying the DB
                     // reset this to keep the object in a valid state
                     $this->components = null;
-                    return false;   
+                    return false;
                 }
             }
             
@@ -159,17 +217,16 @@ class DataManagement
         }
         return false;
     }
-    
+
     private static function getEntityFromArrayById(array $array, int $entityId)
     {
         // binary search because we're awesome
-        
         $maxLen = count($array);
         $len = $maxLen - 1;
         $index = 0;
         $entity = $array[$index];
         
-        while($entity->getId() !== $entityId)
+        while ($entity->getId() !== $entityId && $index < $maxLen && $index >= 0)
         {
             if ($entity->getId() > $entityId)
             {
@@ -180,30 +237,35 @@ class DataManagement
                 $index += $len;
             }
             $len = ($len + 1) / 2;
+            $entity = $array[$index];
+        }
+        
+        if ($entity->getId() == $entityId)
+        {
+            return null;
         }
         
         return $entity;
     }
-    
+
     public function getComponentById(int $componentId)
     {
-        return DataManagement::getEntityFromArrayById($this->components, $componentId);
+        return DataManagement::getEntityFromArrayById($this->getComponents(), $componentId);
     }
-    
+
     public function getRoomById(int $roomId)
     {
-        return DataManagement::getEntityFromArrayById($this->rooms, $roomId);
+        return DataManagement::getEntityFromArrayById($this->getRooms(), $roomId);
     }
-    
+
     public function getSupplierById(int $supplierId)
     {
-        return DataManagement::getEntityFromArrayById($this->suppliers, $supplierId);
+        return DataManagement::getEntityFromArrayById($this->getSuppliers(), $supplierId);
     }
-    
+
     public function getUserById(int $userId)
     {
-        return DataManagement::getEntityFromArrayById($this->users, $userId);
+        return DataManagement::getEntityFromArrayById($this->getUsers(), $userId);
     }
-    
 }
 ?>
