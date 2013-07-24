@@ -5,16 +5,13 @@ class Hub extends Component
 	private $PortsCount;
 	private $SpeedMbit;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getPortsCount()
 	{
-		if ($this->PortsCount==null) {
-			return 0;
-		}
 		return $this->PortsCount;
 	}
 	
@@ -25,9 +22,6 @@ class Hub extends Component
 	
 	public function getSpeedMbit()
 	{
-		if ($this->SpeedMbit==null) {
-			return 0;
-		}
 		return $this->SpeedMbit;
 	}
 	

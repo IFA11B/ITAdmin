@@ -5,16 +5,13 @@ class Router extends Component
 	private $IpConfigurations;
 	private $ConfigurationFilePath;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getIpConfigurations()
 	{
-		if ($this->IpConfigurations==null) {
-			return array('IP1'=>'','IP2'=>'','IP3'=>'','IP4'=>'');
-		}
 		return $this->IpConfigurations;
 	}
 	
@@ -33,13 +30,10 @@ class Router extends Component
 	
 	public function getConfigurationFilePath()
 	{
-		if ($this->ConfigurationFilePath==null) {
-			return '';
-		}
 		return $this->ConfigurationFilePath;
 	}
 	
-	public function setConfigurationFilePath($ConfigurationFilePath)
+	public function setConfigurationFilePath(string $ConfigurationFilePath)
 	{
 		$this->ConfigurationFilePath=$ConfigurationFilePath;
 	}

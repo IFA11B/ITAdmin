@@ -5,17 +5,13 @@ class Ram extends Component
 	private $SpaceMByte;
 	private $ClockSpeedMHz;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getSpaceMbyte()
 	{
-		if ($this->SpaceMbyte==null)
-		{
-			return 0;
-		}
 		return $this->SpaceMbyte;
 	}
 	
@@ -26,10 +22,6 @@ class Ram extends Component
 	
 	public function getClockSpeedMHz()
 	{
-		if ($this->$ClockSpeedMHz==null)
-		{
-			return 0;
-		}
 		return $this->ClockSpeedMHz;
 	}
 	

@@ -3,18 +3,15 @@ require_once ('com.Component.php');
 class Vlan extends Component
 {
 	private $Tag;
-	private $Port;
+	private $PortsCount;
 	
-	public function __construct($parent)
+	public function __construct(array $row=null)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getTag()
 	{
-		if ($this->Tag==null) {
-			return 0;
-		}
 		return $this->Tag;
 	}
 	
@@ -23,17 +20,14 @@ class Vlan extends Component
 		$this->Tag=$Tag;
 	}
 	
-	public function getPort()
+	public function getPortsCount()
 	{
-		if ($this->Port==null) {
-			return 0;
-		}
-		return $this->Port;
+		return $this->PortsCount;
 	}
 	
-	public function setPort(int $Port)
+	public function setPortsCount(int $PortsCount)
 	{
-		$this->Port=$Port;
+		$this->PortsCount=$PortsCount;
 	}
 }
 ?>

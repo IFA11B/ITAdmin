@@ -5,32 +5,26 @@ class GraphicCard extends Component
 	private $InterfaceType;
 	private $SpaceMbyte;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getInterfaceType()
 	{
-		if ($this->InterfaceType==null) {
-			return '';
-		}
 		return $this->InterfaceType;
 	}
 	
-	public function setInterfaceType($InterfaceType)
+	public function setInterfaceType(string $InterfaceType)
 	{
 		$this->InterfaceType=$InterfaceType;
 	}
 	public function getSpaceMbyte()
 	{
-		if ($this->SpaceMbyte==null) {
-			return '';
-		}
 		return $this->SpaceMbyte;
 	}
 	
-	public function setSpaceMbyte($SpaceMbyte)
+	public function setSpaceMbyte(int $SpaceMbyte)
 	{
 		$this->SpaceMbyte=$SpaceMbyte;
 	}
