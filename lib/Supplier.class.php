@@ -120,7 +120,7 @@ class Supplier implements Entity
     		setPhone($row[DB_SUPPLIER_PHONE]);
     		setMobile($row[DB_SUPPLIER_MOBILE]);
     		setFax($row[DB_SUPPLIER_FAX]);
-    		setEmail($row[DB_SUPPLIER_FAX]);
+    		setEmail($row[DB_SUPPLIER_EMAIL]);
     	}
     }
     
