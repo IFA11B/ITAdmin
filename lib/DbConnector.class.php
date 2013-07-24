@@ -5,8 +5,6 @@
  * 
  * @author Thunraz <julian.dinges@gmail.com>
  */
-require_once ('Supplier.class.php');
-
 class DbConnector
 {
 	private $db;

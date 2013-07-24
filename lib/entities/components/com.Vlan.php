@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class Vlan extends Component
 {
 	private $Tag;

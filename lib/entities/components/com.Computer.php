@@ -1,5 +1,5 @@
 <?php
-require_once ('com.Component.php');
+
 class Computer extends Component
 {
 	private $IpAdress;

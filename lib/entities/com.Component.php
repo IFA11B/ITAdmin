@@ -1,11 +1,9 @@
 <?php
-require_once('DbConnector.class.php');
-require_once('Entity.iface.php');
 
 /**
  * Base class for all components to be managed.
  *
- * @author Deaod
+ * @author 
  */
 abstract class Component
 {
@@ -125,10 +123,6 @@ abstract class Component
 	public function setPurchaseDate(string $purchaseDate)
 	{
 		$this->PurchaseDate=$purchaseDate;
-	}
-	public function setPurchaseDate(string $day,string $month,string $year)
-	{
-		$this->PurchaseDate=$year.'-'.$month.'-'.$day;
 	}
 	
 	public function getWarrantyDuration()

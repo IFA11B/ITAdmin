@@ -1,6 +1,5 @@
 <?php
 require_once('Page.iface.php');
-require_once('User.class.php');
 require_once('DbConnector.class.php');
 
 /**

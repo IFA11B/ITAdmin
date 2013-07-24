@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class HardDrive extends Component
 {
 	private $InterfaceType;
