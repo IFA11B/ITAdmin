@@ -6,6 +6,25 @@ class Supplier implements Entity
 {
 	private $id;
 	private $name;
+	private $note;
+	
+	/**
+	 * Sets the room's note.
+	 * @param string $note
+	 */
+	public function setNote(string $note)
+	{
+		$this->note = $note;
+	}
+	
+	/**
+	 * Gets the room's note.
+	 * @return string
+	 */
+	public function getNote()
+	{
+		return $this->note;
+	}
 	
 	/**
 	 * Sets the room's id.
@@ -19,6 +38,7 @@ class Supplier implements Entity
 	/**
 	 * Gets the room's id.
 	 * @see Entity::getId()
+	 * @return int
 	 */
 	public function getId()
 	{
@@ -51,8 +71,9 @@ class Supplier implements Entity
 	{
     	if ($row != null)
     	{
-    		setId($row["DB_ROOM_ID"]);
-    		setName($row["DB_ROOM_NAME"]);
+    		setId($row[DB_ROOM_ID]);
+    		setName($row[DB_ROOM_NAME]);
+    		setNote($row[DB_ROOM_NOTE]);
     	}
 	}
 	
@@ -95,6 +116,7 @@ class Supplier implements Entity
 		$clone = new Room();
 		$clone->setId($this->id);
 		$clone->setName($this->name);
+		$clone->setNote($this->note);
 		
 		$clone->create();
 		
