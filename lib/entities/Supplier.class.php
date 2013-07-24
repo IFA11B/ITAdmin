@@ -2,6 +2,10 @@
 require_once('Entity.iface.php');
 require_once('DbConnector.class.php');
 
+/**
+ * @author schueler
+ *
+ */
 class Supplier implements Entity
 {
 	private $id;
@@ -116,7 +120,7 @@ class Supplier implements Entity
     		setPhone($row[DB_SUPPLIER_PHONE]);
     		setMobile($row[DB_SUPPLIER_MOBILE]);
     		setFax($row[DB_SUPPLIER_FAX]);
-    		setEmail($row[DB_SUPPLIER_FAX]);
+    		setEmail($row[DB_SUPPLIER_EMAIL]);
     	}
     }
     
@@ -140,6 +144,18 @@ class Supplier implements Entity
     
     public function copy()
     {
+    	$copy = new Supplier();
     	
+    	$copy->setId($this->getId());
+    	$copy->setCompanyame($this->getCompanyname());
+    	$copy->setStreet($this->getStreet());
+    	$copy->setZipcode($this->getZipcode());
+    	$copy->setCity($this->getCity());
+    	$copy->setPhone($this->getPhone());
+    	$copy->setMobile($this->getMobile());
+    	$copy->setFax($this->getFax());
+    	$copy->setEmail($this->getEmail());
+    	
+    	return $copy;
     }
 }

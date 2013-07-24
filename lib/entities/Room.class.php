@@ -5,8 +5,27 @@ require_once('DbConnector.class.php');
 class Room implements Entity
 {
 	private $id;
+	private $number;
 	private $name;
 	private $note;
+	
+	/**
+	 * Sets the room's number.
+	 * @param string $number
+	 */
+	public function setNumber(string $number)
+	{
+		$this->number = $number;
+	}
+	
+	/**
+	 * Gets the room's number.
+	 * @return string
+	 */
+	public function getNumber()
+	{
+		return $this->number;
+	}
 	
 	/**
 	 * Sets the room's note.
@@ -72,6 +91,7 @@ class Room implements Entity
     	if ($row != null)
     	{
     		setId($row[DB_ROOM_ID]);
+    		setNumber($row[DB_ROOM_NUMBER]);
     		setName($row[DB_ROOM_NAME]);
     		setNote($row[DB_ROOM_NOTE]);
     	}
@@ -115,6 +135,7 @@ class Room implements Entity
 	{
 		$clone = new Room();
 		$clone->setId($this->id);
+		$clone->setNumber($this->number);
 		$clone->setName($this->name);
 		$clone->setNote($this->note);
 		
