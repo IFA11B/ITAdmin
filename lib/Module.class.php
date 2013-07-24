@@ -7,8 +7,9 @@ require_once('DbConnector.class.php');
  * Base class for modules. Provides access management.
  * 
  * @author deaod
+ * @author Thunraz
  */
-abstract class Module implements Page
+abstract class Module
 {
     public abstract function getId();
     
@@ -18,7 +19,7 @@ abstract class Module implements Page
     
     public abstract function getDescription();
     
-    public abstract function getPage(string $module, string $page);
+    public abstract function getPage(string $page);
     
     public function canRead(User $user)
     {
