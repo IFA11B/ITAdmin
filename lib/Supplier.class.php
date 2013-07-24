@@ -2,6 +2,10 @@
 require_once('Entity.iface.php');
 require_once('DbConnector.class.php');
 
+/**
+ * @author schueler
+ *
+ */
 class Supplier implements Entity
 {
 	private $id;
