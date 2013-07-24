@@ -197,7 +197,7 @@ class DataManagement
     
     public function getRoomById(int $roomId)
     {
-        return DataManagement::getEntityFromArrayById($this->rooms, roomId);
+        return DataManagement::getEntityFromArrayById($this->rooms, $roomId);
     }
     
     public function getSupplierById(int $supplierId)

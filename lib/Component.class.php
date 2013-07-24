@@ -3,9 +3,9 @@ require_once('DbConnector.class.php');
 require_once('Entity.iface.php');
 
 /**
+ * Base class for all components to be managed.
  * 
- * @author deaod
- *
+ * @author Deaod
  */
 abstract class Component implements Entity
 {
