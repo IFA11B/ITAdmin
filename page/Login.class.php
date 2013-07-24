@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ *
  * @author Deaod
  * @see Page
  */
@@ -8,25 +8,18 @@ class Login implements Page
 {
     /**
      * The current cost for hashing passwords.
-     * 
+     *
      * @var integer
      */
     const PASSWORD_COST = 12;
     
     /**
-     * The string by which a user is identified in the session.
-     * 
-     * @var string
-     */
-    const SESSION_USER = 'USER';
-    
-    /**
-     * (non-PHPdoc) 
+     * (non-PHPdoc)
      * @see Page::getTemplate()
      */
     public function getTemplate()
     {
-       return 'login.tpl'; 
+       return 'login.tpl';
     }
     
     private function checkPassword(string $user, string $pwd)
@@ -55,7 +48,7 @@ class Login implements Page
     }
     
     /**
-     * (non-PHPdoc) 
+     * (non-PHPdoc)
      * @see Page::getContent()
      */
     public function getContent()
@@ -73,9 +66,9 @@ class Login implements Page
                 if (checkPassword($user, $pwd))
                 {
                     session_start();
-                    $_SESSION[SESSION_USER] = DbConnector::getInstance()->getUserByName($user);
+                    User::setSessionUser(DbConnector::getInstance()->getUserByName($user));
                     header('Location: ' . HOME_DIR . 'index.php?page=home');
-                } 
+                }
                 else
                 {
                     $result['error'] = true;

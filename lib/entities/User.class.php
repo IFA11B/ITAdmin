@@ -1,45 +1,89 @@
 <?php
-
+/**
+ *
+ */
+/**
+ * Represents a single user, as stored in the database.
+ *
+ * @author Lukas Bagaric <lukas.bagaric@gmail.com>
+ */
 class User implements Entity
 {
-    private $id;
-    private $name;
-    private $password;
-    private $createDate;
+    /**
+     * The string by which a user is identified in the session.
+     *
+     * @var string
+     */
+    const SESSION_USER = 'USER';
     
+    /**
+     * Unique integer assigned to a user.
+     *
+     * @var int
+     */
+    private $id;
+    
+    /**
+     * Unique name of this user.
+     *
+     * @var string
+     */
+    private $name;
+    
+    /**
+     * Hashed version of the password.
+     *
+     * @var string
+     */
+    private $password;
+    
+    /**
+     * Date the user was created on.
+     *
+     * @var date
+     */
+    private $createDate;
+
     public function getId()
     {
         return $this->id;
     }
+
     public function setId(int $id)
     {
         $this->id = $id;
     }
+
     public function getName()
     {
         return $this->name;
     }
+
     public function setName(string $name)
     {
         $this->name = $name;
     }
+
     public function getPassword()
     {
         return $this->password;
     }
+
     public function setPassword(string $password)
     {
         $this->password = $password;
     }
+
     public function getCreateDate()
     {
         return $this->createDate;
     }
+
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
     }
-    
+
     public function __construct(array $row = null)
     {
         if ($row != null)
@@ -50,11 +94,10 @@ class User implements Entity
             setCreateDate($row[DB_USER_CREATE_DATE]);
         }
     }
-    
+
     public function canReadModule(int $module)
     {
-        $db = DbConnector::getInstance();
-        $result = $db->userModuleRead($this->getId(), $module);
+        $result = DbConnector::getInstance()->userModuleRead($this->getId(), $module);
         
         if ($result === 1)
         {
@@ -62,11 +105,10 @@ class User implements Entity
         }
         return false;
     }
-    
+
     public function canWriteModule(int $module)
     {
-        $db = DbConnector::getInstance();
-        $result = $db->userModuleWrite($this->getId(), $module);
+        $result = DbConnector::getInstance()->userModuleWrite($this->getId(), $module);
         
         if ($result === 1)
         {
@@ -74,25 +116,22 @@ class User implements Entity
         }
         return false;
     }
-    
+
     public function update()
     {
-        $db = DbConnector::getInstance();
-        $db->updateUser($this);
+        DbConnector::getInstance()->updateUser($this);
     }
-    
+
     public function delete()
     {
-        $db = DbConnector::getInstance();
-        $db->deleteUser($this);
+        DbConnector::getInstance()->deleteUser($this);
     }
-    
+
     public function create()
     {
-        $db = DbConnector::getInstance();
-        $db->createUser($this);
+        DbConnector::getInstance()->createUser($this);
     }
-    
+
     public function copy()
     {
         $copy = new User();
@@ -103,6 +142,28 @@ class User implements Entity
         $copy->setCreateDate($this->getCreateDate());
         
         return $copy;
+    }
+
+    public static function getSessionUser()
+    {
+        $user = $_SESSION[Login::SESSION_USER];
+        
+        if ($user == null)
+        {
+            return false;
+        }
+        
+        return $user;
+    }
+
+    public static function setSessionUser(User $user)
+    {
+        $_SESSION[Login::SESSION_USER] = $user;
+    }
+
+    public static function isLoggedIn()
+    {
+        return getSessionUser() !== false;
     }
 }
 ?>
