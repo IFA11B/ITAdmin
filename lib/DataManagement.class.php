@@ -23,7 +23,7 @@ class DataManagement
         static $instance = null;
         if($instance === null)
         {
-            $instance = new DbConnect();
+            $instance = new DataManagement();
         }
         
         return $instance;
@@ -36,9 +36,8 @@ class DataManagement
             return $this->rooms;
         }
         
-        $db = DbConnector::getInstance();
         $result = array();
-        $rows = $db->getAllRooms();
+        $rows = DbConnector::getInstance()->getAllRooms();
         
         if ($rows !== false)
         {
@@ -60,9 +59,8 @@ class DataManagement
             return $this->users;
         }
         
-        $db = DbConnector::getInstance();
         $result = array();
-        $rows = $db->getAllUsers();
+        $rows = DbConnector::getInstance()->getAllUsers();
     
         if ($rows !== false)
         {
@@ -84,9 +82,8 @@ class DataManagement
             return $this->suppliers;
         }
         
-        $db = DbConnector::getInstance();
         $result = array();
-        $rows = $db->getAllSuppliers();
+        $rows = DbConnector::getInstance()->getAllSuppliers();
         
         if ($rows !== false)
         {
@@ -108,9 +105,8 @@ class DataManagement
             return $this->components;
         }
         
-        $db = DbConnector::getInstance();
         $result = array();
-        $rows = $db->getAllComponents();
+        $rows = DbConnector::getInstance()->getAllComponents();
     
         if ($rows !== false)
         {
