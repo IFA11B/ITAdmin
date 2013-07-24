@@ -1,24 +1,17 @@
 <?php
 /**
- * 
- * @author Deaod
+ *
+ * @author Lukas Bagaric <lukas.bagaric@gmail.com>
  * @see Page
  */
 class Home implements Page
 {
-    /**
-     * (non-PHPdoc)
-     * @see Page::getTemplate()
-     */
+
     public function getTemplate()
     {
-        return 'home.tpl'; 
+        return 'home.tpl';
     }
-    
-    /**
-     * (non-PHPdoc)
-     * @see Page::getContent()
-     */
+
     public function getContent()
     {
         return array();
