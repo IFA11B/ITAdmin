@@ -1,5 +1,5 @@
 <?php
-	class MaintanceDatabaseHelper
+	class MaintenanceDatabaseHelper
 	{
 		private $IdOldComponent;
 		private $IdNewComponent;

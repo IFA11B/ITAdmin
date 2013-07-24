@@ -152,6 +152,15 @@ abstract class Component implements Entity
         $copy->setNotice($this->getNotice());
         $copy->setManufacturer($this->getManufacturer());
         
+        foreach($children as $child)
+        {
+            $childCopy = $child->copy();
+            
+            $childCopy->setParent($copy);
+            $copy->addChild($childCopy);
+            
+        }
+        
         return $copy;
     }
 }
