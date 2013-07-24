@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class Hub extends Component
 {
 	private $PortsCount;

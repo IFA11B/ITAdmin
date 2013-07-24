@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class Printer extends Component
 {
 	private $IpAdress;

@@ -1,6 +1,4 @@
 <?php
-require_once('Entity.iface.php');
-require_once('DbConnector.class.php');
 
 class User implements Entity
 {

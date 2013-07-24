@@ -12,18 +12,28 @@ define('PAGE_HOME', 'home');
 function loadDir($directory)
 {
     $files = scandir($directory);
+    $subDirs = array();
     
     foreach($files as $file)
     {
         // skip meta files, hidden files, and subdirectories.
-        if (   is_dir($directory . $file)
-            || strncmp($file, '.', 1) == 0)
+        if (strncmp($file, '.', 1) == 0)
         {
+            continue;
+        }
+        
+        if (is_dir($directory . $file))
+        {
+            $subDirs []= $directory . $file . '/';
             continue;
         }
     
         // load the target file
         require_once($directory . $file);
+    }
+    
+    foreach($subDirs as $subDir) {
+        loadDir($subDir);
     }
 }
 
@@ -75,8 +85,8 @@ function createSmarty()
 $smarty = createSmarty();
 $page = getPage();
 
-$smarty->assign($page->getContent());
-$smarty->display($page->getTemplate());
+//$smarty->assign($page->getContent());
+//$smarty->display($page->getTemplate());
 
-//$smarty->testInstall();
+$smarty->testInstall();
 ?>

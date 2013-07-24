@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class Ram extends Component
 {
 	private $SpaceMByte;

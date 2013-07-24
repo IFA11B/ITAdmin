@@ -1,5 +1,4 @@
 <?php
-require_once ('com.Component.php');
 class GraphicCard extends Component
 {
 	private $InterfaceType;
