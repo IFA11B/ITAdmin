@@ -14,6 +14,13 @@ class Login implements Page
     const PASSWORD_COST = 12;
     
     /**
+     * The string by which a user is identified in the session.
+     * 
+     * @var string
+     */
+    const SESSION_USER = 'USER';
+    
+    /**
      * (non-PHPdoc) 
      * @see Page::getTemplate()
      */
@@ -66,6 +73,7 @@ class Login implements Page
                 if (checkPassword($user, $pwd))
                 {
                     session_start();
+                    $_SESSION[SESSION_USER] = DbConnector::getInstance()->getUserByName($user);
                     header('Location: ' . HOME_DIR . 'index.php?page=home');
                 } 
                 else

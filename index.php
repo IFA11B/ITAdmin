@@ -3,21 +3,23 @@ define('ITVERWALTUNG', 1);
 
 require_once('config.php');
 
-loadDir(LIB_DIR);
+loadDir(LIB_DIR, array(LIB_DIR . 'smarty'));
 loadDir(PAGE_DIR);
 
 define('PAGE_LOGIN', 'login');
 define('PAGE_HOME', 'home');
 
-function loadDir($directory)
+function loadDir($directory, $excluded = array())
 {
     $files = scandir($directory);
     $subDirs = array();
     
     foreach($files as $file)
     {
+        
         // skip meta files, hidden files, and subdirectories.
-        if (strncmp($file, '.', 1) == 0)
+        if (   strncmp($file, '.', 1) == 0
+            || in_array($directory . $file, $excluded))
         {
             continue;
         }
@@ -85,8 +87,8 @@ function createSmarty()
 $smarty = createSmarty();
 $page = getPage();
 
-//$smarty->assign($page->getContent());
-//$smarty->display($page->getTemplate());
+$smarty->assign($page->getContent());
+$smarty->display($page->getTemplate());
 
-$smarty->testInstall();
+//$smarty->testInstall();
 ?>
