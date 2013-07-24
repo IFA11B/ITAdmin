@@ -12,17 +12,13 @@ class Mainboard extends Component
 	private $InterfacesIntern;
 	private $InterfacesExtern;
 
-	public function __construct($parent,array $childs)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
-		$this->setChilds($childs);
+		parent::__construct($row);
 	}
 	
 	public function getSockel()
 	{
-		if ($this->Sockel==null) {
-			return '';
-		}
 		return $this->Sockel; 
 	}
 	
@@ -33,9 +29,6 @@ class Mainboard extends Component
 	
 	public function getRamType()
 	{
-		if ($this->RamType==null) {
-			return '';
-		}
 		return $this->RamType;
 	}
 	
@@ -46,34 +39,25 @@ class Mainboard extends Component
 
 	public function getRamMaxSpace()
 	{
-		if ($this->RamMaxSpace==null) {
-			return '';
-		}
 		return $this->RamMaxSpace;
 	}
 	
-	public function setRamMaxSpace(string $ramMaxSpace)
+	public function setRamMaxSpace(int $ramMaxSpace)
 	{
 		$this->RamMaxSpace=$ramMaxSpace;
 	}
 	public function getRamSlotsCount()
 	{
-		if ($this->RamSlotsCount==null) {
-			return '';
-		}
 		return $this->RamSlotsCount;
 	}
 	
-	public function setRamSlotsCount(string $ramSlotsCount)
+	public function setRamSlotsCount(int $ramSlotsCount)
 	{
 		$this->RamSlotsCount=$ramSlotsCount;
 	}
 	
 	public function getConnectorTypePowerSupply()
 	{
-		if ($this->ConnectorTypePowerSupply==null) {
-			return '';
-		}
 		return $this->ConnectorTypePowerSupply;
 	}
 	
@@ -84,9 +68,6 @@ class Mainboard extends Component
 	
 	public function getConnectorTypeCpu()
 	{
-		if ($this->ConnectorTypeCpu==null) {
-			return '';
-		}
 		return $this->ConnectorTypeCpu;
 	}
 	

@@ -1,6 +1,15 @@
 <?php
+require_once('DbConnector.class.php');
+require_once('Entity.iface.php');
+
+/**
+ * Base class for all components to be managed.
+ *
+ * @author Deaod
+ */
 abstract class Component
 {
+	private $Id;
 	private $Name;
 	private $Manufacturer;
 	private $Room;
@@ -11,20 +20,77 @@ abstract class Component
 	private $Parent;
 	private $Childs;
 	private $HasParent;
-	private $HasChilds;
 	
-	public function __construct(string $room,$parent=NULL)
+	public function __construct(array $row = null)
 	{
-		$this->Room=$room;
-		$this->Parent=$parent;
+	        $this->setParent(null);
+        $this->clearChildren();
+        
+        if ($row !== null) {
+            $this->setId($row[DB_COMPONENT_ID]);
+            $this->setSupplier($row[DB_COMPONENT_SUPPLIER]);
+            $this->setRoom($row[DB_COMPONENT_ROOM]);
+            $this->setPurchaseDate($row[DB_COMPONENT_PURCHASE_DATE]);
+            $this->setWarrantyPeriod($row[DB_COMPONENT_WARRANTY_PERIOD]);
+            $this->setNotice($row[DB_COMPONENT_NOTICE]);
+            $this->setManufacturer($row[DB_COMPONENT_MANUFACTURER]);
+        }
+    }
+    
+    public function update()
+    {
+        $db = DbConnector::getInstance();
+        $db->updateComponent($this);
+    }
+    
+    public function delete()
+    {
+        $db = DbConnector::getInstance();
+        $db->deleteComponent($this);
+    }
+    
+    public function create()
+    {
+        $db = DbConnector::getInstance();
+        $db->createComponent($this);
+    }
+    
+    public function copy()
+    {
+        $copy = new Component();
+
+        $copy->setId($this->getId());
+        $copy->setSupplier($this->getSupplier());
+        $copy->setRoom($this->getRoom());
+        $copy->setPurchaseDate($this->getPurchaseDate());
+        $copy->setWarrantyPeriod($this->getWarrantyPeriod());
+        $copy->setNotice($this->getNotice());
+        $copy->setManufacturer($this->getManufacturer());
+        
+        foreach($children as $child)
+        {
+            $childCopy = $child->copy();
+            
+            $childCopy->setParent($copy);
+            $copy->addChild($childCopy);
+            
+        }
+        
+        return $copy;
+    }
+	
+	public function getId()
+	{
+		return $this->Id;
+	}
+	
+	public function setId(int $Id)
+	{
+		$this->Id = $Id;
 	}
 	
 	public function getName()
 	{
-		if($this->Name==null)
-		{
-			return '';
-		} 
 		return $this->Name;
 	}
 	
@@ -35,10 +101,6 @@ abstract class Component
 	
 	public function getManufacturer()
 	{
-		if($this->Manufacturer==null)
-		{
-			return '';
-		}
 		return $this->Manufacturer;
 	}
 	
@@ -49,23 +111,15 @@ abstract class Component
 	
 	public function getRoom()
 	{
-		if($this->Room==null)
-		{
-			return '';
-		}
 		return $this->Room;
 	}
-	public function setRoom(string $room)
+	public function setRoom(int $room)
 	{
 		$this->Room=$room;
 	}
 	
 	public function getPurchaseDate()
 	{
-		if ($this->PurchaseDate==null) 
-		{
-			return '';
-		}	
 		return $this->PurchaseDate;
 	}
 	public function setPurchaseDate(string $purchaseDate)
@@ -79,23 +133,15 @@ abstract class Component
 	
 	public function getWarrantyDuration()
 	{
-		if ($this->WarrantyDuration==null)
-		{
-			return '';
-		}
 		return $this->WarrantyDuration;
 	}
-	public function setWarrantyDuration(string $warrantyDuration)
+	public function setWarrantyDuration(int $warrantyDuration)
 	{
 		$this->WarrantyDuration=$warrantyDuration;
 	}
 	
 	public function getSupplier()
 	{
-		if ($this->Supplier==null)
-		{
-			return '';
-		}
 		return $this->Supplier;
 	}
 	public function setSupplier(string $supplier)
@@ -105,9 +151,6 @@ abstract class Component
 	
 	public function getNote()
 	{
-		if ($this->Note==null) {
-			return '';
-		}
 		return $this->Note;
 	}
 	public function setNote(string $note)
@@ -119,40 +162,53 @@ abstract class Component
 	{
 		return $this->Parent; 
 	}
-	public function setParent($parent)
+	
+	public function setParent(Component $parent)
 	{
 		$this->Parent=$parent;
 	}
 	
-	public function getChilds()
+	public function getHasParent()
+	{
+		if ($this->Parent==null)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public function getChildren()
 	{
 		return $this->Childs;
+	}
+	
+	public function addChild(Component $child)
+	{
+		$this->Childs []= $child;
+	}
+	
+	public function getChild(int $index)
+	{
+		return $this->Childs[$index];
+	}
+	
+	public function getChildrenCount()
+	{
+		if ($this->Childs==null) {
+			return 0;
+		}
+		return count($this->Childs);
+	}
+	
+	public function clearChildren()
+	{
+		$this->Childs = array();
 	}
 	
 	public function setChilds(array $childs)
 	{
 		$this->Childs=$childs;
 	}
-	
-	public function getHasParent()
-	{
-		if ($this->Parent==null) 
-		{
-			return false;
-		}
-		return true;
-	}
-	
-	public function getHasChilds()
-	{
-		if ($this->Childs==null) 
-		{
-			return false;
-		}
-		return true;
-	}
-	
-	
 }
 
 ?>

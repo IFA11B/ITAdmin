@@ -7,16 +7,13 @@ class Printer extends Component
 	private $HasColor;
 	private $ConnectionType;
 	
-	public function __construct(string $room)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($room);
+		parent::__construct($row);
 	}
 	
 	public function getIpAdress()
 	{
-		if ($this->IpAdress==null) {
-			return '';
-		}
 		return $this->IpAdress;
 	}
 	
@@ -27,22 +24,16 @@ class Printer extends Component
 	
 	public function getPrinterType()
 	{
-		if ($this->PrinterType==null) {
-			return '';
-		}
 		return $this->PrinterType;
 	}
 	
-	public function setPrinterType($printerType)
+	public function setPrinterType(string $printerType)
 	{
 		$this->PrinterType=$printerType;
 	}
 	
 	public function getHasColor()
 	{
-		if ($this->HasColor==null) {
-			return false;
-		}
 		return $this->HasColor;
 	}
 	
@@ -53,13 +44,10 @@ class Printer extends Component
 	
 	public function getConnectionType()
 	{
-		if ($this->ConnectionType==null) {
-			return '';
-		}
 		return $this->ConnectionType;
 	}
 	
-	public function setConnectionType($connectionType)
+	public function setConnectionType(string $connectionType)
 	{
 		$this->Connection=$connectionType;
 	}

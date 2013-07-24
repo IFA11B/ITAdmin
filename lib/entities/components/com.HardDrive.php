@@ -7,17 +7,13 @@ class HardDrive extends Component
 	private $SpaceMbyte;
 	private $DriveType;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getInterfaceType()
 	{
-		if ($this->InterfaceType==null) 
-		{
-			return '';
-		}
 		return $this->InterfaceType;
 	}
 	
@@ -28,10 +24,6 @@ class HardDrive extends Component
 	
 	public function getPurpose()
 	{
-		if ($this->Purpose==null) 
-		{
-			return '';
-		}
 		return $this->Purpose;
 	}
 	
@@ -42,10 +34,6 @@ class HardDrive extends Component
 	
 	public function getSpaceMbyte()
 	{
-		if ($this->SpaceMbyte==null) 
-		{
-			return 0;
-		}
 		return $this->SpaceMbyte;
 	}
 	
@@ -56,10 +44,6 @@ class HardDrive extends Component
 	
 	public function getDriveType()
 	{
-		if ($this->DriveType==null)
-		{
-			return '';
-		}
 		return $this->DriveType;
 	}
 	

@@ -9,72 +9,57 @@ class Software extends Component
 	private $LicenseInformation;
 	private $InstallHint;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getVersion()
 	{
-		if ($this->Version==null) {
-			return '';
-		}
 		return $this->Version;
 	}
 	
-	public function setVersion($Version)
+	public function setVersion(string $Version)
 	{
 		$this->Version=$Version;
 	}
 	
 	public function getLicenseType()
 	{
-		if ($this->LicenseType==null) {
-			return '';
-		}
 		return $this->LicenseType;
 	}
 	
-	public function setLicenseType($LicenseType)
+	public function setLicenseType(string $LicenseType)
 	{
 		$this->LicenseType=$LicenseType;
 	}
 	
 	public function getLicenseCount()
 	{
-		if ($this->LicenseCount==null) {
-			return 0;
-		}
 		return $this->LicenseCount;
 	}
 	
-	public function setLicenseCount($LicenseCount)
+	public function setLicenseCount(int $LicenseCount)
 	{
 		$this->LicenseCount=$LicenseCount;
 	}
 	
 	public function getLicenseDuration()
 	{
-		if ($this->LicenseDuration==null) {
-			return '';
-		}
 		return $this->LicenseDuration;
 	}
 	
-	public function set($LicenseDuration)
+	public function set(int $LicenseDuration)
 	{
 		$this->LicenseDuration=$LicenseDuration;
 	}
 	
 	public function getLicenseInformation()
 	{
-		if ($this->LicenseInformation==null) {
-			return '';
-		}
 		return $this->LicenseInformation;
 	}
 	
-	public function setLicenseInformation($LicenseInformation)
+	public function setLicenseInformation(string $LicenseInformation)
 	{
 		$this->LicenseInformation=$LicenseInformation;
 	}
@@ -82,13 +67,10 @@ class Software extends Component
 	
 	public function getInstallHint()
 	{
-		if ($this->InstallHint==null) {
-			return '';
-		}
 		return $this->InstallHint;
 	}
 	
-	public function set($InstallHint)
+	public function setInstallHint(string $InstallHint)
 	{
 		$this->InstallHint=$InstallHint;
 	}

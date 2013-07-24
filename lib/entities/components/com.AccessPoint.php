@@ -5,16 +5,13 @@ class AccessPoint extends Component
 	private $IpAdress;
 	private $ConfigurationFilePath;
 
-	public function __construct(string $room)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($room);
+		parent::__construct($row);
 	}
 
 	public function getIpAdress()
 	{
-		if ($this->IpAdress==null) {
-			return '';
-		}
 		return $this->IpAdress;
 	}
 
@@ -25,13 +22,10 @@ class AccessPoint extends Component
 
 	public function getConfigurationFilePath()
 	{
-		if ($this->ConfigurationFilePath==null) {
-			return '';
-		}
 		return $this->ConfigurationFilePath;
 	}
 
-	public function setConfigurationFilePath($configurationFilePath)
+	public function setConfigurationFilePath(string $configurationFilePath)
 	{
 		$this->ConfigurationFilePath=$configurationFilePath;
 	}
