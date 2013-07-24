@@ -4,16 +4,13 @@ class RaidController extends Component
 {
 	private $RaidLevel;
 	
-	public function __construct()
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getRaidLevel()
 	{
-		if ($this->RaidLevel==null) {
-			return 0;
-		}
 		return $this->RaidLevel;
 	}
 	

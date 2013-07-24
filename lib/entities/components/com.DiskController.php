@@ -4,20 +4,17 @@ class DiskController extends Component
 {
 	private $DiskType;
 	
-	public function __construct($parent)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getDiskType()
 	{
-		if ($this->DiskType==null) {
-			return 0;
-		}
 		return $this->DiskType;
 	}
 	
-	public function setDiskType($DiskType)
+	public function setDiskType(string $DiskType)
 	{
 		$this->DiskType=$DiskType;
 	}

@@ -8,29 +8,23 @@ class SwitchComponent extends Component
 	private $SpeedMbit;
 	private $ConfigurationFilePath;
 	
-	public function __construct($parent)
+	public function __construct(array $row = NULL)
 	{
-		parent::__construct($parent->Room,$parent);
+		parent::__construct($row);
 	}
 	
 	public function getIpAdress()
 	{
-		if ($this->IpAdress==null) {
-			return '';
-		}
 		return $this->IpAdress;
 	}
 	
-	public function setVersion($IpAdress)
+	public function setVersion(string $IpAdress)
 	{
 		$this->IpAdress=$IpAdress;
 	}
 	
 	public function getPortsCount()
 	{
-		if ($this->PortsCount==null) {
-			return 0;
-		}
 		return $this->PortsCount;
 	}
 	
@@ -41,22 +35,16 @@ class SwitchComponent extends Component
 	
 	public function getUplinkType()
 	{
-		if ($this->UplinkType==null) {
-			return '';
-		}
 		return $this->UplinkType;
 	}
 	
-	public function setUplinkType($UplinkType)
+	public function setUplinkType(string $UplinkType)
 	{
 		$this->UplinkType=$UplinkType;
 	}
 	
 	public function getSpeedMbit()
 	{
-		if ($this->SpeedMbit==null) {
-			return 0;
-		}
 		return $this->SpeedMbit;
 	}
 	
@@ -67,9 +55,6 @@ class SwitchComponent extends Component
 	
 	public function getConfigurationFilePath()
 	{
-		if ($this->ConfigurationFilePath==null) {
-			return '';
-		}
 		return $this->ConfigurationFilePath;
 	}
 	

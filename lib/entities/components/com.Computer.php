@@ -6,17 +6,13 @@ class Computer extends Component
 	private $Subnet;
 	private $Gateway;
 	
-	public function __construct(string $room,array $childs)
+	public function __construct(array $row=NULL)
 	{
-		parent::__construct($room);	
-		$this->setChilds($childs);
+		parent::__construct($row);	
 	}
 	
 	public function getIpAdress()
 	{
-		if ($this->IpAdress==null) {
-			return '';
-		}
 		return $this->IpAdress;
 	}
 	
@@ -27,9 +23,6 @@ class Computer extends Component
 	
 	public function getSubnet()
 	{
-		if ($this->Subnet==null) {
-			return '';
-		}
 		return $this->Subnet;
 	}
 	
@@ -40,9 +33,6 @@ class Computer extends Component
 	
 	public function getGateway()
 	{
-		if ($this->Gateway==null) {
-			return '';
-		}
 		return $this->Gateway;
 	}
 	
