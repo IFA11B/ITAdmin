@@ -18,6 +18,8 @@ abstract class Module implements Page
     
     public abstract function getDescription();
     
+    public abstract function getPage(string $module, string $page);
+    
     public function canRead(User $user)
     {
         $db = DbConnector::getInstance();
