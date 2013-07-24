@@ -187,6 +187,10 @@ class DataManagement
             $len = ($len + 1) / 2;
         }
         
+        if ($entity->getId() !== $entityId)
+        {
+            return false;
+        }
         return $entity;
     }
     
