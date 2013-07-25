@@ -95,6 +95,7 @@ img.headlogo{
 
 .clear{
 	float:none;
+	clear: both;
 }
 
 .smallContent{

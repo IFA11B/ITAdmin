@@ -51,7 +51,7 @@ form#login {
 
 .styled-select select {
    	background: transparent;
-   	width: 268px;
+   	width: 168px;
    	padding: 5px;
    	font-size: 12px;
    	font-variant:small-caps;
@@ -63,9 +63,9 @@ form#login {
 }
 
 .styled-select {
-	width: 240px;
+	width: 140px;
    	height: 34px;
    	overflow: hidden;
-   	background: url(new_arrow.png) no-repeat right #ddd;
+   	background: url(nimages/chevron-down.png) no-repeat right #fff;
    	border: 1px solid #ccc;
 }
