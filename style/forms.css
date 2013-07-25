@@ -1,16 +1,50 @@
 @CHARSET "ISO-8859-1";
 
-div.input {
-    width: 100%;
+div.inputlabel {
+    width: 50%;
+	float:left;
+	font-size:11pt;
 }
 
-.input input {
-    width: 100%;
-    line-height: 1.3em;
+.formrow{
+	line-height:200%;
+}
+
+.formrow input{
+	width: 50%;
+}
+
+input {
+	font-size:11pt;
+	color:#333333;
+    line-height: 200%;
+	border:none;
+	border-bottom:1px solid #333333;
+}
+
+input.button{
+	padding:2px 7px 2px 7px;
+	background:none;
+	border:1px #333333 solid;
+	
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	
+}
+
+input.button:hover{
+	border-color: #7AA8C6;
+	color:#7AA8C6;
+	cursor:pointer;
 }
 
 form#login {
     width: 320px;
     margin: auto;
     font-size: 1.3em;
+}
+
+#loginFields{
+	padding-bottom: 20px;
 }
