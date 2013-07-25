@@ -9,6 +9,10 @@ class NetworkCard extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setSpeedMbit($row[DB_COMPONENT_NC_SPEEDMBIT]);
+		$this->setInterfaceExtern($row[DB_COMPONENT_NC_INTERFACEEXTERN]);
+		$this->setInterfaceIntern($row[DB_COMPONENT_NC_INTERFACEINTERN]);
+		$this->setPortsCount($row[DB_COMPONENT_NC_PORTSCOUNT]);
 	}
 	
 	public function getSpeedMbit()
@@ -16,7 +20,7 @@ class NetworkCard extends Component
 		return $this->SpeedMbit;
 	}
 	
-	public function set(int $SpeedMbit)
+	public function setSpeedMbit($SpeedMbit)
 	{
 		$this->SpeedMbit=$SpeedMbit;
 	}
@@ -26,7 +30,7 @@ class NetworkCard extends Component
 		return $this->InterfaceExtern;
 	}
 	
-	public function setInterfaceExtern(string $InterfaceExtern)
+	public function setInterfaceExtern($InterfaceExtern)
 	{
 		$this->InterfaceExtern=$InterfaceExtern;
 	}
@@ -36,7 +40,7 @@ class NetworkCard extends Component
 		return $this->InterfaceIntern;
 	}
 	
-	public function setInterfaceIntern(string $InterfaceIntern)
+	public function setInterfaceIntern($InterfaceIntern)
 	{
 		$this->InterfaceIntern=$InterfaceIntern;
 	}
@@ -46,7 +50,7 @@ class NetworkCard extends Component
 		return $this->PortsCount;
 	}
 	
-	public function setPortsCount(int $PortsCount)
+	public function setPortsCount($PortsCount)
 	{
 		$this->PortsCount=$PortsCount;
 	}

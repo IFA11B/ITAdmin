@@ -5,12 +5,12 @@ class Reporting extends Module
     const MODULE_NAME = "REPORTING";
     const MODULE_TITLE = "Reporting";
     
-    public function getId()
+    public static function getId()
     {
         return DbConnector::getInstance()->getModuleId(MODULE_NAME);
     }
     
-    public function getName()
+    public static function getName()
     {
         return MODULE_NAME;
     }
@@ -34,6 +34,19 @@ class Reporting extends Module
         {
             case "Detail":
                 $pageObject = new Detail();
+                break;
+                
+            case "Network":
+                sleep(2);
+                $pageObject = new ReportingNetwork();
+                break;
+                
+            case "Software":
+                $pageObject = new ReportingSoftware();
+                break;
+                
+            case "Hardware":
+                $pageObject = new ReportingHardware();
                 break;
                 
             case "Main":

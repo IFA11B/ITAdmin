@@ -3,12 +3,16 @@ class Printer extends Component
 {
 	private $IpAdress;
 	private $PrinterType;
-	private $HasColor;
+	private $ColorMode;
 	private $ConnectionType;
 	
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setIpAdress($row[DB_COMPONENT_P_IP]);
+		$this->setPrinterType($row[DB_COMPONENT_P_PRINTERTYPE]);
+		$this->setColorMode($row[DB_COMPONENT_P_COLORMODE]);
+		$this->setConnectionType($row[DB_COMPONENT_P_CONNECTIONTYPE]);
 	}
 	
 	public function getIpAdress()
@@ -16,7 +20,7 @@ class Printer extends Component
 		return $this->IpAdress;
 	}
 	
-	public function setIpAdress(string $ipAdress)
+	public function setIpAdress($ipAdress)
 	{
 		$this->IpAdress=$ipAdress;
 	}
@@ -26,19 +30,19 @@ class Printer extends Component
 		return $this->PrinterType;
 	}
 	
-	public function setPrinterType(string $printerType)
+	public function setPrinterType($printerType)
 	{
 		$this->PrinterType=$printerType;
 	}
 	
-	public function getHasColor()
+	public function getColorMode()
 	{
-		return $this->HasColor;
+		return $this->ColorMode;
 	}
 	
-	public function setHasColor(bool $hasColor)
+	public function setColorMode($ColorMode)
 	{
-		$this->HasColor=$hasColor;
+		$this->ColorMode=$ColorMode;
 	}
 	
 	public function getConnectionType()
@@ -46,7 +50,7 @@ class Printer extends Component
 		return $this->ConnectionType;
 	}
 	
-	public function setConnectionType(string $connectionType)
+	public function setConnectionType($connectionType)
 	{
 		$this->Connection=$connectionType;
 	}

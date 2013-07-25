@@ -7,6 +7,8 @@ class Ram extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setSpaceMbyte($row[DB_COMPONENT_RAM_SPACEMBYTE]);
+		$this->setClockSpeedMHz($row[DB_COMPONENT_RAM_CLOCKSPEEDMHZ]);
 	}
 	
 	public function getSpaceMbyte()
@@ -14,7 +16,7 @@ class Ram extends Component
 		return $this->SpaceMbyte;
 	}
 	
-	public function setSpaceMbyte(int $spaceMbyte)
+	public function setSpaceMbyte($spaceMbyte)
 	{
 		$this->SpaceMbyte=$spaceMbyte;
 	}
@@ -24,7 +26,7 @@ class Ram extends Component
 		return $this->ClockSpeedMHz;
 	}
 	
-	public function setDriverType(int $clockSpeedMHz)
+	public function setClockSpeedMHz($clockSpeedMHz)
 	{
 		$this->ClockSpeedMHz=$clockSpeedMHz;
 	}
