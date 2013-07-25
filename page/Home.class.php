@@ -21,7 +21,20 @@ class Home implements Page
 
     public function getContent()
     {
-        return array();
+        $result = array();
+        
+        if (User::isLoggedIn() === true)
+        {
+            $user = User::getSessionUser();
+            
+            $result['userRole'] = $user->getName();
+        }
+        else
+        {
+            //header('Location: ');
+        }
+        
+        return $result;
     }
 }
 
