@@ -21,6 +21,7 @@ class Home implements Page
 
     public function getContent()
     {
+        session_start();
         $result = array();
         
         if (User::isLoggedIn() === true)
@@ -31,6 +32,7 @@ class Home implements Page
         }
         else
         {
+            session_destroy();
             //header('Location: ');
         }
         
