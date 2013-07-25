@@ -11,6 +11,12 @@ class Software extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setVersion($row[DB_COMPONENT_S_VERSION]);
+		$this->setLicenseType($row[DB_COMPONENT_S_LICENSETYPE]);
+		$this->setLicenseCount($row[DB_COMPONENT_S_LICENSECOUNT]);
+		$this->setLicenseDuration($row[DB_COMPONENT_S_LICENSEDURATION]);
+		$this->setLicenseInformation($row[DB_COMPONENT_S_LICENSEINFORMATION]);
+		$this->setInstallHint($row[DB_COMPONENT_S_INSTALLHINT]);
 	}
 	
 	public function getVersion()
@@ -18,7 +24,7 @@ class Software extends Component
 		return $this->Version;
 	}
 	
-	public function setVersion(string $Version)
+	public function setVersion($Version)
 	{
 		$this->Version=$Version;
 	}
@@ -28,7 +34,7 @@ class Software extends Component
 		return $this->LicenseType;
 	}
 	
-	public function setLicenseType(string $LicenseType)
+	public function setLicenseType($LicenseType)
 	{
 		$this->LicenseType=$LicenseType;
 	}
@@ -38,7 +44,7 @@ class Software extends Component
 		return $this->LicenseCount;
 	}
 	
-	public function setLicenseCount(int $LicenseCount)
+	public function setLicenseCount($LicenseCount)
 	{
 		$this->LicenseCount=$LicenseCount;
 	}
@@ -48,7 +54,7 @@ class Software extends Component
 		return $this->LicenseDuration;
 	}
 	
-	public function set(int $LicenseDuration)
+	public function setLicenseDuration($LicenseDuration)
 	{
 		$this->LicenseDuration=$LicenseDuration;
 	}
@@ -58,7 +64,7 @@ class Software extends Component
 		return $this->LicenseInformation;
 	}
 	
-	public function setLicenseInformation(string $LicenseInformation)
+	public function setLicenseInformation($LicenseInformation)
 	{
 		$this->LicenseInformation=$LicenseInformation;
 	}
@@ -69,7 +75,7 @@ class Software extends Component
 		return $this->InstallHint;
 	}
 	
-	public function setInstallHint(string $InstallHint)
+	public function setInstallHint($InstallHint)
 	{
 		$this->InstallHint=$InstallHint;
 	}

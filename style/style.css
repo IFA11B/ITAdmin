@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+@import url("forms.css") all;
+
+
 * {
     padding: 0;
     margin: 0;
@@ -13,10 +16,12 @@ body {
 #wrapper {
 	position:relative;
     width: 1020px;
-    height: 764px;
+    height: 764px; 
     padding:10px;
     margin: 0 auto auto 0;
-    box-shadow: 0 0 5px 5px #000000;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* WebKit */
+	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Firefox */
+	box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Standard */ 
 }
 
 #main {
@@ -25,41 +30,59 @@ body {
 }
 
 #head{
+	display:table;
 	width:100%;
 	height:auto;
 	border-bottom:2px #7AA8C6 solid;
-	box-shadow: 0 0 5px 5px #000000;
+	-webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15); /* WebKit */
+	-moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Firefox */
+	box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Standard */ 
 }
 
-img.headlogo{
-	display:block;
-	height:100px;
+#headlogo{
+	height:70px;
 	float:left;
 	width:auto;
 	margin-right:20px;
 }
 
+img.headlogo{
+	display:block;
+	width:auto;
+	height:70px;
+}
+
 #headtitle{
+	text-align:left;
+	margin: 40px auto auto auto;
 	font-variant:small-caps;
 	font-size:20pt;
 }
 
 #navbar {
     width: 100%;
+	margin-top:10px;
     position:relative;
     text-align:center;
 }
 
 #navbar li{
     display: inline;
+	font-variant:small-caps;
+	font-size:16pt;
     list-style-type: none;
-    line-height:120%;
-    width:150px;
+    line-height:150%;
+    padding:5px;
 }
 
-#navlist li:before { content: " | "; }
-#navlist li:first-child:before { content: ""; }
+#navbar li:before { content: "|  "; }
+#navbar li:first-child:before { content: ""; }
 
+#navbar li:hover { 
+	cursor:pointer;
+	color: #7AA8C6;
+	text-decoration:underline;
+ }
 
 #content {
     width: 80%;
@@ -68,22 +91,12 @@ img.headlogo{
     padding-top:200px;
 }
 
-form#login {
-    width: 320px;
-    margin: auto;
-    font-size: 1.3em;
-}
-
 div.description {
     width: 100%;
     margin-top: 10px;
 }
 
-div.input {
-    width: 100%;
+.clear{
+	float:none;
 }
 
-.input input {
-    width: 100%;
-    line-height: 1.3em;
-}

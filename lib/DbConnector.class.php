@@ -6,6 +6,12 @@
  * @author Thunraz <julian.dinges@gmail.com>
  */
 
+//define table names for DB
+define('DB_KOMPONENT2KOMPONENT', 'komponente_hat_komponente');
+define('DB_MODULE', 'module');
+define('DB_USER_PRIVILEGES', 'benutzer_rechte');
+define('DB_USER', 'benutzer');
+
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
 define ('DB_MANAGE_CREATED', 'vwi_created');
@@ -16,6 +22,13 @@ define('DB_USER_ID', 'pk_ben_id');
 define('DB_USER_NAME', 'ben_name');
 define('DB_USER_PWD', 'ben_pwdhash');
 define('DB_USER_CREATE_DATE', 'ben_erstellungsdatum');
+
+// define user privileges attributes for DB
+define('DB_USER_PRIV_ID', 'pk_bpk_r_id');
+define('DB_USER_PRIV_USER', 'fk_benutzepk_r_id');
+define('DB_USER_PRIV_MODULE', 'fk_modupk_l_id');
+define('DB_USER_PRIV_READ', 'br_read');
+define('DB_USER_PRIV_WRITE', 'br_write');
 
 // define supplier attributes for DB
 define ('DB_SUPPLIER_ID', 'pk_l_id');
@@ -46,6 +59,31 @@ define ('DB_COMPONENT_MANUFACTURER', 'k_hersteller');
 // define module attributes for DB
 define ('DB_MODULE_ID', 'pk_mod_id');
 define ('DB_MODULE_NAME', 'mod_name');
+
+// define subcomponent attributes for DB
+define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponeten_pk_k_id_aggregat');
+define ('DB_SUBCOMPONENT_UNIT', 'pk_komponenten_pk_k_id_teil');
+define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
+define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
+define ('DB_SUBCOMPONENT_DATE', 'khk_datum');
+
+// define component_types attrivutes for DB
+define ('DB_COMPONENT_TYPE', 'ka_komponentenart');
+define ('DB_COMPONENT_TYPE_ACCESS_POINT', 'pk_ap_id');
+define ('DB_COMPONENT_TYPE_CPU', 'pk_cpu_id');
+define ('DB_COMPONENT_TYPE_DISK_CONTROLLER', 'pk_ol_id');
+define ('DB_COMPONENT_TYPE_GRAPHICS_CARD', 'pk_gk_id');
+define ('DB_COMPONENT_TYPE_HARD_DRIVE', 'pk_fp_id');
+define ('DB_COMPONENT_TYPE_HUB', 'pk_hub_id');
+define ('DB_COMPONENT_TYPE_MAINBOARD', 'pk_mb_id');
+define ('DB_COMPONENT_TYPE_NETWORK_CARD', 'pk_nk_id');
+define ('DB_COMPONENT_TYPE_PRINTER', 'pk_dr_id');
+define ('DB_COMPONENT_TYPE_RAID_CONTROLLER', 'pk_rc_id');
+define ('DB_COMPONENT_TYPE_RAM', 'pk_ram_id');
+define ('DB_COMPONENT_TYPE_ROUTER', 'pk_rout_id');
+define ('DB_COMPONENT_TYPE_SOFTWARE', 'pk_sw_id');
+define ('DB_COMPONENT_TYPE_SWITCH_COMPONENT', 'pk_s_id');
+define ('DB_COMPONENT_TYPE_VLAN', 'pk_vlan_id');
 
 class DbConnector
 {
@@ -618,6 +656,36 @@ class DbConnector
 		return $result;
 	}
 	
+	/**
+	 * Fetches all SubcomponentsOfComponent informations.
+	 *
+	 *
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function getSubcomponentsOfComponent(Component $Component)
+	{
+		$query = "SELECT ";
+		$query .= ""  . DB_SUBCOMPONENT_AGGREGAT . " ";
+		$query .= ", " . DB_SUBCOMPONENT_UNIT . " ";
+		$query .= ", " . DB_SUBCOMPONENT_ID . " ";
+		$query .= ", " . DB_SUBCOMPONENT_ACTION . " ";
+		$query .= ", " . DB_SUBCOMPONENT_DATE . " ";
+		$query .= "FROM " . DB_KOMPONENT2KOMPONENT . " ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
+		$query .= "AND " . DB_SUBCOMPONENT_AGGREGAT . " = :id";
+	
+		$statement = $this->db->query($query);
+		$statement->bindparam(':id', $Component->getId());
+		$statement->execute();
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if($result == false)
+		return false;
+	
+		return $result;
+	}
 	
 	
 }

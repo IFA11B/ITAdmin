@@ -14,7 +14,7 @@
     <body>
         <div id="wrapper">
             <div id="head">
-            	<img id="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/>
+            	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/></div>
             	<div id="headtitle">IT-Systembetreuung</div>
             </div>
             <div id="main">

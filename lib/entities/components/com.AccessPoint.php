@@ -7,6 +7,8 @@ class AccessPoint extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setIpAdress($row[DB_COMPONENT_AP_IP]);
+		$this->setConfigurationFilePath($row[DB_COMPONENT_AP_CONFIGFILE]);	
 	}
 
 	public function getIpAdress()
@@ -14,7 +16,7 @@ class AccessPoint extends Component
 		return $this->IpAdress;
 	}
 
-	public function setIpAdress(string $ipAdress)
+	public function setIpAdress($ipAdress)
 	{
 		$this->IpAdress=$ipAdress;
 	}
@@ -24,7 +26,7 @@ class AccessPoint extends Component
 		return $this->ConfigurationFilePath;
 	}
 
-	public function setConfigurationFilePath(string $configurationFilePath)
+	public function setConfigurationFilePath($configurationFilePath)
 	{
 		$this->ConfigurationFilePath=$configurationFilePath;
 	}

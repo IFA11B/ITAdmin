@@ -2,11 +2,13 @@
 class Vlan extends Component
 {
 	private $Tag;
-	private $PortsCount;
+	private $Port;
 	
 	public function __construct(array $row=null)
 	{
 		parent::__construct($row);
+		$this->setTag($row[DB_COMPONENT_VLAN_TAG]);
+		$this->setPort($row[DB_COMPONENT_VLAN_PORT]);
 	}
 	
 	public function getTag()
@@ -14,19 +16,19 @@ class Vlan extends Component
 		return $this->Tag;
 	}
 	
-	public function setTag(int $Tag)
+	public function setTag($Tag)
 	{
 		$this->Tag=$Tag;
 	}
 	
-	public function getPortsCount()
+	public function getPort()
 	{
-		return $this->PortsCount;
+		return $this->Port;
 	}
 	
-	public function setPortsCount(int $PortsCount)
+	public function setPort($Port)
 	{
-		$this->PortsCount=$PortsCount;
+		$this->Port=$Port;
 	}
 }
 ?>

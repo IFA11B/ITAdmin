@@ -15,6 +15,11 @@ class Login implements Page
      */
     const PAGE_NAME = "LOGIN";
 
+    static function getName()
+    {
+        return PAGE_NAME;
+    }
+    
     public function getTemplate()
     {
         return 'login.tpl';

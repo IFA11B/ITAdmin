@@ -7,6 +7,7 @@ class DiskController extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setDiskType($row[DB_COMPONENT_DC_DISKTYPE]);
 	}
 	
 	public function getDiskType()
@@ -14,7 +15,7 @@ class DiskController extends Component
 		return $this->DiskType;
 	}
 	
-	public function setDiskType(string $DiskType)
+	public function setDiskType($DiskType)
 	{
 		$this->DiskType=$DiskType;
 	}

@@ -9,6 +9,10 @@ class HardDrive extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setInterfaceType($row[DB_COMPONENT_HDD_INTERFACETYPE]);
+		$this->setPurpose($row[DB_COMPONENT_HDD_PURPOSE]);
+		$this->setSpaceMbyte($row[DB_COMPONENT_HDD_SPACEMBYTE]);
+		$this->setDriverType($row[DB_COMPONENT_HDD_DRIVETYPE]);
 	}
 	
 	public function getInterfaceType()
@@ -16,7 +20,7 @@ class HardDrive extends Component
 		return $this->InterfaceType;
 	}
 	
-	public function setInterfaceType(string $interfaceType)
+	public function setInterfaceType($interfaceType)
 	{
 		$this->InterfaceType=$interfaceType;
 	}
@@ -26,7 +30,7 @@ class HardDrive extends Component
 		return $this->Purpose;
 	}
 	
-	public function setPurpose(string $purpose)
+	public function setPurpose($purpose)
 	{
 		$this->Purpose=$purpose;
 	}
@@ -36,7 +40,7 @@ class HardDrive extends Component
 		return $this->SpaceMbyte;
 	}
 	
-	public function setSpaceMbyte(int $spaceMbyte)
+	public function setSpaceMbyte($spaceMbyte)
 	{
 		$this->SpaceMbyte=$spaceMbyte;
 	}
@@ -46,7 +50,7 @@ class HardDrive extends Component
 		return $this->DriveType;
 	}
 	
-	public function setDriverType(string $driveType)
+	public function setDriverType($driveType)
 	{
 		$this->DriveType=$driveType;
 	}

@@ -6,6 +6,7 @@ class Cpu extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setSockel($row[DB_COMPONENT_CPU_SOCKEL]);
 	}
 	
 	public function getSockel()
@@ -13,7 +14,7 @@ class Cpu extends Component
 		return $this->Sockel;
 	}
 	
-	public function setSockel(string $sockel)
+	public function setSockel($sockel)
 	{
 		$this->Sockel=$sockel;
 	}

@@ -7,7 +7,13 @@
  */
 interface Page
 {
-
+    /**
+     * Returns an identifying string for this page. Intended to be used in GET parameters.
+     * 
+     * @return (string) internal name of the page.
+     */
+    static function getName();
+    
     /**
      * Returns a path to the template used by this page.
      *

@@ -8,6 +8,7 @@
 abstract class Component
 {
 	private $Id;
+	private $ComponentType;
 	private $Name;
 	private $Manufacturer;
 	private $Room;
@@ -26,6 +27,7 @@ abstract class Component
         
         if ($row !== null) {
             $this->setId($row[DB_COMPONENT_ID]);
+            $this->setComponentType($row[DB_COMPONENT_TYPE]);
             $this->setSupplier($row[DB_COMPONENT_SUPPLIER]);
             $this->setRoom($row[DB_COMPONENT_ROOM]);
             $this->setPurchaseDate($row[DB_COMPONENT_PURCHASE_DATE]);
@@ -82,9 +84,19 @@ abstract class Component
 		return $this->Id;
 	}
 	
-	public function setId(int $Id)
+	public function setId($Id)
 	{
 		$this->Id = $Id;
+	}
+	
+	public function getComponentType()
+	{
+		return $this->ComponentType;
+	}
+	
+	public function setComponentType($componentType)
+	{
+		$this->ComponentType=$componentType;
 	}
 	
 	public function getName()
@@ -92,7 +104,7 @@ abstract class Component
 		return $this->Name;
 	}
 	
-	public function setName(string $name)
+	public function setName($name)
 	{
 		$this->Name=$name;
 	}
@@ -102,7 +114,7 @@ abstract class Component
 		return $this->Manufacturer;
 	}
 	
-	public function setManufacturer(string $manufacturer)
+	public function setManufacturer($manufacturer)
 	{
 		$this->Manufacturer=$manufacturer;
 	}
@@ -111,7 +123,7 @@ abstract class Component
 	{
 		return $this->Room;
 	}
-	public function setRoom(int $room)
+	public function setRoom($room)
 	{
 		$this->Room=$room;
 	}
@@ -120,7 +132,7 @@ abstract class Component
 	{
 		return $this->PurchaseDate;
 	}
-	public function setPurchaseDate(string $purchaseDate)
+	public function setPurchaseDate($purchaseDate)
 	{
 		$this->PurchaseDate=$purchaseDate;
 	}
@@ -129,7 +141,7 @@ abstract class Component
 	{
 		return $this->WarrantyDuration;
 	}
-	public function setWarrantyDuration(int $warrantyDuration)
+	public function setWarrantyDuration($warrantyDuration)
 	{
 		$this->WarrantyDuration=$warrantyDuration;
 	}
@@ -138,7 +150,7 @@ abstract class Component
 	{
 		return $this->Supplier;
 	}
-	public function setSupplier(string $supplier)
+	public function setSupplier($supplier)
 	{
 		$this->Supplier=$supplier;
 	}
@@ -147,7 +159,7 @@ abstract class Component
 	{
 		return $this->Note;
 	}
-	public function setNote(string $note)
+	public function setNote($note)
 	{
 		$this->Note=$note;
 	}
@@ -181,7 +193,7 @@ abstract class Component
 		$this->Childs []= $child;
 	}
 	
-	public function getChild(int $index)
+	public function getChild($index)
 	{
 		return $this->Childs[$index];
 	}
