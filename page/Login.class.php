@@ -19,39 +19,6 @@ class Login implements Page
     {
         return 'login.tpl';
     }
-    
-    /**
-     * Verifies the given password for the given user by comparing the given password against the one stored for the given user.
-     *
-     * @param string $userName the user to verify the password for
-     * @param string $pwd the password to verify for the given user
-     * @return boolean true if verification succeeded, false otherwise
-     */
-    private function checkPassword(string $userName, string $pwd)
-    {
-        $db = DbConnector::getInstance();
-        $user = User::getUserFromName($userName);
-        $hash = $user->getPassword();
-        $rehash = password_needs_rehash($hash, PASSWORD_DEFAULT, array('cost' => Login::PASSWORD_COST));
-        
-        if ($hash !== false)
-        {
-            $success = password_verify($pwd, $hash);
-            
-            if ($success === true)
-            {
-                if ($rehash === true)
-                {
-                    $newHash = password_hash($pwd, PASSWORD_DEFAULT, array('cost' => Login::PASSWORD_COST));
-                    
-                    $db->setUserPassword($user, $newHash);
-                }
-                
-                return true;
-            }
-        }
-        return false;
-    }
 
     public function getContent()
     {
@@ -65,10 +32,10 @@ class Login implements Page
             if ($userName != '' && $pwd != '')
             {
                 $user = User::getUserFromName($userName);
-                if (checkPassword($userName, $pwd))
+                if ($user->verifyPassword($pwd))
                 {
                     session_start();
-                    User::setSessionUser(User::getUserFromName($userName));
+                    User::setSessionUser($user);
                     header('Location: ' . HOME_DIR . 'index.php?page=home');
                 }
                 else

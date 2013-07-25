@@ -15,7 +15,7 @@ define('PAGE_HOME', 'home');
  * @param string $directory the directory to
  * @param array $excluded (optional)
  */
-function loadDir(string $directory, array $excluded = array())
+function loadDir($directory, array $excluded = array())
 {
     $files = scandir($directory);
     $subDirs = array();

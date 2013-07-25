@@ -49,7 +49,7 @@ class User implements Entity
         return $this->id;
     }
 
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -59,7 +59,7 @@ class User implements Entity
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -69,7 +69,7 @@ class User implements Entity
         return $this->password;
     }
 
-    public function setPassword(string $password)
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -95,7 +95,7 @@ class User implements Entity
         }
     }
 
-    public function canReadModule(int $module)
+    public function canReadModule($module)
     {
         $result = DbConnector::getInstance()->userModuleRead($this->getId(), $module);
         
@@ -106,7 +106,7 @@ class User implements Entity
         return false;
     }
 
-    public function canWriteModule(int $module)
+    public function canWriteModule($module)
     {
         $result = DbConnector::getInstance()->userModuleWrite($this->getId(), $module);
         
