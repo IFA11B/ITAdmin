@@ -1,10 +1,12 @@
 
 <div style="float: left; margin-right: 20px;">
-    Filter:
-    <select class="styled-select">
-        <option>Raum</option>
-        <option>Komponente</option>
-    </select>
+    <div style="float: left;">Filter:</div>
+    <div class="styled-select">
+        <select>
+            <option>Raum</option>
+            <option>Komponente</option>
+        </select>
+    </div>
 </div>
 
 <div style="float: left;">
