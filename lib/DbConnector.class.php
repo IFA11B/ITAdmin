@@ -145,10 +145,10 @@ define ('DB_COMPONENT_RAM_SPACEMBYTE', 'ram_groesse');
 define ('DB_COMPONENT_RAM_CLOCKSPEEDMHZ', 'ram_taktfrequenz');
 
 // define router attributes for DB
-define ('DB_COMPONENT_R_IPCONFIGS1', 'rout_ip1');
-define ('DB_COMPONENT_R_IPCONFIGS2', 'rout_ip2');
-define ('DB_COMPONENT_R_IPCONFIGS3', 'rout_ip3');
-define ('DB_COMPONENT_R_IPCONFIGS4', 'rout_ip4');
+define ('DB_COMPONENT_R_IPCONFIG1', 'rout_ip1');
+define ('DB_COMPONENT_R_IPCONFIG2', 'rout_ip2');
+define ('DB_COMPONENT_R_IPCONFIG3', 'rout_ip3');
+define ('DB_COMPONENT_R_IPCONFIG4', 'rout_ip4');
 define ('DB_COMPONENT_R_CONFIGFILE', 'rout_konfigdatei');
 
 // define software attributes for DB
