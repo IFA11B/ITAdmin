@@ -183,9 +183,12 @@ class DbConnector
 {
 	private $db;
 
+	/**
+	 * Constructs a new instance of DbConnector.
+	 */
 	private function __construct()
 	{
-		$DbHost = "192.168.111.1:3306";
+		$DbHost = "192.168.111.1";
 		$DbName = "itv_v1";
 		$DbUser = "entwickler";
 		$DbPass = "entwickler12";
@@ -204,6 +207,7 @@ class DbConnector
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 			)
 		);
+		
 	}
 
 	public static function getInstance()
@@ -211,7 +215,7 @@ class DbConnector
 		static $instance = null;
 		if($instance === null)
 		{
-			$instance = new DbConnect();
+			$instance = new DbConnector();
 		}
 
 		return $instance;
@@ -748,6 +752,11 @@ class DbConnector
 			return false;
 	
 		return $result;
+	}
+	
+	public function getAllComponents()
+	{
+	    return array();
 	}
 	
 	/**

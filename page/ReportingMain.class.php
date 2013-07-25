@@ -10,7 +10,7 @@ class ReportingMain implements Page
     function getContent()
     {
         return array(
-            pageTitle => 'Reporting'
+            'pageTitle' => 'Reporting'
         );
     }
     

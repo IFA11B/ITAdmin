@@ -105,6 +105,7 @@ class DataManagement
 
     public function getComponents()
     {
+        
         if ($this->components !== null)
         {
             return $this->components;
