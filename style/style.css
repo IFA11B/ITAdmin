@@ -96,7 +96,7 @@ img.headlogo{
 	float:none;
 }
 
-.contentheading{
+.contentHeading{
 	width:70%;
 	margin:auto;
 	color:#333333;
@@ -106,11 +106,11 @@ img.headlogo{
 	margin-bottom:20px;
 }
 
-.push-right{
+.pushRight{
 	float:right;
 }
 
-.simpletext{
+.simpleText{
 	width:70%;
 	margin:auto;
 	color:#333333;
@@ -118,6 +118,6 @@ img.headlogo{
 	font-size:11pt;
 }
 
-.center-text{
+.centerText{
 	text-align:center;
 }
