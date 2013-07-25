@@ -36,6 +36,19 @@ class Reporting extends Module
                 $pageObject = new Detail();
                 break;
                 
+            case "Network":
+                sleep(2);
+                $pageObject = new ReportingNetwork();
+                break;
+                
+            case "Software":
+                $pageObject = new ReportingSoftware();
+                break;
+                
+            case "Hardware":
+                $pageObject = new ReportingHardware();
+                break;
+                
             case "Main":
             default:
                 $pageObject = new ReportingMain();
