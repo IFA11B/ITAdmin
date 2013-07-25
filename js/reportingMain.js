@@ -19,18 +19,21 @@ var opts = {
 
 $(document).ready(function() {
 
-    $('#network,#software,#hardware').click(function() {
-        if($(this).hasClass('activeHeader'))
+    $('#network .header,#software .header,#hardware .header').click(function() {
+        var current = $(this).parent();
+        
+        if(current.hasClass('activeHeader'))
         {
-            closePanel($(this));
+            closePanel(current);
         }
         else
         {
-            openPanel($(this));
+            openPanel(current);
         }
     });
     
-    $('#network .repContent, #software .repContent, #hardware .repContent').slideUp(0);
+    $('#network .repContent, #software .repContent, #hardware .repContent')
+        .hide();
 });
 
 function closePanel(element)
@@ -39,7 +42,7 @@ function closePanel(element)
     
     $(element).find(".headerArrow").removeClass('arrowRotate');
     
-    $(element).find('.repContent').slideUp(250).html('');
+    $(element).find('.repContent').hide(250);
 }
 
 function openPanel(element)
@@ -78,7 +81,7 @@ function openPanel(element)
         success: function(data)
         {
             $(element).find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
-            $(element).find('.repContent').html(data).slideDown(250);
+            $(element).find('.repContent').html(data).show(250);
         }
     });
 }

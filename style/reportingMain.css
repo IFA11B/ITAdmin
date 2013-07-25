@@ -12,16 +12,12 @@
 #software .header,
 #hardware .header
 {
+    cursor: pointer;
     min-height: 20px;
 }
 
-#network,
-#software,
-#hardware
+.repContent
 {
-    cursor: pointer;
-    
-    min-height: 20px;
     margin-bottom: 25px;
 }
 
@@ -54,6 +50,4 @@
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
-    
-    margin-right: 5px;
 }
