@@ -7,6 +7,8 @@ class Hub extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setPortsCount($row[DB_COMPONENT_HUB_PORTSCOUNT]);
+		$this->setSpeedMbit($row[DB_COMPONENT_HUB_SPEEDMBIT]);
 	}
 	
 	public function getPortsCount()
@@ -14,7 +16,7 @@ class Hub extends Component
 		return $this->PortsCount;
 	}
 	
-	public function setPortCount(int $PortsCount)
+	public function setPortsCount($PortsCount)
 	{
 		$this->PortsCount=$PortsCount;
 	}
@@ -24,7 +26,7 @@ class Hub extends Component
 		return $this->SpeedMbit;
 	}
 	
-	public function setSpeedMbit(int $SpeedMbit)
+	public function setSpeedMbit($SpeedMbit)
 	{
 		$this->SpeedMbit=$SpeedMbit;
 	}

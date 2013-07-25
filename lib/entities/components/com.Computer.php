@@ -9,6 +9,9 @@ class Computer extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);	
+		$this->setIpAdress($row[DB_COMPONENT_PC_IP]);
+		$this->setSubnet($row[DB_COMPONENT_PC_SUBNET]);
+		$this->setGateway($row[DB_COMPONENT_PC_GATEWAY]);
 	}
 	
 	public function getIpAdress()
@@ -16,7 +19,7 @@ class Computer extends Component
 		return $this->IpAdress;
 	}
 	
-	public function setIpAdress(string $ipAdress)
+	public function setIpAdress($ipAdress)
 	{
 		$this->IpAdress=$ipAdress;
 	}
@@ -26,7 +29,7 @@ class Computer extends Component
 		return $this->Subnet;
 	}
 	
-	public function setSubnet(string $subnet)
+	public function setSubnet($subnet)
 	{
 		$this->Subnet=$subnet;
 	}
@@ -36,7 +39,7 @@ class Computer extends Component
 		return $this->Gateway;
 	}
 	
-	public function setGateway(string $gateway)
+	public function setGateway($gateway)
 	{
 		$this->Gateway=$gateway;
 	}

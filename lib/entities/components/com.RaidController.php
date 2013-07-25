@@ -6,6 +6,7 @@ class RaidController extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setRaidLevel($row[DB_COMPONENT_RC_RAIDLEVEL]);
 	}
 	
 	public function getRaidLevel()
@@ -13,7 +14,7 @@ class RaidController extends Component
 		return $this->RaidLevel;
 	}
 	
-	public function setRaidLevel(int $RaidLevel)
+	public function setRaidLevel($RaidLevel)
 	{
 		$this->RaidLevel=$RaidLevel;
 	}
