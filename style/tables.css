@@ -1,24 +1,37 @@
 @CHARSET "ISO-8859-1";
 
 table{
-	width:100%;
-	border:none;
-	border-spacing:10px;
-	text-align:left;
-	font-size:12pt;
-	color:#333333;
+    width:100%;
+    border:none;
+    border-collapse: collapse;
+    text-align:left;
+    font-size:12pt;
+    color:#333333;
 }
 
 th{
-	font-variant:small-caps;
-	border-bottom:1px #333333 solid;
-	text-align:center;	
+    font-variant:small-caps;
+    border-bottom:1px #333333 solid;
+    text-align:center;
 }
 
-td.guarantee, td.link{
-	text-align:right;
+tr td:first-child
+{
+    text-align: center;
+}
+
+td.guarantee,
+td.link
+{
+    text-align:right;
+}
+
+td
+{
+    padding: 0px 5px;
+    vertical-align: top;
 }
 
 td.room{
-	text-align:center;
+    text-align:center;
 }
