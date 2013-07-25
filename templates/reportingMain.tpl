@@ -3,7 +3,7 @@
 {block name=title}{$pageTitle}{/block}
 
 {block name=css}
-    <link rel="stylesheet" href="./style/reportingMain.css" />
+    <link rel="stylesheet" href="./style/reporting.css" />
 {/block}
 
 {block name=js}
@@ -15,8 +15,8 @@
 {block name=content}
     <!-- Network -->
     <div id="network">
-        <div class="header">
-            <div class="headerTitle contentHeading">Netzwerk</div>
+        <div class="header contentHeading">
+            <div class="headerTitle">Netzwerk</div>
             <div class="headerArrow">
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>
@@ -28,8 +28,8 @@
     
     <!-- Software -->
     <div id="software">
-        <div class="header">
-            <div class="headerTitle contentHeading">Software</div>
+        <div class="header contentHeading">
+            <div class="headerTitle">Software</div>
             <div class="headerArrow">
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>
@@ -41,8 +41,8 @@
     
     <!-- Hardware -->
     <div id="hardware">
-        <div class="header">
-            <div class="headerTitle contentHeading">Hardware</div>
+        <div class="header contentHeading">
+            <div class="headerTitle">Hardware</div>
             <div class="headerArrow">
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>

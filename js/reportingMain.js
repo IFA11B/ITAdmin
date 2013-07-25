@@ -1,36 +1,20 @@
-var opts = {
-    lines: 17, // The number of lines to draw
-    length: 0, // The length of each line
-    width: 5, // The line thickness
-    radius: 5, // The radius of the inner circle
-    corners: 1, // Corner roundness (0..1)
-    rotate: 0, // The rotation offset
-    direction: 1, // 1: clockwise, -1: counterclockwise
-    color: '#333', // #rgb or #rrggbb
-    speed: 1.6, // Rounds per second
-    trail: 100, // Afterglow percentage
-    shadow: false, // Whether to render a shadow
-    hwaccel: true, // Whether to use hardware acceleration
-    className: 'spinner', // The CSS class to assign to the spinner
-    zIndex: 2e9, // The z-index (defaults to 2000000000)
-    top: 'auto', // Top position relative to parent in px
-    left: 'auto' // Left position relative to parent in px
-};
-
 $(document).ready(function() {
 
-    $('#network,#software,#hardware').click(function() {
-        if($(this).hasClass('activeHeader'))
+    $('#network .header,#software .header,#hardware .header').click(function() {
+        var current = $(this).parent();
+        
+        if(current.hasClass('activeHeader'))
         {
-            closePanel($(this));
+            closePanel(current);
         }
         else
         {
-            openPanel($(this));
+            openPanel(current);
         }
     });
     
-    $('#network .repContent, #software .repContent, #hardware .repContent').slideUp(0);
+    $('#network .repContent, #software .repContent, #hardware .repContent')
+        .hide();
 });
 
 function closePanel(element)
@@ -39,7 +23,7 @@ function closePanel(element)
     
     $(element).find(".headerArrow").removeClass('arrowRotate');
     
-    $(element).find('.repContent').slideUp(250).html('');
+    $(element).find('.repContent').hide(250);
 }
 
 function openPanel(element)
@@ -72,13 +56,13 @@ function openPanel(element)
         beforeSend: function()
         {
             $(element).find('.headerArrow img').remove();
-            $(element).find('.headerArrow').spin(opts);
+            $(element).find('.headerArrow').spin(spinnerOptions);
         },
         
         success: function(data)
         {
             $(element).find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
-            $(element).find('.repContent').html(data).slideDown(250);
+            $(element).find('.repContent').html(data).show(250);
         }
     });
 }

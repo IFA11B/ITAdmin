@@ -12,16 +12,12 @@
 #software .header,
 #hardware .header
 {
+    cursor: pointer;
     min-height: 20px;
 }
 
-#network,
-#software,
-#hardware
+.repContent
 {
-    cursor: pointer;
-    
-    min-height: 20px;
     margin-bottom: 25px;
 }
 
@@ -31,15 +27,10 @@
     clear: both;
 }
 
-.activeHeader
-{
-    
-}
-
 .spinner
 {
     margin-top: 12px;
-    margin-right: 13px;
+    margin-right: 20px;
 }
 
 .headerArrow img
@@ -54,6 +45,14 @@
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
-    
-    margin-right: 5px;
+}
+
+.resultsTable
+{
+    margin-top: 25px;
+}
+
+.resultsTable td
+{
+    padding: 0px 5px;
 }
