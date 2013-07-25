@@ -10,9 +10,9 @@ require_once('DbConnector.class.php');
  */
 abstract class Module
 {
-    public abstract static function getId();
+    public abstract function getId();
     
-    public abstract static function getName();
+    public abstract function getName();
     
     public abstract function getTitle();
     
