@@ -70,7 +70,7 @@ define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
 define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
 define ('DB_SUBCOMPONENT_DATE', 'khk_datum');
 
-// define component_types attrivutes for DB
+// define component_types attributes for DB
 define ('DB_COMPONENT_TYPE', 'ka_komponentenart');
 define ('DB_COMPONENT_TYPE_ACCESS_POINT', 'pk_ap_id');
 define ('DB_COMPONENT_TYPE_CPU', 'pk_cpu_id');
@@ -87,6 +87,95 @@ define ('DB_COMPONENT_TYPE_ROUTER', 'pk_rout_id');
 define ('DB_COMPONENT_TYPE_SOFTWARE', 'pk_sw_id');
 define ('DB_COMPONENT_TYPE_SWITCH_COMPONENT', 'pk_s_id');
 define ('DB_COMPONENT_TYPE_VLAN', 'pk_vlan_id');
+
+// define Access Point attributes for DB
+define ('DB_COMPONENT_AP_IP', 'ap_ip');
+define ('DB_COMPONENT_AP_CONFIGFILE', 'ap_konfigdatei');
+
+// define PC attributes for DB
+define ('DB_COMPONENT_PC_IP', 'pc_ip');
+define ('DB_COMPONENT_PC_SUBNET', 'pc_subnetzklasse');
+define ('DB_COMPONENT_PC_GATEWAY', 'pc_gateway');
+
+// define CPU attributes for DB
+define ('DB_COMPONENT_CPU_SOCKEL', 'cpu_sockel');
+
+// define disk controller attributes for DB
+define ('DB_COMPONENT_DC_DISKTYPE', 'ka_komponentenart');
+
+// define graphics Card attributes for DB
+define ('DB_COMPONENT_GC_INTERFACETYPE', 'gk_interneschnittestelle');
+define ('DB_COMPONENT_GC_SPACEMBYTE', 'gk_speicher');
+
+// define hard drive attributes for DB
+define ('DB_COMPONENT_HDD_INTERFACETYPE', 'fp_schnittstellenart');
+define ('DB_COMPONENT_HDD_PURPOSE', 'fp_einsatzzweck');
+define ('DB_COMPONENT_HDD_SPACEMBYTE', 'fp_groesse');
+define ('DB_COMPONENT_HDD_DRIVETYPE', 'fp_speicherart');
+
+// define HUB attributes for DB
+define ('DB_COMPONENT_HUB_PORTSCOUNT', 'hub_anzahlport');
+define ('DB_COMPONENT_HUB_SPEEDMBIT', 'hub_geschwindigkeit');
+
+// define mainboard attributes for DB
+define ('DB_COMPONENT_MB_SOCKEL', 'mb_sockel');
+define ('DB_COMPONENT_MB_RAMTYPE', 'mb_ramtyp');
+define ('DB_COMPONENT_MB_RAMMAXSPACE', 'mb_rammax');
+define ('DB_COMPONENT_MB_RAMSLOTSCOUNT', 'mb_bankanzahl');
+define ('DB_COMPONENT_MB_CONNECTORTYPEPOWERSUPPLY', 'mb_netzteilsteckertyp');
+define ('DB_COMPONENT_MB_CONNECTORTYPECPU', 'mb_cpusteckertyp');
+define ('DB_COMPONENT_MB_ONBOARD', 'mb_onboardfunktion');
+define ('DB_COMPONENT_MB_INTERFACESINTERN', 'mb_internschnittstelle');
+define ('DB_COMPONENT_MB_INTERFACESEXTERN', 'mb_externschnittstelle');
+
+// define network card attributes for DB
+define ('DB_COMPONENT_NC_SPEEDMBIT', 'nk_bandbreitegeschwindigkeit');
+define ('DB_COMPONENT_NC_INTERFACEINTERN', 'nk_internschnittstelle');
+define ('DB_COMPONENT_NC_INTERFACEEXTERN', 'nk_externschnittstelle');
+define ('DB_COMPONENT_NC_PORTSCOUNT', 'nk_anzahlexternports');
+
+// define printer attributes for DB
+define ('DB_COMPONENT_P_IP', 'dr_ip');
+define ('DB_COMPONENT_P_PRINTERTYPE', 'dr_typ');
+define ('DB_COMPONENT_P_COLORMODE', 'dr_druckerart');
+define ('DB_COMPONENT_P_CONNECTIONTYPE', 'dr_anschlussart');
+
+// define raid controller attributes for DB
+define ('DB_COMPONENT_RC_RAIDLEVEL', 'rc_raidlvl');
+
+// define RAM attributes for DB
+define ('DB_COMPONENT_RAM_SPACEMBYTE', 'ram_groesse');
+define ('DB_COMPONENT_RAM_CLOCKSPEEDMHZ', 'ram_taktfrequenz');
+
+// define router attributes for DB
+define ('DB_COMPONENT_R_IPCONFIG1', 'rout_ip1');
+define ('DB_COMPONENT_R_IPCONFIG2', 'rout_ip2');
+define ('DB_COMPONENT_R_IPCONFIG3', 'rout_ip3');
+define ('DB_COMPONENT_R_IPCONFIG4', 'rout_ip4');
+define ('DB_COMPONENT_R_CONFIGFILE', 'rout_konfigdatei');
+
+// define software attributes for DB
+define ('DB_COMPONENT_S_VERSION', 'sw_versionsnummer');
+define ('DB_COMPONENT_S_LICENSETYPE', 'sw_lizenztyp');
+define ('DB_COMPONENT_S_LICENSECOUNT', 'sw_lizenzanzahl');
+define ('DB_COMPONENT_S_LICENSEDURATION', 'sw_lizenzlaufzeit');
+define ('DB_COMPONENT_S_LICENSEINFORMATION', 'sw_lizenzinformationen');
+define ('DB_COMPONENT_S_INSTALLHINT', 'sw_lizenzhinweis');
+
+// define switch attributes for DB
+define ('DB_COMPONENT_SC_IP', 's_ip');
+define ('DB_COMPONENT_SC_PORTSCOUNT', 's_anzahlports');
+define ('DB_COMPONENT_SC_UPLINKTYPE', 's_uplinktyp');
+define ('DB_COMPONENT_SC_SPEEDMBIT', 's_geschwindigkeit');
+define ('DB_COMPONENT_SC_CONFIGFILE', 's_konfigdateipfad');
+
+// define VLAN attributes for DB
+define ('DB_COMPONENT_VLAN_TAG', 'vlan_id');
+define ('DB_COMPONENT_VLAN_PORT', 'vlan_port');
+
+// define subcomponent attributes for DB
+define ('DB_COMPONENT_CHILDS_ID', 'pk_khpk_k_id');
+define ('DB_COMPONENT_PARENT_ID', 'pk_komponenten_ok_k_id_aggregat');
 
 class DbConnector
 {
@@ -613,7 +702,7 @@ class DbConnector
 		$query .= ", " . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
 		$query .= ", " . DB_ROOM_NUMBER . " ";
-		$query .= "FROM benutzer ";
+		$query .= "FROM " . DB_USER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);
@@ -645,7 +734,7 @@ class DbConnector
 		$query .= ", " . DB_SUPPLIER_FAX . " ";
 		$query .= ", " . DB_SUPPLIER_EMAIL . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
-		$query .= "FROM lieferant ";
+		$query .= "FROM " . DB_SUPPLIER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);

@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 @import url("forms.css") all;
+@import url("tables.css") all;
 
 
 * {
@@ -94,6 +95,7 @@ img.headlogo{
 
 .clear{
 	float:none;
+	clear: both;
 }
 
 .smallContent{
