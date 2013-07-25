@@ -20,6 +20,13 @@ define('DB_USER_NAME', 'ben_name');
 define('DB_USER_PWD', 'ben_pwdhash');
 define('DB_USER_CREATE_DATE', 'ben_erstellungsdatum');
 
+// define user privileges attributes for DB
+define('DB_USER_PRIV_ID', 'pk_bpk_r_id');
+define('DB_USER_PRIV_USER', 'fk_benutzepk_r_id');
+define('DB_USER_PRIV_MODULE', 'fk_modupk_l_id');
+define('DB_USER_PRIV_READ', 'br_read');
+define('DB_USER_PRIV_WRITE', 'br_write');
+
 // define supplier attributes for DB
 define ('DB_SUPPLIER_ID', 'pk_l_id');
 define ('DB_SUPPLIER_COMPANYNAME', 'l_firmenname');
