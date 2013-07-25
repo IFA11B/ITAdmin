@@ -11,6 +11,9 @@ define('DB_KOMPONENT2KOMPONENT', 'komponente_hat_komponente');
 define('DB_MODULE', 'module');
 define('DB_USER_PRIVILEGES', 'benutzer_rechte');
 define('DB_USER', 'benutzer');
+define('DB_SUPPLIER', 'lieferant');
+define('DB_KOMPONENT', 'komponenten');
+define('DB_ROOM', 'raeume');
 
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
@@ -67,7 +70,7 @@ define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
 define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
 define ('DB_SUBCOMPONENT_DATE', 'khk_datum');
 
-// define component_types attrivutes for DB
+// define component_types attributes for DB
 define ('DB_COMPONENT_TYPE', 'ka_komponentenart');
 define ('DB_COMPONENT_TYPE_ACCESS_POINT', 'pk_ap_id');
 define ('DB_COMPONENT_TYPE_CPU', 'pk_cpu_id');
@@ -84,6 +87,95 @@ define ('DB_COMPONENT_TYPE_ROUTER', 'pk_rout_id');
 define ('DB_COMPONENT_TYPE_SOFTWARE', 'pk_sw_id');
 define ('DB_COMPONENT_TYPE_SWITCH_COMPONENT', 'pk_s_id');
 define ('DB_COMPONENT_TYPE_VLAN', 'pk_vlan_id');
+
+// define Access Point attributes for DB
+define ('DB_COMPONENT_AP_IP', 'ap_ip');
+define ('DB_COMPONENT_AP_CONFIGFILE', 'ap_konfigdatei');
+
+// define PC attributes for DB
+define ('DB_COMPONENT_PC_IP', 'pc_ip');
+define ('DB_COMPONENT_PC_SUBNET', 'pc_subnetzklasse');
+define ('DB_COMPONENT_PC_GATEWAY', 'pc_gateway');
+
+// define CPU attributes for DB
+define ('DB_COMPONENT_CPU_SOCKEL', 'cpu_sockel');
+
+// define disk controller attributes for DB
+define ('DB_COMPONENT_DC_DISKTYPE', 'ka_komponentenart');
+
+// define graphics Card attributes for DB
+define ('DB_COMPONENT_GC_INTERFACETYPE', 'gk_interneschnittestelle');
+define ('DB_COMPONENT_GC_SPACEMBYTE', 'gk_speicher');
+
+// define hard drive attributes for DB
+define ('DB_COMPONENT_HDD_INTERFACETYPE', 'fp_schnittstellenart');
+define ('DB_COMPONENT_HDD_PURPOSE', 'fp_einsatzzweck');
+define ('DB_COMPONENT_HDD_SPACEMBYTE', 'fp_groesse');
+define ('DB_COMPONENT_HDD_DRIVETYPE', 'fp_speicherart');
+
+// define HUB attributes for DB
+define ('DB_COMPONENT_HUB_PORTSCOUNT', 'hub_anzahlport');
+define ('DB_COMPONENT_HUB_SPEEDMBIT', 'hub_geschwindigkeit');
+
+// define mainboard attributes for DB
+define ('DB_COMPONENT_MB_SOCKEL', 'mb_sockel');
+define ('DB_COMPONENT_MB_RAMTYPE', 'mb_ramtyp');
+define ('DB_COMPONENT_MB_RAMMAXSPACE', 'mb_rammax');
+define ('DB_COMPONENT_MB_RAMSLOTSCOUNT', 'mb_bankanzahl');
+define ('DB_COMPONENT_MB_CONNECTORTYPEPOWERSUPPLY', 'mb_netzteilsteckertyp');
+define ('DB_COMPONENT_MB_CONNECTORTYPECPU', 'mb_cpusteckertyp');
+define ('DB_COMPONENT_MB_ONBOARD', 'mb_onboardfunktion');
+define ('DB_COMPONENT_MB_INTERFACESINTERN', 'mb_internschnittstelle');
+define ('DB_COMPONENT_MB_INTERFACESEXTERN', 'mb_externschnittstelle');
+
+// define network card attributes for DB
+define ('DB_COMPONENT_NC_SPEEDMBIT', 'nk_bandbreitegeschwindigkeit');
+define ('DB_COMPONENT_NC_INTERFACEINTERN', 'nk_internschnittstelle');
+define ('DB_COMPONENT_NC_INTERFACEEXTERN', 'nk_externschnittstelle');
+define ('DB_COMPONENT_NC_PORTSCOUNT', 'nk_anzahlexternports');
+
+// define printer attributes for DB
+define ('DB_COMPONENT_P_IP', 'dr_ip');
+define ('DB_COMPONENT_P_PRINTERTYPE', 'dr_typ');
+define ('DB_COMPONENT_P_COLORMODE', 'dr_druckerart');
+define ('DB_COMPONENT_P_CONNECTIONTYPE', 'dr_anschlussart');
+
+// define raid controller attributes for DB
+define ('DB_COMPONENT_RC_RAIDLEVEL', 'rc_raidlvl');
+
+// define RAM attributes for DB
+define ('DB_COMPONENT_RAM_SPACEMBYTE', 'ram_groesse');
+define ('DB_COMPONENT_RAM_CLOCKSPEEDMHZ', 'ram_taktfrequenz');
+
+// define router attributes for DB
+define ('DB_COMPONENT_R_IPCONFIG1', 'rout_ip1');
+define ('DB_COMPONENT_R_IPCONFIG2', 'rout_ip2');
+define ('DB_COMPONENT_R_IPCONFIG3', 'rout_ip3');
+define ('DB_COMPONENT_R_IPCONFIG4', 'rout_ip4');
+define ('DB_COMPONENT_R_CONFIGFILE', 'rout_konfigdatei');
+
+// define software attributes for DB
+define ('DB_COMPONENT_S_VERSION', 'sw_versionsnummer');
+define ('DB_COMPONENT_S_LICENSETYPE', 'sw_lizenztyp');
+define ('DB_COMPONENT_S_LICENSECOUNT', 'sw_lizenzanzahl');
+define ('DB_COMPONENT_S_LICENSEDURATION', 'sw_lizenzlaufzeit');
+define ('DB_COMPONENT_S_LICENSEINFORMATION', 'sw_lizenzinformationen');
+define ('DB_COMPONENT_S_INSTALLHINT', 'sw_lizenzhinweis');
+
+// define switch attributes for DB
+define ('DB_COMPONENT_SC_IP', 's_ip');
+define ('DB_COMPONENT_SC_PORTSCOUNT', 's_anzahlports');
+define ('DB_COMPONENT_SC_UPLINKTYPE', 's_uplinktyp');
+define ('DB_COMPONENT_SC_SPEEDMBIT', 's_geschwindigkeit');
+define ('DB_COMPONENT_SC_CONFIGFILE', 's_konfigdateipfad');
+
+// define VLAN attributes for DB
+define ('DB_COMPONENT_VLAN_TAG', 'vlan_id');
+define ('DB_COMPONENT_VLAN_PORT', 'vlan_port');
+
+// define subcomponent attributes for DB
+define ('DB_COMPONENT_CHILDS_ID', 'pk_khpk_k_id');
+define ('DB_COMPONENT_PARENT_ID', 'pk_komponenten_ok_k_id_aggregat');
 
 class DbConnector
 {
@@ -135,7 +227,7 @@ class DbConnector
 		$query .= DB_USER_NAME . " ";
 		$query .= DB_USER_PWD . " ";
 		$query .= DB_USER_CREATE_DATE . " ";
-		$query .= "FROM benutzer ";
+		$query .= "FROM " . DB_USER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 				
 		$statement = $this->db->query($query);
@@ -163,7 +255,7 @@ class DbConnector
 			return false;
 		}
 	
-		$query = "UPDATE Benutzer ";
+		$query = "UPDATE " . DB_USER;
 		$query .= "SET (" . DB_USER_PWD . " = :password ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate()) ";
 		$query .= "WHERE " .DB_USER_NAME . " = :user ";
@@ -191,7 +283,7 @@ class DbConnector
 	
 	$query = "SELECT ";
 	$query .= "	(" . DB_USER_PWD . ") ";
-	$query .= "FROM benutzer ";
+	$query .= "FROM " . DB_USER;
 	$query .= "WHERE " . DB_USER_NAME . " = :user ";
 	$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
@@ -217,7 +309,7 @@ class DbConnector
 	*/
 	public function updateSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE lieferant ";
+		$query = "UPDATE " . DB_SUPPLIER;
 		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
 		$query .= ", " . DB_SUPPLIER_STREET . " = :street ";
 		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= :zipcode ";
@@ -255,7 +347,7 @@ class DbConnector
 	 */
 	public function deleteSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE lieferant ";
+		$query = "UPDATE " . DB_SUPPLIER;
 		$query .= "SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
@@ -277,7 +369,7 @@ class DbConnector
 	 */
 	public function createSupplier(Supplier $Supplier)
 	{
-		$query = "INSERT INTO lieferant ";
+		$query = "INSERT INTO " . DB_SUPPLIER;
 		$query .= "(" .DB_SUPPLIER_COMPANYNAME . " ";
 		$query .= "" . DB_SUPPLIER_STREET . " ";
 		$query .= "" . DB_SUPPLIER_ZIPCODE . " ";
@@ -330,7 +422,7 @@ class DbConnector
 		
 		$query = "SELECT ";
 		$query .= "" . DB_MODULE_ID . " ";
-		$query .= "FROM module ";
+		$query .= "FROM " . DB_MODULE;
 		$query .= "WHERE " . DB_MODULE_NAME . " = :name";
 		
 		$statement = $this->db->prepare($query);
@@ -355,7 +447,7 @@ class DbConnector
 	 */
 	public function updateComponent(Component $Component)
 	{
-		$query = "UPDATE komponenten ";
+		$query = "UPDATE " . DB_KOMPONENT;
 		$query .= "SET " . DB_COMPONENT_SUPPLIER. " = :supplier ";
 		$query .= ", " . DB_COMPONENT_ROOM . " = :room ";
 		$query .= ", " . DB_COMPONENT_PURCHASE_DATE . "= :purchaseDate ";
@@ -390,14 +482,14 @@ class DbConnector
 	 */
 	public function createComponent(Component $Component)
 	{
-		$query = "INSERT INTO komponenten ";
-		$query .= "" . DB_COMPONENT_SUPPLIER . " ";
+		$query = "INSERT INTO " . DB_KOMPONENT;
+		$query .= "(" . DB_COMPONENT_SUPPLIER . " ";
 		$query .= ", " . DB_COMPONENT_ROOM . " ";
 		$query .= ", " . DB_COMPONENT_PURCHASE_DATE . " ";
 		$query .= ", " . DB_COMPONENT_WARRANTY_PERIOD . " ";
 		$query .= ", " . DB_COMPONENT_NOTICE . " ";
 		$query .= ", " . DB_COMPONENT_MANUFACTURER . " ";
-		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= ", " . DB_MANAGE_CREATED . ") ";
 		$query .= "VALUES (:supplier ";
 		$query .= ", :room ";
 		$query .= ", :purchaseDate ";
@@ -431,8 +523,8 @@ class DbConnector
 	 */
 	public function deleteComponent(Component $Component)
 	{
-		$query = "UPDATE komponent ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_KOMPONENT;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_COMPONENT_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -453,8 +545,8 @@ class DbConnector
 	 */
 	public function updateRoom(Room $Room)
 	{
-		$query = "UPDATE raeume ";
-		$query .= "SET " . DB_ROOM_NAME . " = :name ";
+		$query = "UPDATE " . DB_ROOM;
+		$query .= " SET " . DB_ROOM_NAME . " = :name ";
 		$query .= ", " . DB_ROOM_NOTE . " = :note ";
 		$query .= ", " . DB_ROOM_NUMBER . "= :number ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
@@ -479,10 +571,10 @@ class DbConnector
 	 */
 	public function createRoom(Room $Room)
 	{
-		$query = "INSERT INTO raeume ";
-		$query .= "" . DB_ROOM_NAME . " ";
+		$query = "INSERT INTO " . DB_ROOM;
+		$query .= " (" . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
-		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= ", " . DB_MANAGE_CREATED . ") ";
 		$query .= "VALUES (:name ";
 		$query .= ", :note ";
 		$query .= ", sysdate() ";
@@ -505,8 +597,8 @@ class DbConnector
 	 */
 	public function deleteRoom(Room $Room)
 	{
-		$query = "UPDATE raeume ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_ROOM;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_ROOM_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -527,8 +619,8 @@ class DbConnector
 	 */
 	public function updateUser(User $User)
 	{
-		$query = "UPDATE benutzer ";
-		$query .= "SET " . DB_USER_NAME . " = :name ";
+		$query = "UPDATE " . DB_USER;
+		$query .= " SET " . DB_USER_NAME . " = :name ";
 		$query .= ", " . DB_USER_PWD . " = :password ";
 		$query .= ", " . DB_USER_CREATE_DATE . "= :createDate ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
@@ -554,8 +646,8 @@ class DbConnector
 	 */
 	public function createUser(User $User)
 	{
-		$query = "INSERT INTO benutzer ";
-		$query .= "" . DB_USER_NAME . " ";
+		$query = "INSERT INTO " . DB_USER;
+		$query .= " " . DB_USER_NAME . " ";
 		$query .= ", " . DB_USER_PWD . " ";
 		$query .= ", " . DB_USER_CREATE_DATE . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
@@ -583,8 +675,8 @@ class DbConnector
 	 */
 	public function deleteUser(User $User)
 	{
-		$query = "UPDATE benutzer ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_USER;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_USER_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -610,7 +702,7 @@ class DbConnector
 		$query .= ", " . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
 		$query .= ", " . DB_ROOM_NUMBER . " ";
-		$query .= "FROM benutzer ";
+		$query .= "FROM " . DB_USER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);
@@ -642,7 +734,7 @@ class DbConnector
 		$query .= ", " . DB_SUPPLIER_FAX . " ";
 		$query .= ", " . DB_SUPPLIER_EMAIL . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
-		$query .= "FROM lieferant ";
+		$query .= "FROM " . DB_SUPPLIER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);

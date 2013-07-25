@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 @import url("forms.css") all;
+@import url("tables.css") all;
 
 
 * {
@@ -11,13 +12,14 @@
 body {
     font-family: Verdana, Arial, Helvetica;
     font-size: 12pt;
+	color:#333333;
 }
 
 #wrapper {
 	position:relative;
     width: 1020px;
     height: 764px; 
-    padding:10px;
+    padding:10px 0 0 10px;
     margin: 0 auto auto 0;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* WebKit */
 	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Firefox */
@@ -85,18 +87,42 @@ img.headlogo{
  }
 
 #content {
-    width: 80%;
+    width: 75%;
     height: auto;
     margin:auto;
-    padding-top:200px;
-}
-
-div.description {
-    width: 100%;
-    margin-top: 10px;
+    padding:100px 20px 0 20px;
 }
 
 .clear{
 	float:none;
+	clear: both;
 }
 
+.smallContent{
+	width:70%;
+}
+
+.contentHeading{
+	margin:auto;
+	color:#333333;
+	line-height:150%;
+	border-bottom:1px solid #333333;
+	text-indent:10px;
+	margin-bottom:20px;
+}
+
+.pushRight{
+	float:right;
+}
+
+.simpleText{
+	width:70%;
+	margin:auto;
+	color:#333333;
+	line-height:120%;
+	font-size:11pt;
+}
+
+.centerText{
+	text-align:center;
+}

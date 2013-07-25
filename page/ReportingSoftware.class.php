@@ -11,4 +11,9 @@ class ReportingSoftware implements Page
     {
         return array();
     }
+    
+    static function getName()
+    {
+        return "Software";
+    }
 }
