@@ -12,5 +12,10 @@ class MaintenanceMain implements Page
 				pageTitle => 'Wartung'
 		);
 	}
+
+	static function getName()
+	{
+		return 'mainMaintenance'; 
+	}
 }
 ?>
