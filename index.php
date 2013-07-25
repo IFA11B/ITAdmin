@@ -81,9 +81,6 @@ function getPage()
         
         case Home::getName():
             return new Home();
-            
-        case Navbar::getName():
-            return new Navbar();
         }
     }
     return new Login();
