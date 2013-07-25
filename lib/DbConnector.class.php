@@ -586,6 +586,38 @@ class DbConnector
 		return $result;
 	}
 	
+	/**
+	 * Fetches all Supplier informations.
+	 *
+	 *
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function getAllSupplier(Supplier $Supplier)
+	{
+		$query = "SELECT  ";
+		$query .= " "  . DB_SUPPLIER_COMPANYNAME . " ";
+		$query .= ", " . DB_SUPPLIER_STREET . " ";
+		$query .= ", " . DB_SUPPLIER_ZIPCODE . " ";
+		$query .= ", " . DB_SUPPLIER_CITY . " ";
+		$query .= ", " . DB_SUPPLIER_PHONE . " ";
+		$query .= ", " . DB_SUPPLIER_MOBILE . " ";
+		$query .= ", " . DB_SUPPLIER_FAX . " ";
+		$query .= ", " . DB_SUPPLIER_EMAIL . " ";
+		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= "FROM lieferant ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
+	
+		$statement = $this->db->query($query);
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if($result == false)
+			return false;
+	
+		return $result;
+	}
+	
 	
 	
 }
