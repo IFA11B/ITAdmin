@@ -11,6 +11,9 @@ define('DB_KOMPONENT2KOMPONENT', 'komponente_hat_komponente');
 define('DB_MODULE', 'module');
 define('DB_USER_PRIVILEGES', 'benutzer_rechte');
 define('DB_USER', 'benutzer');
+define('DB_SUPPLIER', 'lieferant');
+define('DB_KOMPONENT', 'komponenten');
+define('DB_ROOM', 'raeume');
 
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
@@ -135,7 +138,7 @@ class DbConnector
 		$query .= DB_USER_NAME . " ";
 		$query .= DB_USER_PWD . " ";
 		$query .= DB_USER_CREATE_DATE . " ";
-		$query .= "FROM benutzer ";
+		$query .= "FROM " . DB_USER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 				
 		$statement = $this->db->query($query);
@@ -163,7 +166,7 @@ class DbConnector
 			return false;
 		}
 	
-		$query = "UPDATE Benutzer ";
+		$query = "UPDATE " . DB_USER;
 		$query .= "SET (" . DB_USER_PWD . " = :password ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate()) ";
 		$query .= "WHERE " .DB_USER_NAME . " = :user ";
@@ -191,7 +194,7 @@ class DbConnector
 	
 	$query = "SELECT ";
 	$query .= "	(" . DB_USER_PWD . ") ";
-	$query .= "FROM benutzer ";
+	$query .= "FROM " . DB_USER;
 	$query .= "WHERE " . DB_USER_NAME . " = :user ";
 	$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
@@ -217,7 +220,7 @@ class DbConnector
 	*/
 	public function updateSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE lieferant ";
+		$query = "UPDATE " . DB_SUPPLIER;
 		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
 		$query .= ", " . DB_SUPPLIER_STREET . " = :street ";
 		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= :zipcode ";
@@ -255,7 +258,7 @@ class DbConnector
 	 */
 	public function deleteSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE lieferant ";
+		$query = "UPDATE " . DB_SUPPLIER;
 		$query .= "SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
@@ -277,7 +280,7 @@ class DbConnector
 	 */
 	public function createSupplier(Supplier $Supplier)
 	{
-		$query = "INSERT INTO lieferant ";
+		$query = "INSERT INTO " . DB_SUPPLIER;
 		$query .= "(" .DB_SUPPLIER_COMPANYNAME . " ";
 		$query .= "" . DB_SUPPLIER_STREET . " ";
 		$query .= "" . DB_SUPPLIER_ZIPCODE . " ";
@@ -330,7 +333,7 @@ class DbConnector
 		
 		$query = "SELECT ";
 		$query .= "" . DB_MODULE_ID . " ";
-		$query .= "FROM module ";
+		$query .= "FROM " . DB_MODULE;
 		$query .= "WHERE " . DB_MODULE_NAME . " = :name";
 		
 		$statement = $this->db->prepare($query);
@@ -355,7 +358,7 @@ class DbConnector
 	 */
 	public function updateComponent(Component $Component)
 	{
-		$query = "UPDATE komponenten ";
+		$query = "UPDATE " . DB_KOMPONENT;
 		$query .= "SET " . DB_COMPONENT_SUPPLIER. " = :supplier ";
 		$query .= ", " . DB_COMPONENT_ROOM . " = :room ";
 		$query .= ", " . DB_COMPONENT_PURCHASE_DATE . "= :purchaseDate ";
@@ -390,14 +393,14 @@ class DbConnector
 	 */
 	public function createComponent(Component $Component)
 	{
-		$query = "INSERT INTO komponenten ";
-		$query .= "" . DB_COMPONENT_SUPPLIER . " ";
+		$query = "INSERT INTO " . DB_KOMPONENT;
+		$query .= "(" . DB_COMPONENT_SUPPLIER . " ";
 		$query .= ", " . DB_COMPONENT_ROOM . " ";
 		$query .= ", " . DB_COMPONENT_PURCHASE_DATE . " ";
 		$query .= ", " . DB_COMPONENT_WARRANTY_PERIOD . " ";
 		$query .= ", " . DB_COMPONENT_NOTICE . " ";
 		$query .= ", " . DB_COMPONENT_MANUFACTURER . " ";
-		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= ", " . DB_MANAGE_CREATED . ") ";
 		$query .= "VALUES (:supplier ";
 		$query .= ", :room ";
 		$query .= ", :purchaseDate ";
@@ -431,8 +434,8 @@ class DbConnector
 	 */
 	public function deleteComponent(Component $Component)
 	{
-		$query = "UPDATE komponent ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_KOMPONENT;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_COMPONENT_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -453,8 +456,8 @@ class DbConnector
 	 */
 	public function updateRoom(Room $Room)
 	{
-		$query = "UPDATE raeume ";
-		$query .= "SET " . DB_ROOM_NAME . " = :name ";
+		$query = "UPDATE " . DB_ROOM;
+		$query .= " SET " . DB_ROOM_NAME . " = :name ";
 		$query .= ", " . DB_ROOM_NOTE . " = :note ";
 		$query .= ", " . DB_ROOM_NUMBER . "= :number ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
@@ -479,10 +482,10 @@ class DbConnector
 	 */
 	public function createRoom(Room $Room)
 	{
-		$query = "INSERT INTO raeume ";
-		$query .= "" . DB_ROOM_NAME . " ";
+		$query = "INSERT INTO " . DB_ROOM;
+		$query .= " (" . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
-		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= ", " . DB_MANAGE_CREATED . ") ";
 		$query .= "VALUES (:name ";
 		$query .= ", :note ";
 		$query .= ", sysdate() ";
@@ -505,8 +508,8 @@ class DbConnector
 	 */
 	public function deleteRoom(Room $Room)
 	{
-		$query = "UPDATE raeume ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_ROOM;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_ROOM_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -527,8 +530,8 @@ class DbConnector
 	 */
 	public function updateUser(User $User)
 	{
-		$query = "UPDATE benutzer ";
-		$query .= "SET " . DB_USER_NAME . " = :name ";
+		$query = "UPDATE " . DB_USER;
+		$query .= " SET " . DB_USER_NAME . " = :name ";
 		$query .= ", " . DB_USER_PWD . " = :password ";
 		$query .= ", " . DB_USER_CREATE_DATE . "= :createDate ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
@@ -554,8 +557,8 @@ class DbConnector
 	 */
 	public function createUser(User $User)
 	{
-		$query = "INSERT INTO benutzer ";
-		$query .= "" . DB_USER_NAME . " ";
+		$query = "INSERT INTO " . DB_USER;
+		$query .= " " . DB_USER_NAME . " ";
 		$query .= ", " . DB_USER_PWD . " ";
 		$query .= ", " . DB_USER_CREATE_DATE . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
@@ -583,8 +586,8 @@ class DbConnector
 	 */
 	public function deleteUser(User $User)
 	{
-		$query = "UPDATE benutzer ";
-		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query = "UPDATE " . DB_USER;
+		$query .= " SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_USER_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
