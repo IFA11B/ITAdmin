@@ -3,7 +3,7 @@
 {block name=title}{$pageTitle}{/block}
 
 {block name=css}
-    <link rel="stylesheet" href="./style/reportingMain.css" />
+    <link rel="stylesheet" href="./style/reporting.css" />
 {/block}
 
 {block name=js}
