@@ -14,6 +14,15 @@ class Mainboard extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setSockel($row[DB_COMPONENT_MB_SOCKEL]);
+		$this->setRamType($row[DB_COMPONENT_MB_RAMTYPE]);
+		$this->setRamMaxSpace($row[DB_COMPONENT_MB_RAMMAXSPACE]);
+		$this->setRamSlotsCount($row[DB_COMPONENT_MB_RAMSLOTSCOUNT]);
+		$this->setConnectorTypePowerSupply($row[DB_COMPONENT_MB_CONNECTORTYPEPOWERSUPPLY]);
+		$this->setConnectorTypeCpu($row[DB_COMPONENT_MB_CONNECTORTYPECPU]);
+		$this->setOnboardComponents($row[DB_COMPONENT_MB_ONBOARD]);
+		$this->setInterfacesIntern($row[DB_COMPONENT_MB_INTERFACESINTERN]);
+		$this->setInterfacesExtern($row[DB_COMPONENT_MB_INTERFACESEXTERN]);
 	}
 	
 	public function getSockel()
@@ -21,7 +30,7 @@ class Mainboard extends Component
 		return $this->Sockel; 
 	}
 	
-	public function setSockel(string $sockel)
+	public function setSockel($sockel)
 	{
 		$this->Sockel=$sockel;
 	}
@@ -31,7 +40,7 @@ class Mainboard extends Component
 		return $this->RamType;
 	}
 	
-	public function setRamType(string $ramType)
+	public function setRamType($ramType)
 	{
 		$this->RamType=$ramType;
 	}
@@ -41,7 +50,7 @@ class Mainboard extends Component
 		return $this->RamMaxSpace;
 	}
 	
-	public function setRamMaxSpace(int $ramMaxSpace)
+	public function setRamMaxSpace($ramMaxSpace)
 	{
 		$this->RamMaxSpace=$ramMaxSpace;
 	}
@@ -50,7 +59,7 @@ class Mainboard extends Component
 		return $this->RamSlotsCount;
 	}
 	
-	public function setRamSlotsCount(int $ramSlotsCount)
+	public function setRamSlotsCount($ramSlotsCount)
 	{
 		$this->RamSlotsCount=$ramSlotsCount;
 	}
@@ -60,7 +69,7 @@ class Mainboard extends Component
 		return $this->ConnectorTypePowerSupply;
 	}
 	
-	public function setConnectorTypePowerSupply(string $connectorTypePowerSupply)
+	public function setConnectorTypePowerSupply($connectorTypePowerSupply)
 	{
 		$this->ConnectorTypePowerSupply=$connectorTypePowerSupply;
 	}
@@ -70,7 +79,7 @@ class Mainboard extends Component
 		return $this->ConnectorTypeCpu;
 	}
 	
-	public function setConnectorTypeCpu(string $connectorTypeCpu)
+	public function setConnectorTypeCpu($connectorTypeCpu)
 	{
 		$this->ConnectorTypeCpu=$connectorTypePowerCpu;
 	}
@@ -90,7 +99,7 @@ class Mainboard extends Component
 		return $this->InterfacesIntern;
 	}
 	
-	public function setOnboardComponentsInterfacesIntern(array $interfacesIntern)
+	public function setInterfacesIntern(array $interfacesIntern)
 	{
 		$this->InterfacesIntern=$interfacesIntern;
 	}

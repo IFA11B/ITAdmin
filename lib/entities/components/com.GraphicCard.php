@@ -7,6 +7,8 @@ class GraphicCard extends Component
 	public function __construct(array $row=NULL)
 	{
 		parent::__construct($row);
+		$this->setInterfaceType($row[DB_COMPONENT_GC_INTERFACETYPE]);
+		$this->setSpaceMbyte($row[DB_COMPONENT_GC_SPACEMBYTE]);
 	}
 	
 	public function getInterfaceType()
@@ -14,7 +16,7 @@ class GraphicCard extends Component
 		return $this->InterfaceType;
 	}
 	
-	public function setInterfaceType(string $InterfaceType)
+	public function setInterfaceType($InterfaceType)
 	{
 		$this->InterfaceType=$InterfaceType;
 	}
@@ -23,7 +25,7 @@ class GraphicCard extends Component
 		return $this->SpaceMbyte;
 	}
 	
-	public function setSpaceMbyte(int $SpaceMbyte)
+	public function setSpaceMbyte($SpaceMbyte)
 	{
 		$this->SpaceMbyte=$SpaceMbyte;
 	}

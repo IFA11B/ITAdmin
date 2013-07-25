@@ -10,6 +10,11 @@ class SwitchComponent extends Component
 	public function __construct(array $row = NULL)
 	{
 		parent::__construct($row);
+		$this->setIpAdress($row[DB_COMPONENT_SC_IP]);
+		$this->setPortsCount($row[DB_COMPONENT_SC_PORTSCOUNT]);
+		$this->setUplinkType($row[DB_COMPONENT_SC_UPLINKTYPE]);
+		$this->setSpeedMbit($row[DB_COMPONENT_SC_SPEEDMBIT]);
+		$this->setConfigurationFilePath($row[DB_COMPONENT_SC_CONFIGFILE]);
 	}
 	
 	public function getIpAdress()
@@ -17,7 +22,7 @@ class SwitchComponent extends Component
 		return $this->IpAdress;
 	}
 	
-	public function setVersion(string $IpAdress)
+	public function setIpAdress($IpAdress)
 	{
 		$this->IpAdress=$IpAdress;
 	}
@@ -27,7 +32,7 @@ class SwitchComponent extends Component
 		return $this->PortsCount;
 	}
 	
-	public function setPortsCount(int $PortsCount)
+	public function setPortsCount($PortsCount)
 	{
 		$this->PortsCount=$PortsCount;
 	}
@@ -37,7 +42,7 @@ class SwitchComponent extends Component
 		return $this->UplinkType;
 	}
 	
-	public function setUplinkType(string $UplinkType)
+	public function setUplinkType($UplinkType)
 	{
 		$this->UplinkType=$UplinkType;
 	}
@@ -47,7 +52,7 @@ class SwitchComponent extends Component
 		return $this->SpeedMbit;
 	}
 	
-	public function setSpeedMbit(int $SpeedMbit)
+	public function setSpeedMbit($SpeedMbit)
 	{
 		$this->SpeedMbit=$SpeedMbit;
 	}
@@ -57,7 +62,7 @@ class SwitchComponent extends Component
 		return $this->ConfigurationFilePath;
 	}
 	
-	public function setConfigurationFilePath(string $ConfigurationFilePath)
+	public function setConfigurationFilePath($ConfigurationFilePath)
 	{
 		$this->ConfigurationFilePath=$ConfigurationFilePath;
 	}
