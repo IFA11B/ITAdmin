@@ -29,6 +29,8 @@ $(document).ready(function() {
             openPanel($(this));
         }
     });
+    
+    $('#network .repContent, #software .repContent, #hardware .repContent').slideUp(0);
 });
 
 function closePanel(element)
@@ -37,31 +39,31 @@ function closePanel(element)
     
     $(element).find(".headerArrow").removeClass('arrowRotate');
     
-    $(element).find('.repContent').html('');
+    $(element).find('.repContent').slideUp(250).html('');
 }
 
 function openPanel(element)
 {
-    closePanel($('#network,#software,#hardware'));
-    
-    $(element).addClass('activeHeader');
-    
-    $(element).find(".headerArrow").addClass('arrowRotate');
-    
     var subPageName;
-    
     switch($(element).attr('id'))
     {
         case 'network':
             subPageName = 'Network';
+            closePanel($('#software,#hardware'));
             break;
         case 'software':
             subPageName = 'Software';
+            closePanel($('#network,#hardware'));
             break;
         case 'hardware':
             subPageName = 'Hardware';
+            closePanel($('#software,#network'));
             break;
     }
+    
+    $(element).addClass('activeHeader');
+    
+    $(element).find(".headerArrow").addClass('arrowRotate');
     
     $.ajax({
         url: './?module=REPORTING&page=' + subPageName,
@@ -76,7 +78,7 @@ function openPanel(element)
         success: function(data)
         {
             $(element).find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
-            $(element).find('.repContent').html(data);
+            $(element).find('.repContent').html(data).slideDown(250);
         }
     });
 }
