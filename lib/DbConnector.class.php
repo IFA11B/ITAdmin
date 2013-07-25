@@ -96,6 +96,7 @@ define ('DB_COMPONENT_AP_CONFIGFILE', 'ap_konfigdatei');
 define ('DB_COMPONENT_PC_IP', 'pc_ip');
 define ('DB_COMPONENT_PC_SUBNET', 'pc_subnetzklasse');
 define ('DB_COMPONENT_PC_GATEWAY', 'pc_gateway');
+define ('DB_COMPONENT_PC_NAME', 'pc_pcname');
 
 // define CPU attributes for DB
 define ('DB_COMPONENT_CPU_SOCKEL', 'cpu_sockel');
@@ -146,6 +147,7 @@ define ('DB_COMPONENT_RC_RAIDLEVEL', 'rc_raidlvl');
 // define RAM attributes for DB
 define ('DB_COMPONENT_RAM_SPACEMBYTE', 'ram_groesse');
 define ('DB_COMPONENT_RAM_CLOCKSPEEDMHZ', 'ram_taktfrequenz');
+define ('DB_COMPONENT_RAM_NAME', 'ram_name');
 
 // define router attributes for DB
 define ('DB_COMPONENT_R_IPCONFIG1', 'rout_ip1');
