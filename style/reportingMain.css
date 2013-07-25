@@ -1,0 +1,60 @@
+.headerTitle
+{
+    float: left;
+}
+
+.headerArrow
+{
+    float: right;
+}
+
+#network .header,
+#software .header,
+#hardware .header
+{
+    min-height: 20px;
+    border-bottom: 1px solid #333;
+}
+
+#network,
+#software,
+#hardware
+{
+    cursor: pointer;
+    
+    min-height: 20px;
+    margin-bottom: 25px;
+}
+
+/* TODO remove this as soon as the-esa pushed her clear fix */
+.clear
+{
+    clear: both;
+}
+
+.activeHeader
+{
+    
+}
+
+.spinner
+{
+    margin-top: 12px;
+    margin-right: 13px;
+}
+
+.headerArrow img
+{
+    height: 16px;
+    margin-right: 5px;
+}
+
+.arrowRotate
+{
+    transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    
+    margin-right: 5px;
+}
