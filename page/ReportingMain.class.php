@@ -13,4 +13,9 @@ class ReportingMain implements Page
             pageTitle => 'Reporting'
         );
     }
+    
+    static function getName()
+    {
+        return "Main";
+    }
 }
