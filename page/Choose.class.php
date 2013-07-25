@@ -27,7 +27,9 @@ class Choose implements Page
 
     public function getContent()
     {
-        $result = array();
+        return array(
+            pageTitle => 'Komponente w&auml;hlen'
+        );
     }
 }
 
