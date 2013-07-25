@@ -47,6 +47,13 @@ define ('DB_COMPONENT_MANUFACTURER', 'k_hersteller');
 define ('DB_MODULE_ID', 'pk_mod_id');
 define ('DB_MODULE_NAME', 'mod_name');
 
+// define subcomponent attributes for DB
+define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponeten_pk_k_id_aggregat');
+define ('DB_SUBCOMPONENT_UNIT', 'pk_komponenten_pk_k_id_teil');
+define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
+define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
+define ('DB_SUBCOMPONENT_DATE', 'khk_datum');
+
 class DbConnector
 {
 	private $db;
