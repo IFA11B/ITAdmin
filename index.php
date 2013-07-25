@@ -6,16 +6,13 @@ require_once ('config.php');
 loadDir(LIB_DIR, array(LIB_DIR . 'smarty'));
 loadDir(PAGE_DIR);
 
-define('PAGE_LOGIN', 'login');
-define('PAGE_HOME', 'home');
-
 /**
  * Loads all PHP files in a given directory and its sub-directories, excluding files and directories (if specified).
  *
  * @param string $directory the directory to
  * @param array $excluded (optional)
  */
-function loadDir(string $directory, array $excluded = array())
+function loadDir($directory, array $excluded = array())
 {
     $files = scandir($directory);
     $subDirs = array();
@@ -79,14 +76,11 @@ function getPage()
     {
         switch($_GET['page'])
         {
-        case PAGE_LOGIN:
+        case Login::getName():
             return new Login();
         
-        case PAGE_HOME:
+        case Home::getName():
             return new Home();
-        
-        default:
-            return new Login();
         }
     }
     return new Login();

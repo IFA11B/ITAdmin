@@ -26,7 +26,7 @@ class Reporting extends Module
         return "Daten werden angezeigt.";
     }
     
-    public function getPage(string $page)
+    public function getPage($page)
     {
         $pageObject = null;
         

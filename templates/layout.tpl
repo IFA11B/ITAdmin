@@ -2,12 +2,19 @@
 <html>
     <head>
         <title>{block name=title}{/block} - IT Verwaltung</title>
+        
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="style/style.css">
+        {block name=css}{/block}
+        
+        <!-- JavaScripts -->
+        <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+        {block name=js}{/block}
     </head>
     <body>
         <div id="wrapper">
             <div id="head">
-            	<img id="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/>
+            	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/></div>
             	<div id="headtitle">IT-Systembetreuung</div>
             </div>
             <div id="main">
