@@ -18,7 +18,7 @@ abstract class Module
     
     public abstract function getDescription();
     
-    public abstract function getPage(string $page);
+    public abstract function getPage($page);
     
     public function canRead(User $user)
     {
