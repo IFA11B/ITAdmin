@@ -6,6 +6,9 @@
  * @author Thunraz <julian.dinges@gmail.com>
  */
 
+//define table names for DB
+define('DB_KOMPONENT2KOMPONENT', 'komponente_hat_komponente');
+
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
 define ('DB_MANAGE_CREATED', 'vwi_created');
