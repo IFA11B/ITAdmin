@@ -1,5 +1,4 @@
 <?php
-require_once("Module.class.php");
 
 class Reporting extends Module
 {
