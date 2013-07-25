@@ -17,6 +17,18 @@ class SwitchComponent extends Component
 		$this->setConfigurationFilePath($row[DB_COMPONENT_SC_CONFIGFILE]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new SwitchComponent();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setIpAdress($this->getIpAdress());
+		$TargetComponent->setPortsCount($this->getPortsCount());
+		$TargetComponent->setUplinkType($this->getUplinkType());
+		$TargetComponent->setSpeedMbit($this->getSpeedMbit());
+		$TargetComponent->setConfigurationFilePath($this->getConfigurationFilePath());
+		return $TargetComponent;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->IpAdress;

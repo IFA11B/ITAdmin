@@ -14,6 +14,16 @@ class Computer extends Component
 		$this->setGateway($row[DB_COMPONENT_PC_GATEWAY]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Computer();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setIpAdress($this->getIpAdress());
+		$TargetComponent->setSubnet($this->getSubnet());
+		$TargetComponent->setGateway($this->getGateway());
+		return $TargetComponent;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->IpAdress;

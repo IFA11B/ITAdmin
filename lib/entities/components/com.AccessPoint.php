@@ -9,8 +9,18 @@ class AccessPoint extends Component
 		parent::__construct($row);
 		$this->setIpAdress($row[DB_COMPONENT_AP_IP]);
 		$this->setConfigurationFilePath($row[DB_COMPONENT_AP_CONFIGFILE]);	
+		
 	}
-
+	
+	public function copy()
+	{
+		$TargetComponent=new AccessPoint();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setIpAdress($this->getIpAdress());
+		$TargetComponent->setConfigurationFilePath($this->getConfigurationFilePath());
+		return $TargetComponent;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->IpAdress;

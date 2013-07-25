@@ -15,6 +15,17 @@ class NetworkCard extends Component
 		$this->setPortsCount($row[DB_COMPONENT_NC_PORTSCOUNT]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new NetworkCard();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setSpeedMbit($this->getSpeedMbit());
+		$TargetComponent->setInterfaceExtern($this->getInterfaceExtern());
+		$TargetComponent->setInterfaceIntern($this->getInterfaceIntern());
+		$TargetComponent->setPortsCount($this->getPortsCount());
+		return $TargetComponent;
+	}
+	
 	public function getSpeedMbit()
 	{
 		return $this->SpeedMbit;

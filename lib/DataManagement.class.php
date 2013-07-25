@@ -248,22 +248,22 @@ class DataManagement
         return $entity;
     }
 
-    public function getComponentById(int $componentId)
+    public function getComponentById($componentId)
     {
         return DataManagement::getEntityFromArrayById($this->getComponents(), $componentId);
     }
 
-    public function getRoomById(int $roomId)
+    public function getRoomById($roomId)
     {
         return DataManagement::getEntityFromArrayById($this->getRooms(), $roomId);
     }
 
-    public function getSupplierById(int $supplierId)
+    public function getSupplierById($supplierId)
     {
         return DataManagement::getEntityFromArrayById($this->getSuppliers(), $supplierId);
     }
 
-    public function getUserById(int $userId)
+    public function getUserById($userId)
     {
         return DataManagement::getEntityFromArrayById($this->getUsers(), $userId);
     }

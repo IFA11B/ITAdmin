@@ -25,6 +25,22 @@ class Mainboard extends Component
 		$this->setInterfacesExtern($row[DB_COMPONENT_MB_INTERFACESEXTERN]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Mainboard();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setSockel($this->getSockel());
+		$TargetComponent->setRamType($this->getRamType());
+		$TargetComponent->setRamMaxSpace($this->getRamMaxSpace());
+		$TargetComponent->setRamSlotsCount($this->getRamSlotsCount());
+		$TargetComponent->setConnectorTypePowerSupply($this->getConnectorTypePowerSupply());
+		$TargetComponent->setConnectorTypeCpu($this->getConnectorTypeCpu());
+		$TargetComponent->setOnboardComponents($this->getOnboardComponents());
+		$TargetComponent->setInterfacesIntern($this->getInterfacesIntern());
+		$TargetComponent->setInterfacesExtern($this->getInterfacesExtern());
+		return $TargetComponent;
+	}
+	
 	public function getSockel()
 	{
 		return $this->Sockel; 
