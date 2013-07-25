@@ -96,8 +96,11 @@ img.headlogo{
 	float:none;
 }
 
-.contentHeading{
+.smallContent{
 	width:70%;
+}
+
+.contentHeading{
 	margin:auto;
 	color:#333333;
 	line-height:150%;

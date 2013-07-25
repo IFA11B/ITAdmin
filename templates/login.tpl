@@ -1,7 +1,7 @@
 {extends file="layout.tpl"}
 {block name=title}Login{/block}
 {block name=content}
-<div class="contentHeading">Anmeldung</div>
+<div class="contentHeading smallcontent">Anmeldung</div>
 <form id="login" method="POST">
     <div id="loginFields">
         <div class="formrow"><div class="inputlabel"> Username:</div><input type="text" name="user"></div>
