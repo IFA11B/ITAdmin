@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+
+div.input {
+    width: 100%;
+}
+
+.input input {
+    width: 100%;
+    line-height: 1.3em;
+}
+
+form#login {
+    width: 320px;
+    margin: auto;
+    font-size: 1.3em;
+}
