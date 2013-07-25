@@ -10,9 +10,9 @@ require_once('DbConnector.class.php');
  */
 abstract class Module
 {
-    public abstract function getId();
+    public abstract static function getId();
     
-    public abstract function getName();
+    public abstract static function getName();
     
     public abstract function getTitle();
     
@@ -23,7 +23,7 @@ abstract class Module
     public function canRead(User $user)
     {
         $db = DbConnector::getInstance();
-        $result = $db->userModuleRead($user->getId(), $this->getId());
+        $result = $db->userModuleRead($user, $this);
         
         if ($result === 1)
         {
@@ -35,7 +35,7 @@ abstract class Module
     public function canWrite(User $user)
     {
         $db = DbConnector::getInstance();
-        $result = $db->userModuleWrite($user->getId(), $this->getId());
+        $result = $db->userModuleWrite($user, $this);
         
         if ($result === 1)
         {
