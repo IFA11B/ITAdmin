@@ -11,6 +11,15 @@ class GraphicCard extends Component
 		$this->setSpaceMbyte($row[DB_COMPONENT_GC_SPACEMBYTE]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new GraphicCard();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setInterfaceType($this->getInterfaceType());
+		$TargetComponent->setSpaceMbyte($this->getSpaceMbyte());
+		return $TargetComponent;
+	}
+	
 	public function getInterfaceType()
 	{
 		return $this->InterfaceType;

@@ -22,11 +22,12 @@ abstract class Component
 	
 	public function __construct(array $row = null)
 	{
-	        $this->setParent(null);
+	    $this->setParent(null);
         $this->clearChildren();
         
         if ($row !== null) {
             $this->setId($row[DB_COMPONENT_ID]);
+            $this->setName($row[DB_COMPONENT_NAME]);
             $this->setComponentType($row[DB_COMPONENT_TYPE]);
             $this->setSupplier($row[DB_COMPONENT_SUPPLIER]);
             $this->setRoom($row[DB_COMPONENT_ROOM]);
@@ -55,30 +56,28 @@ abstract class Component
         $db->createComponent($this);
     }
     
-    public function copy()
+    public function copyBase($TargetComponent)
     {
-        $copy = new Component();
-
-        $copy->setId($this->getId());
-        $copy->setSupplier($this->getSupplier());
-        $copy->setRoom($this->getRoom());
-        $copy->setPurchaseDate($this->getPurchaseDate());
-        $copy->setWarrantyPeriod($this->getWarrantyPeriod());
-        $copy->setNotice($this->getNotice());
-        $copy->setManufacturer($this->getManufacturer());
-        
-        foreach($children as $child)
-        {
-            $childCopy = $child->copy();
-            
-            $childCopy->setParent($copy);
-            $copy->addChild($childCopy);
-            
-        }
-        
-        return $copy;
+        $TargetComponent->setId($this->getId());
+        $TargetComponent->setComponentType($this->getComponentType());
+        $TargetComponent->setSupplier($this->getSupplier());
+        $TargetComponent->setRoom($this->getRoom());
+        $TargetComponent->setPurchaseDate($this->getPurchaseDate());
+        $TargetComponent->setWarrantyPeriod($this->getWarrantyPeriod());
+        $TargetComponent->setNotice($this->getNotice());
+        $TargetComponent->setManufacturer($this->getManufacturer());
+        $TargetComponent->setChilds($this->getChildren());
+        $TargetComponent->setParent($this->getParent());
+        return $TargetComponent;
     }
-	
+    
+    public function MoveToRoom($room)
+    {
+    	$this->delete();
+    	$this->setRoom($room);
+    	$this->create();
+    }
+    
 	public function getId()
 	{
 		return $this->Id;
@@ -183,7 +182,7 @@ abstract class Component
 		return true;
 	}
 	
-	public function getChildren()
+	public function getChilds()
 	{
 		return $this->Childs;
 	}
@@ -198,7 +197,7 @@ abstract class Component
 		return $this->Childs[$index];
 	}
 	
-	public function getChildrenCount()
+	public function getChildsCount()
 	{
 		if ($this->Childs==null) {
 			return 0;
@@ -206,7 +205,7 @@ abstract class Component
 		return count($this->Childs);
 	}
 	
-	public function clearChildren()
+	public function clearChilds()
 	{
 		$this->Childs = array();
 	}

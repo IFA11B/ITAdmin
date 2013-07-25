@@ -19,6 +19,19 @@ class Software extends Component
 		$this->setInstallHint($row[DB_COMPONENT_S_INSTALLHINT]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Software();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setVersion($this->getVersion());
+		$TargetComponent->setLicenseType($this->getLicenseType());
+		$TargetComponent->setLicenseCount($this->getLicenseCount());
+		$TargetComponent->setLicenseDuration($this->getLicenseDuration());
+		$TargetComponent->setLicenseInformation($this->getLicenseInformation());
+		$TargetComponent->setInstallHint($this->getInstallHint());
+		return $TargetComponent;
+	}
+	
 	public function getVersion()
 	{
 		return $this->Version;

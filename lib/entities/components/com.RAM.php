@@ -11,6 +11,15 @@ class Ram extends Component
 		$this->setClockSpeedMHz($row[DB_COMPONENT_RAM_CLOCKSPEEDMHZ]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new RaidController();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setSpaceMbyte($this->getSpaceMbyte());
+		$TargetComponent->setClockSpeedMHz($this->getClockSpeedMHz());
+		return $TargetComponent;
+	}
+	
 	public function getSpaceMbyte()
 	{
 		return $this->SpaceMbyte;

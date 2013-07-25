@@ -15,6 +15,17 @@ class Printer extends Component
 		$this->setConnectionType($row[DB_COMPONENT_P_CONNECTIONTYPE]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Printer();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setIpAdress($this->getIpAdress());
+		$TargetComponent->setPrinterType($this->getPrinterType());
+		$TargetComponent->setColorMode($this->getColorMode());
+		$TargetComponent->setConnectionType($this->getConnectionType());
+		return $TargetComponent;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->IpAdress;

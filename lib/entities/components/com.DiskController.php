@@ -10,6 +10,14 @@ class DiskController extends Component
 		$this->setDiskType($row[DB_COMPONENT_DC_DISKTYPE]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Cpu();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setDiskType($this->getDiskType());
+		return $TargetComponent;
+	}
+	
 	public function getDiskType()
 	{
 		return $this->DiskType;
