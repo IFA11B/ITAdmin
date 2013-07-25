@@ -48,3 +48,24 @@ form#login {
 #loginFields{
 	padding-bottom: 20px;
 }
+
+.styled-select select {
+   	background: transparent;
+   	width: 268px;
+   	padding: 5px;
+   	font-size: 12px;
+   	font-variant:small-caps;
+   	line-height: 1;
+   	border: 0;
+   	border-bottom: 1px #333333 solid;
+   	height: 34px;
+   	-webkit-appearance: none;
+}
+
+.styled-select {
+	width: 240px;
+   	height: 34px;
+   	overflow: hidden;
+   	background: url(new_arrow.png) no-repeat right #ddd;
+   	border: 1px solid #ccc;
+}
