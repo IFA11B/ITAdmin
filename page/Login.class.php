@@ -17,7 +17,7 @@ class Login implements Page
 
     static function getName()
     {
-        return PAGE_NAME;
+        return Login::PAGE_NAME;
     }
     
     public function getTemplate()

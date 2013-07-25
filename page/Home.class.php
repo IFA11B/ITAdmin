@@ -11,7 +11,7 @@ class Home implements Page
     
     static function getName()
     {
-        return PAGE_NAME;
+        return Home::PAGE_NAME;
     }
     
     public function getTemplate()
