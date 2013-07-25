@@ -31,18 +31,18 @@ class Navbar implements Page
         /** @var Module */
         $modules = $db->getModules();
         
-        $result['module'] = array();
-        $result['moduleTitle'] = array();
-        $result['moduleDescr'] = array();
+        $result['modules'] = array();
         
         foreach($modules as $module)
         {
+            $modResult = array();
             if ($module->canRead($user))
             {
-                $result['module'][] = $module->getName();
-                $result['moduleTitle'][] = $module->getTitle();
-                $result['moduleDescr'][] = $module->getDescription();
+                $modResult['name'] = $module->getName();
+                $modResult['title'] = $module->getTitle();
+                $modResult['descr'] = $module->getDescription();
             }
+            $result['modules'][] = $modResult;
         }
         
         return $result;

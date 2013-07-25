@@ -26,8 +26,11 @@ class Home implements Page
         
         if (User::isLoggedIn() === true)
         {
+            $navbar = new Navbar();
+            
             $user = User::getSessionUser();
             
+            $result = array_merge($result, $navbar->getContent());
             $result['userRole'] = $user->getName();
         }
         else
