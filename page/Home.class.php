@@ -1,27 +1,40 @@
 <?php
 /**
- * 
- * @author Deaod
+ *
+ * @author Lukas Bagaric <lukas.bagaric@gmail.com>
  * @see Page
  */
 class Home implements Page
 {
-    /**
-     * (non-PHPdoc)
-     * @see Page::getTemplate()
-     */
-    public function getTemplate()
+    
+    const PAGE_NAME = 'home';
+    
+    static function getName()
     {
-        return 'home.tpl'; 
+        return Home::PAGE_NAME;
     }
     
-    /**
-     * (non-PHPdoc)
-     * @see Page::getContent()
-     */
+    public function getTemplate()
+    {
+        return 'home.tpl';
+    }
+
     public function getContent()
     {
-        return array();
+        $result = array();
+        
+        if (User::isLoggedIn() === true)
+        {
+            $user = User::getSessionUser();
+            
+            $result['userRole'] = $user->getName();
+        }
+        else
+        {
+            //header('Location: ');
+        }
+        
+        return $result;
     }
 }
 

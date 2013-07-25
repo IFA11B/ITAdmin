@@ -1,14 +1,14 @@
 <?php
 require_once('Page.iface.php');
-require_once('User.class.php');
 require_once('DbConnector.class.php');
 
 /**
  * Base class for modules. Provides access management.
  * 
  * @author deaod
+ * @author Thunraz
  */
-abstract class Module implements Page
+abstract class Module
 {
     public abstract function getId();
     
@@ -18,10 +18,12 @@ abstract class Module implements Page
     
     public abstract function getDescription();
     
+    public abstract function getPage($page);
+    
     public function canRead(User $user)
     {
         $db = DbConnector::getInstance();
-        $result = $db->userModuleRead($user->getId(), $this->getId());
+        $result = $db->userModuleRead($user, $this);
         
         if ($result === 1)
         {
@@ -33,7 +35,7 @@ abstract class Module implements Page
     public function canWrite(User $user)
     {
         $db = DbConnector::getInstance();
-        $result = $db->userModuleWrite($user->getId(), $this->getId());
+        $result = $db->userModuleWrite($user, $this);
         
         if ($result === 1)
         {

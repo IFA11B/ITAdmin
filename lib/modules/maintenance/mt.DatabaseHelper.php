@@ -1,5 +1,5 @@
 <?php
-	class MaintanceDatabaseHelper
+	class MaintenanceDatabaseHelper
 	{
 		private $IdOldComponent;
 		private $IdNewComponent;
@@ -27,6 +27,7 @@
 		}
 		private function CommitChilds($idComponent)
 		{
+		    /*
 			foreach ($idChild as CommonMaintainHelper::GetChildComponents($idComponent))
 			{
 				$childs=CommonMaintainHelper::GetChildComponents($idChild);
@@ -42,7 +43,7 @@
 					CommitAdd($idChild);
 				}
 			}
-			
+			*/
 		}
 		private function CommitDelete($idComponent)
 		{

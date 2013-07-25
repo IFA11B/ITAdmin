@@ -1,5 +1,5 @@
 <?php
-class MaintanceCommonHelper
+class MaintenanceCommonHelper
 {
 	public function __construct()
 	{
