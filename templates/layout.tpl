@@ -2,7 +2,14 @@
 <html>
     <head>
         <title>{block name=title}{/block} - IT Verwaltung</title>
+        
+        <!-- Stylesheets -->
         <link rel="stylesheet" type="text/css" href="style/style.css">
+        {block name=css}{/block}
+        
+        <!-- JavaScripts -->
+        <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+        {block name=js}{/block}
     </head>
     <body>
         <div id="wrapper">
