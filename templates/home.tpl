@@ -7,3 +7,13 @@
 							Sie sind Angemeldet als [userRole].
 	</div>
 {/block}
+
+{block name=navbar}
+	<div id="navbar">
+       <ul>
+			{foreach from=$modules item=module}
+ 					<li><a id="{$module.name}" title="{$module.descr}" class="navbar">{$module.title}</a></li>
+			{/foreach}
+		</ul>
+	</div>
+{/block}

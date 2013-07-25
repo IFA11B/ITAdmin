@@ -19,10 +19,7 @@
             	<div id="headtitle">IT-Systembetreuung</div>
             </div>
             <div id="main">
-                <div id="navbar">
-                	<ul>
-                		<li>menuept</li>
-                		<li>menuept</li>
+                		{block name=navbar}{/block}
                     </ul>
                 </div>
                 <div id="content">
