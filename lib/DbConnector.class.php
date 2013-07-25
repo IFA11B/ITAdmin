@@ -90,7 +90,7 @@ class DbConnector
 	 * 
 	 * @return an array of users or false if an error occured.
 	 */
-	public function getUsers()
+	public function getAllUsers()
 	{
 		$query = "SELECT ";
 		$query .= DB_USER_ID . " ";
@@ -127,7 +127,7 @@ class DbConnector
 	
 		$query = "UPDATE Benutzer ";
 		$query .= "SET (" . DB_USER_PWD . " = :password ";
-		$query .= ", vwi_lastupdated = sysdate()) ";
+		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate()) ";
 		$query .= "WHERE " .DB_USER_NAME . " = :user ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
@@ -474,11 +474,119 @@ class DbConnector
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->prepare($query);
-		$statement->bindparam(':id', $Component->getId());
+		$statement->bindparam(':id', $Room->getId());
 		$statement->execute();
 	
 		if ($query == false)
 			return false;
 	}
+	
+	/**
+	 * Updates User informations.
+	 *
+	 * @param ???
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function updateUser(User $User)
+	{
+		$query = "UPDATE benutzer ";
+		$query .= "SET " . DB_USER_NAME . " = :name ";
+		$query .= ", " . DB_USER_PWD . " = :password ";
+		$query .= ", " . DB_USER_CREATE_DATE . "= :createDate ";
+		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
+		$query .= "WHERE " . DB_USER_ID . " = :id ";
+		$query .= "AND " . DB_MANAGE_VALID . " = 1";
+	
+		$statement = $this->db->prepare($query);
+		$statement->bindparam(':name', $User->getName());
+		$statement->bindparam(':password', $User->getPassword());
+		$statement->bindparam(':createDate', $User->getCreateDate());
+		$statement->bindparam(':id', $User->getId());
+		$statement->execute();
+	
+		if ($query == false)
+			return false;
+	}
+	
+	/**
+	 * Creates User informations.
+	 *
+	 * @param ???
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function createUser(User $User)
+	{
+		$query = "INSERT INTO benutzer ";
+		$query .= "" . DB_USER_NAME . " ";
+		$query .= ", " . DB_USER_PWD . " ";
+		$query .= ", " . DB_USER_CREATE_DATE . " ";
+		$query .= ", " . DB_MANAGE_CREATED . " ";
+		$query .= "VALUES (:name ";
+		$query .= ", :password ";
+		$query .= ", :createDate ";
+		$query .= ", sysdate() ";
+	
+		$statement = $this->db->prepare($query);
+		$statement->bindparam(':name', $User->getName());
+		$statement->bindparam(':password', $User->getPassword());
+		$statement->bindparam(':createDate', $User->getCreateDate());
+		$statement->bindparam(':id', $User->getId());
+		$statement->execute();
+	
+		if ($query == false)
+			return false;
+	}
+	
+	/**
+	 * Deletes Room informations.
+	 *
+	 * @param ???
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function deleteUser(User $User)
+	{
+		$query = "UPDATE benutzer ";
+		$query .= "SET " . DB_MANAGE_VALID . " = 0";
+		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
+		$query .= "WHERE " . DB_USER_ID . " = :id ";
+		$query .= "AND " . DB_MANAGE_VALID . " = 1";
+	
+		$statement = $this->db->prepare($query);
+		$statement->bindparam(':id', $User->getId());
+		$statement->execute();
+	
+		if ($query == false)
+			return false;
+	}
+	
+	/**
+	 * Fetches all room information.
+	 *
+	 * @param ???
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function getAllRooms(Room $Room)
+	{
+		$query = "SELECT ";
+		$query .= "" . DB_ROOM_ID . " ";
+		$query .= ", " . DB_ROOM_NAME . " ";
+		$query .= ", " . DB_ROOM_NOTE . " ";
+		$query .= ", " . DB_ROOM_NUMBER . " ";
+		$query .= "FROM benutzer ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
+	
+		$statement = $this->db->query($query);
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if($result == false)
+			return false;
+	
+		return $result;
+	}
+	
+	
+	
 }
 ?>
