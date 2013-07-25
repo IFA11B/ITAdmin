@@ -193,7 +193,7 @@ class DataManagement
             
             foreach ($result as $component)
             {
-                $rows = $db->getSubcomponentsOfComponent($component->getId());
+                $rows = $db->getSubcomponentsOfComponent($component);
                 if ($rows !== false)
                 {
                     foreach ($rows as $row)
@@ -226,7 +226,7 @@ class DataManagement
         $index = 0;
         $entity = $array[$index];
         
-        while ($entity->getId() !== $entityId && $index < $maxLen && $index >= 0)
+        while ($entity != null && $entity->getId() !== $entityId && $index < $maxLen && $index >= 0)
         {
             if ($entity->getId() > $entityId)
             {

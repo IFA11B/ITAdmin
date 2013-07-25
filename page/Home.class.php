@@ -6,7 +6,14 @@
  */
 class Home implements Page
 {
-
+    
+    const PAGE_NAME = 'home';
+    
+    static function getName()
+    {
+        return PAGE_NAME;
+    }
+    
     public function getTemplate()
     {
         return 'home.tpl';
