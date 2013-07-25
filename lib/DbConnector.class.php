@@ -628,6 +628,36 @@ class DbConnector
 		return $result;
 	}
 	
+	/**
+	 * Fetches all SubcomponentsOfComponent informations.
+	 *
+	 *
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function getSubcomponentsOfComponent(Component $Component)
+	{
+		$query = "SELECT  ";
+		$query .= " "  . DB_SUBCOMPONENT_AGGREGAT . " ";
+		$query .= ", " . DB_SUBCOMPONENT_UNIT . " ";
+		$query .= ", " . DB_SUBCOMPONENT_ID . " ";
+		$query .= ", " . DB_SUBCOMPONENT_ACTION . " ";
+		$query .= ", " . DB_SUBCOMPONENT_DATE . " ";
+		$query .= "FROM " . DB_KOMPONENT2KOMPONENT . " ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
+		$query .= "AND " . DB_SUBCOMPONENT_AGGREGAT . " = :id";
+	
+		$statement = $this->db->query($query);
+		$statement->bindparam(':id', $Component->getId());
+		$statement->execute();
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if($result == false)
+		return false;
+	
+		return $result;
+	}
 	
 	
 }
