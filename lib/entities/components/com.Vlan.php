@@ -11,6 +11,15 @@ class Vlan extends Component
 		$this->setPort($row[DB_COMPONENT_VLAN_PORT]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new SwitchComponent();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setTag($this->getTag());
+		$TargetComponent->setPort($this->getPort());
+		return $TargetComponent;
+	}
+	
 	public function getTag()
 	{
 		return $this->Tag;

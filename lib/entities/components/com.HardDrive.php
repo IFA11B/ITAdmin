@@ -15,6 +15,17 @@ class HardDrive extends Component
 		$this->setDriverType($row[DB_COMPONENT_HDD_DRIVETYPE]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new HardDrive();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setInterfaceType($this->getInterfaceType());
+		$TargetComponent->setPurpose($this->getPurpose());
+		$TargetComponent->setSpaceMbyte($this->getSpaceMbyte());
+		$TargetComponent->setDriverType($this->getDriverType());
+		return $TargetComponent;
+	}
+	
 	public function getInterfaceType()
 	{
 		return $this->InterfaceType;

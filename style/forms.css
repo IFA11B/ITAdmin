@@ -48,3 +48,25 @@ form#login {
 #loginFields{
 	padding-bottom: 20px;
 }
+
+.styled-select select {
+   	background: transparent;
+   	width: 200px;
+   	padding: 5px;
+   	font-size: 12px;
+   	font-variant:small-caps;
+   	line-height: 1;
+   	border: 0;
+   	border-bottom: 1px #333333 solid;
+   	height: 25px;
+   	-webkit-appearance: none;
+}
+
+.styled-select {
+	width: 170px;
+   	height: 25px;
+   	overflow: hidden;
+   	background: url(../images/chevron-down.png) no-repeat right #fff;
+	background-size:10px;
+   	border: none;
+}

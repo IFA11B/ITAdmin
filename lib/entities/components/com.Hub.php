@@ -11,6 +11,15 @@ class Hub extends Component
 		$this->setSpeedMbit($row[DB_COMPONENT_HUB_SPEEDMBIT]);
 	}
 	
+	public function copy()
+	{
+		$TargetComponent=new Hub();
+		$this->copyBase($TargetComponent);
+		$TargetComponent->setPortsCount($this->getPortsCount());
+		$TargetComponent->setSpeedMbit($this->getSpeedMbit());
+		return $TargetComponent;
+	}
+	
 	public function getPortsCount()
 	{
 		return $this->PortsCount;
