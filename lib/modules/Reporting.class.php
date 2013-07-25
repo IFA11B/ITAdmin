@@ -37,7 +37,6 @@ class Reporting extends Module
                 break;
                 
             case "Network":
-                sleep(2);
                 $pageObject = new ReportingNetwork();
                 break;
                 

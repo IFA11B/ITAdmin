@@ -11,4 +11,9 @@ class ReportingHardware implements Page
     {
         return array();
     }
+    
+    static function getName()
+    {
+        return "Hardware";
+    }
 }
