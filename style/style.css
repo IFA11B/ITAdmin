@@ -18,7 +18,7 @@ body {
 	position:relative;
     width: 1020px;
     height: 764px; 
-    padding:10px;
+    padding:10px 0 0 10px;
     margin: 0 auto auto 0;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* WebKit */
 	-moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.15); /* Firefox */
