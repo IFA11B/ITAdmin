@@ -91,6 +91,7 @@ define ('DB_COMPONENT_TYPE_VLAN', 'pk_vlan_id');
 // define Access Point attributes for DB
 define ('DB_COMPONENT_AP_IP', 'ap_ip');
 define ('DB_COMPONENT_AP_CONFIGFILE', 'ap_konfigdatei');
+define ('DB_COMPONENT_AP_NAME', 'ap_name');
 
 // define PC attributes for DB
 define ('DB_COMPONENT_PC_ID', 'pk_pc_id');
