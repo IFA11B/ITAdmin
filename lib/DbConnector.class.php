@@ -613,7 +613,7 @@ class DbConnector
 		$query .= ", " . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
 		$query .= ", " . DB_ROOM_NUMBER . " ";
-		$query .= "FROM benutzer ";
+		$query .= "FROM " . DB_USER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);
@@ -645,7 +645,7 @@ class DbConnector
 		$query .= ", " . DB_SUPPLIER_FAX . " ";
 		$query .= ", " . DB_SUPPLIER_EMAIL . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
-		$query .= "FROM lieferant ";
+		$query .= "FROM " . DB_SUPPLIER;
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);
