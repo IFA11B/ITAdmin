@@ -687,6 +687,68 @@ class DbConnector
 		return $result;
 	}
 	
+	/**
+	 * Fetches the read privileges for specified user/module.
+	 *
+	 *
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function userModuleRead(User $User, Module $Module)
+	{
+		$query = "SELECT ";
+		$query .= "" . DB_USER_PRIV_READ . " ";
+		$query .= "FROM " . DB_USER_PRIVILEGES . " ";
+		$query .= "INNER JOIN " . DB_USER . " ON " . DB_USER_ID . " = " . DB_USER_PRIV_USER . " ";
+		$query .= "INNER JOIN " . DB_MODULE . " ON " . DB_MODULE_ID . " = " . DB_USER_PRIV_MODULE . " ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
+		$query .= "AND " . DB_MODULE_ID . " = :module_id ";
+		$query .= "AND " . DB_USER_ID . " = :user_id";
+	
+		$statement = $this->db->query($query);
+		$statement->bindparam(':user_id', $User->getId());
+		$statement->bindparam(':module_id', $Module->getId());
+		$statement->execute();
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if($result == false)
+		return false;
+	
+		return $result;
+	}
+	
+	/**
+	 * Fetches the write privileges for specified user/module.
+	 *
+	 *
+	 * @return false if an error occurs, otherwise true.
+	 */
+	public function userModuleWrite(User $User, Module $Module)
+	{
+		$query = "SELECT ";
+		$query .= "" . DB_USER_PRIV_WRITE . " ";
+		$query .= "FROM " . DB_USER_PRIVILEGES . " ";
+		$query .= "INNER JOIN " . DB_USER . " ON " . DB_USER_ID . " = " . DB_USER_PRIV_USER . " ";
+		$query .= "INNER JOIN " . DB_MODULE . " ON " . DB_MODULE_ID . " = " . DB_USER_PRIV_MODULE . " ";
+		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
+		$query .= "AND " . DB_MODULE_ID . " = :module_id ";
+		$query .= "AND " . DB_USER_ID . " = :user_id";
+	
+		$statement = $this->db->query($query);
+		$statement->bindparam(':user_id', $User->getId());
+		$statement->bindparam(':module_id', $Module->getId());
+		$statement->execute();
+	
+		$result = array();
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if($result == false)
+			return false;
+	
+		return $result;
+	}
+	
 	
 }
 ?>
