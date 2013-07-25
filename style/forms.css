@@ -1,13 +1,13 @@
 @CHARSET "ISO-8859-1";
 
 div.inputlabel {
-    width: 50%;
+    width: 48%;
 	float:left;
 	font-size:11pt;
 }
 
 .formrow{
-	line-height:200%;
+	height:1.5em;
 }
 
 .formrow input{
