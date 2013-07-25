@@ -146,7 +146,7 @@ class User implements Entity
 
     public static function getSessionUser()
     {
-        $user = $_SESSION[Login::SESSION_USER];
+        $user = $_SESSION[User::SESSION_USER];
         
         if ($user == null)
         {
@@ -158,7 +158,7 @@ class User implements Entity
 
     public static function setSessionUser(User $user)
     {
-        $_SESSION[Login::SESSION_USER] = $user;
+        $_SESSION[User::SESSION_USER] = $user;
     }
 
     public static function isLoggedIn()
