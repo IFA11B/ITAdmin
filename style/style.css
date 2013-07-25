@@ -11,6 +11,7 @@
 body {
     font-family: Verdana, Arial, Helvetica;
     font-size: 12pt;
+	color:#333333;
 }
 
 #wrapper {
@@ -85,13 +86,27 @@ img.headlogo{
  }
 
 #content {
-    width: 80%;
+    width: 75%;
     height: auto;
     margin:auto;
-    padding-top:200px;
+    padding:100px 20px 0 20px;
 }
 
 .clear{
 	float:none;
+}
+
+.contentheading{
+	width:70%;
+	margin:auto;
+	color:#333333;
+	line-height:150%;
+	border-bottom:1px solid #333333;
+	text-indent:10px;
+	margin-bottom:20px;
+}
+
+.push-right{
+	float:right;
 }
 
