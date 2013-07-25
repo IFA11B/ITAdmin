@@ -8,6 +8,9 @@
 
 //define table names for DB
 define('DB_KOMPONENT2KOMPONENT', 'komponente_hat_komponente');
+define('DB_MODULE', 'module');
+define('DB_USER_PRIVILEGES', 'benutzer_rechte');
+define('DB_USER', 'benutzer');
 
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
