@@ -100,6 +100,7 @@ define ('DB_COMPONENT_PC_NAME', 'pc_pcname');
 
 // define CPU attributes for DB
 define ('DB_COMPONENT_CPU_SOCKEL', 'cpu_sockel');
+define ('DB_COMPONENT_CPU_NAME', 'cpu_name');
 
 // define disk controller attributes for DB
 define ('DB_COMPONENT_DC_DISKTYPE', 'ka_komponentenart');
@@ -107,12 +108,14 @@ define ('DB_COMPONENT_DC_DISKTYPE', 'ka_komponentenart');
 // define graphics Card attributes for DB
 define ('DB_COMPONENT_GC_INTERFACETYPE', 'gk_interneschnittestelle');
 define ('DB_COMPONENT_GC_SPACEMBYTE', 'gk_speicher');
+define ('DB_CPMPONENT_GC_NAME', 'gk_name');
 
 // define hard drive attributes for DB
 define ('DB_COMPONENT_HDD_INTERFACETYPE', 'fp_schnittstellenart');
 define ('DB_COMPONENT_HDD_PURPOSE', 'fp_einsatzzweck');
 define ('DB_COMPONENT_HDD_SPACEMBYTE', 'fp_groesse');
 define ('DB_COMPONENT_HDD_DRIVETYPE', 'fp_speicherart');
+define ('DB_COMPONENT_HDD_NAME', 'fp_name');
 
 // define HUB attributes for DB
 define ('DB_COMPONENT_HUB_PORTSCOUNT', 'hub_anzahlport');
@@ -128,12 +131,14 @@ define ('DB_COMPONENT_MB_CONNECTORTYPECPU', 'mb_cpusteckertyp');
 define ('DB_COMPONENT_MB_ONBOARD', 'mb_onboardfunktion');
 define ('DB_COMPONENT_MB_INTERFACESINTERN', 'mb_internschnittstelle');
 define ('DB_COMPONENT_MB_INTERFACESEXTERN', 'mb_externschnittstelle');
+define ('DB_COMPONENT_MB_NAME', 'mb_name');
 
 // define network card attributes for DB
 define ('DB_COMPONENT_NC_SPEEDMBIT', 'nk_bandbreitegeschwindigkeit');
 define ('DB_COMPONENT_NC_INTERFACEINTERN', 'nk_internschnittstelle');
 define ('DB_COMPONENT_NC_INTERFACEEXTERN', 'nk_externschnittstelle');
 define ('DB_COMPONENT_NC_PORTSCOUNT', 'nk_anzahlexternports');
+define ('DB_COMPONENT_NC_NAME', 'nk_name');
 
 // define printer attributes for DB
 define ('DB_COMPONENT_P_IP', 'dr_ip');
@@ -143,6 +148,7 @@ define ('DB_COMPONENT_P_CONNECTIONTYPE', 'dr_anschlussart');
 
 // define raid controller attributes for DB
 define ('DB_COMPONENT_RC_RAIDLEVEL', 'rc_raidlvl');
+define ('DB_COMPONENT_RC_NAME', 'rc_name');
 
 // define RAM attributes for DB
 define ('DB_COMPONENT_RAM_SPACEMBYTE', 'ram_groesse');
@@ -178,6 +184,15 @@ define ('DB_COMPONENT_VLAN_PORT', 'vlan_port');
 // define subcomponent attributes for DB
 define ('DB_COMPONENT_CHILDS_ID', 'pk_khpk_k_id');
 define ('DB_COMPONENT_PARENT_ID', 'pk_komponenten_ok_k_id_aggregat');
+
+// define optical disk drive for DB
+define ('DB_COMPONENT_ODD_ID', 'pk_ol_id');
+
+// define Power Supply for DB
+define ('DB_COMPONENT_PS_COUNT', 'nt_anzahlanschluss');
+define ('DB_COMPONENT_PS_CPUTYPE', 'nt_cpusteckertyp');
+define ('DB_COMPONENT_PS_POWER', 'nt_leistung');
+define ('DB_COMPONENT_PS_MAINBOARDTYPE', 'nt_mainboardsteckertyp');
 
 class DbConnector
 {
