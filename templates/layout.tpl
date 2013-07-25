@@ -5,13 +5,17 @@
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </head>
     <body>
-        <div id="all">
+        <div id="wrapper">
             <div id="head">
-            
+            	<img id="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/>
+            	<div id="headtitle">IT-Systembetreuung</div>
             </div>
             <div id="main">
                 <div id="navbar">
-                    
+                	<ul>
+                		<li>menuept</li>
+                		<li>menuept</li>
+                    </ul>
                 </div>
                 <div id="content">
                     {block name=content}{/block}
