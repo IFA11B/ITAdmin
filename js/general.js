@@ -19,7 +19,11 @@ var spinnerOptions = {
 
 
 $(document).ready(function(){
-	
+	$( "#detailsBlock" ).dialog({
+		autoOpen: false,
+    	modal: true,
+    	closeOnEscape: true
+	});
 	
 	$('.navbar').click(function(event){
 				
@@ -36,3 +40,23 @@ $(document).ready(function(){
 		
 	});
 });
+
+function openDetails(modulename,compId){
+	if ($("#detailsBlock").dialog( "isOpen" )===true) {
+		$( "#detailsBlock" ).dialog( "close" );
+	}
+	
+	$.ajax({
+		url: './?module='+modulename+'&page=comDetails',
+		type: 'POST',
+		data: {
+			'comId': compId
+		},
+	 
+		success: function(data)
+		{
+			$( "#detailsBlock" ).dialog( "open" );
+		}
+	});
+	
+}

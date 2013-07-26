@@ -14,6 +14,10 @@
     </head>
     <body>
         <div id="wrapper">
+        	<div id="detailsBlock">
+        		{block name=componentDetails}{/block}
+        	</div>
+        
             <div id="head">
             	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/></div>
             	<div id="headtitle">IT-Systembetreuung</div>

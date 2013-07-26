@@ -41,7 +41,7 @@ function toggleNoticeInput(roomId, eventType){
 				url: './?module=REPORTING&page=saveNotice',
 				type: 'POST',
 				data: {
-					'noticeId': roomId,
+					'roomId': roomId,
 					'noticeText': $('#save'+roomId).val()
 				},
 			 
