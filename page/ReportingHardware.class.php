@@ -18,11 +18,11 @@ class ReportingHardware implements Page
             $filterValue = $_POST["filterValue"];
             
             
-            $components = DataManagement::getInstance()->getComponents($filterType, $filterValue);
+            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
         }
         else
         {
-            $components = DataManagement::getInstance()->getComponents();
+            $components = DataManagement::getInstance()->getHardwareComponents();
         }
         
         return array(
