@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	
+	$('.editNotice').click(function(event){
+		var oldText = $('.notice' + event.target.id).text();
+		$('.notice' + event.target.id).html('<input type="text" value="'+oldText+'"/>');
+		event.target.removeClass('editNotice');
+		event.target.html('speichern');
+		event.target.addClass('saveNotice');
+	});
 
     $('#network .header,#software .header,#hardware .header').click(function() {
         var current = $(this).parent();
