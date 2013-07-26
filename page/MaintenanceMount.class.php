@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Class for Viewing Maintenance.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class MaintenanceMount implements Page
 {
 	function getTemplate()

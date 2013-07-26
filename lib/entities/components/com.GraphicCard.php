@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * class for a component type.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class GraphicCard extends Component
 {
 	private $InterfaceType;

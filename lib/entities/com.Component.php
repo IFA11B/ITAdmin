@@ -3,8 +3,9 @@
 /**
  * Base class for all components to be managed.
  *
- * @author 
+ * @author SeiresS <keckchris@web.de>
  */
+ 
 abstract class Component
 {
 	private $Id;
