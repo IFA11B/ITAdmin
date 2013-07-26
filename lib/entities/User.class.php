@@ -209,7 +209,8 @@ class User implements Entity
      * @param string $password
      * @return boolean
      */
-    public function verifyPassword(string $password) {
+    public function verifyPassword(string $password)
+    {
         $hash = $this->getPassword();
         $rehash = password_needs_rehash($hash, PASSWORD_DEFAULT, array('cost' => Login::PASSWORD_COST));
         
