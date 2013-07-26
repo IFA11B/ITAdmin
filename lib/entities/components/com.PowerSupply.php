@@ -17,7 +17,7 @@ class PowerSupply extends Component
 
 	public function copy()
 	{
-		$TargetComponent=new Computer();
+		$TargetComponent=new PowerSupply();
 		$this->copyBase($TargetComponent);
 		$TargetComponent->setOutputWatt($this->getOutputWatt());
 		$TargetComponent->setConnectorTypeCPU($this->getConnectorTypeCPU());
