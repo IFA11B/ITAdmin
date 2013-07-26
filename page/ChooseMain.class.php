@@ -45,20 +45,26 @@ class Choose implements Page
         	die();
         }
         
+        $return = null;
+        
         switch ($listType)
         {
         	case "maincomponent":
-        		
+        		$return = new ChooseMaincomponent().getContent();
         		break;
         	case "supplier":
+        		$return = new ChooseSupplier().getContent();
         		break;
         	case "room":
+        		$return = new ChooseRoom().getContent();
         		break;
         	default:
         	case "subcomponent":
-        		new ChooseSubcomponent();
+        		$return = new ChooseSubcomponent().getContent();
         		break;
         }
+        
+        return $return;
     }
 }
 
