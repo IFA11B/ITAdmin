@@ -33,7 +33,7 @@ function changeToInput(){
 		  this.html('<input type="text" value="'+newVal+'"/>');
 	});
 	
-	$('#compDetailsForm').find('a.changeComDetails').replaceWith('<input type="submit" value="spechern"/>');
+	$('#compDetailsForm').find('a.changeComDetails').replaceWith('<input type="submit" value="speichern"/>');
 	
 	$('#compDetailsForm').submit(function () {
 	    $.ajax({
