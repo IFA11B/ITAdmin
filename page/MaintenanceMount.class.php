@@ -1,5 +1,5 @@
 <?php
-class MaintenanceChange implements Page
+class MaintenanceMount implements Page
 {
 	function getTemplate()
 	{
@@ -8,14 +8,30 @@ class MaintenanceChange implements Page
 
 	function getContent()
 	{
-		return array(
-				pageTitle => 'Einbau'
-		);
+        $components = null;
+        
+        // TODO Add constant filter to room. Only stocking and discarding room is allowed!
+        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        {
+            $filterType = $_POST["filterType"];
+            $filterValue = $_POST["filterValue"];
+            
+            
+            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+        }
+        else
+        {
+            $components = DataManagement::getInstance()->getHardwareComponents();
+        }
+        
+        return array(
+            'components' => $components
+        );
 	}
 
 	static function getName()
 	{
-		return 'Einbauen';
+		return 'Einbau';
 	}
 }
 ?>

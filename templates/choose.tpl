@@ -19,7 +19,8 @@
             <div class="headerTitle">Komponente w&auml;hlen</div>
         </div>
         <div class="clear"></div>
-        <div class="repContent"></div>
+        <div class="chooseContent"></div>
+        
     </div>
     <div class="clear"></div>
 {/block}

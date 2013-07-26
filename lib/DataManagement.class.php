@@ -214,6 +214,11 @@ class DataManagement
         return false;
     }
     
+    public function getSoftwareComponents($filterType = null, $filterValue = null)
+    {
+        return array();
+    }
+    
     public function getHardwareComponents($filterType = null, $filterValue = null)
     {
         $components = $this->getComponents();
