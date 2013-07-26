@@ -99,16 +99,16 @@ class Maintencancer
 		}
 		
 		$tmpParent=$this->SourceComponent->getParent();
-		$this->SourceComponent->setParent($this->TargetComponent->getParent);
-		$this->TargetComponent->setParent($tmpParent);
+		$this->SourceComponent->assignParent($this->TargetComponent->getParent);
+		$this->TargetComponent->assignParent($tmpParent);
 		
 		$tmpRoom=$this->SourceComponent->getRoom();
 		$this->SourceComponent->setRoom($this->TargetComponent->getRoom());
 		$this->TargetComponent->setRoom($tmpRoom);
 		
 		$tmpChilds=$this->SourceComponent->getChilds();
-		$this->SourceComponent->setChilds($this->TargetComponent->getChilds());
-		$this->TargetComponent->getChilds($tmpChilds);
+		$this->SourceComponent->assignChilds($this->TargetComponent->getChilds());
+		$this->TargetComponent->assignChilds($tmpChilds);
 		return true;
 	}
 
@@ -136,7 +136,7 @@ class Maintencancer
 			return false;
 		}
 		$this->SourceComponent->setRoom($this->TargetComponent->getRoom());
-		$this->SourceComponent->setParent($this->TargetComponent);
+		$this->SourceComponent->assignParent($this->TargetComponent);
 		return true;
 	}
 	
