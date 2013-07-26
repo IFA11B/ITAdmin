@@ -11,7 +11,7 @@
 {block name=navbar}
 	<div id="navbar">
        <ul>
-			<li><a id="Reporting" title="super awesome reporting" class="navbar">Reporting</a></li>
+			<li><a id="REPORTING" title="super awesome reporting" class="navbar">Reporting</a></li>
 		</ul>
 	</div>
 {/block}
