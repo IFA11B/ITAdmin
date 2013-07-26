@@ -1,10 +1,10 @@
 <?php
 
-class CoreDataSupplier implements Page
+class CoreDataRoom implements Page
 {
     function getTemplate()
     {
-        return "coreDataSupplier.tpl";
+        return "coreDataRoom.tpl";
     }
 
     function getContent()
@@ -18,11 +18,11 @@ class CoreDataSupplier implements Page
             $filterValue = $_POST["filterValue"];
             
             
-            $components = DataManagement::getInstance()->getSuppliers($filterType, $filterValue);
+            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
         }
         else
         {
-            $components = DataManagement::getInstance()->getSuppliers();
+            $components = DataManagement::getInstance()->getHardwareComponents();
         }
         
         return array(
@@ -32,6 +32,6 @@ class CoreDataSupplier implements Page
     
     static function getName()
     {
-        return "Lieferanten";
+        return "Räume";
     }
 }

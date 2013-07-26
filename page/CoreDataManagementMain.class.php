@@ -1,6 +1,6 @@
 <?php
 
-class CoreDataManagement implements Page
+class CoreDataManagementMain implements Page
 {
     function getTemplate()
     {
