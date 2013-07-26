@@ -29,7 +29,8 @@ function closePanel(element)
 function openPanel(element)
 {
     var subPageName;
-    switch($(element).attr('id'))
+    var pageId = $(element).attr('id');
+    switch(pageId)
     {
         case 'network':
             subPageName = 'Network';
@@ -63,6 +64,27 @@ function openPanel(element)
         {
             $(element).find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
             $(element).find('.repContent').html(data).show(250);
+            
+            // Attach event handler to filter input
+            $('#filterValue').on('keyup', function(event)
+            {
+                if(event.which === 13)
+                {
+                    $.ajax({
+                        url: './?module=REPORTING&page=' + subPageName,
+                        type: 'POST',
+                        data: {
+                            'filterType': $('#filterType').val(),
+                            'filterValue': $('#filterValue').val()
+                        },
+                        
+                        success: function(data)
+                        {
+                            $('#' + pageId + ' .repContent').html(data);
+                        }
+                    });
+                }
+            });
         }
     });
 }

@@ -21,6 +21,7 @@ class Navbar implements Page
         if (User::isLoggedIn() !== true) 
         {
             $result['error'] = 'notLoggedIn';
+            //header('Location: <https>');
             return;
         }
         
