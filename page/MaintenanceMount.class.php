@@ -1,5 +1,5 @@
 <?php
-class MaintenanceChange implements Page
+class MaintenanceMount implements Page
 {
 	function getTemplate()
 	{
