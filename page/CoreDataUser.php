@@ -9,24 +9,14 @@ class CoreDataUser implements Page
 
     function getContent()
     {
-        $components = null;
+        $users = null;
         
-        // Check if we need filtered or unfiltered component lists
-        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
-        {
-            $filterType = $_POST["filterType"];
-            $filterValue = $_POST["filterValue"];
-            
-            
-            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
-        }
-        else
-        {
-            $components = DataManagement::getInstance()->getHardwareComponents();
-        }
+
+       $users = DataManagement::getInstance()->getUsers();
+       $modules = DataManagement::getInstance()->getModules();
         
         return array(
-            'components' => $components
+            'users' => $users
         );
     }
     

@@ -9,24 +9,13 @@ class CoreDataRoom implements Page
 
     function getContent()
     {
-        $components = null;
+        $rooms = null;
         
-        // Check if we need filtered or unfiltered component lists
-        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
-        {
-            $filterType = $_POST["filterType"];
-            $filterValue = $_POST["filterValue"];
-            
-            
-            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
-        }
-        else
-        {
-            $components = DataManagement::getInstance()->getHardwareComponents();
-        }
-        
+
+       $rooms = DataManagement::getInstance()->getRooms();
+               
         return array(
-            'components' => $components
+            'rooms' => $rooms
         );
     }
     
