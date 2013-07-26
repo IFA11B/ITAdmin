@@ -104,7 +104,6 @@ define ('DB_COMPONENT_PC_NAME', 'pc_pcname');
 define ('DB_COMPONENT_CPU_ID', 'pk_cpu_id');
 define ('DB_COMPONENT_CPU_NAME', 'cpu_name');
 define ('DB_COMPONENT_CPU_SOCKEL', 'cpu_sockel');
-define ('DB_COMPONENT_CPU_NAME', 'cpu_name');
 
 // define disk controller attributes for DB
 define ('DB_COMPONENT_DC_ID', 'pk_ka_id');
@@ -124,7 +123,6 @@ define ('DB_COMPONENT_HDD_INTERFACETYPE', 'fp_schnittstellenart');
 define ('DB_COMPONENT_HDD_PURPOSE', 'fp_einsatzzweck');
 define ('DB_COMPONENT_HDD_SPACEMBYTE', 'fp_groesse');
 define ('DB_COMPONENT_HDD_DRIVETYPE', 'fp_speicherart');
-define ('DB_COMPONENT_HDD_NAME', 'fp_name');
 
 // define HUB attributes for DB
 define ('DB_COMPONENT_HUB_ID', 'pk_hub_id');
@@ -144,7 +142,6 @@ define ('DB_COMPONENT_MB_CONNECTORTYPECPU', 'mb_cpusteckertyp');
 define ('DB_COMPONENT_MB_ONBOARD', 'mb_onboardfunktion');
 define ('DB_COMPONENT_MB_INTERFACESINTERN', 'mb_internschnittstelle');
 define ('DB_COMPONENT_MB_INTERFACESEXTERN', 'mb_externschnittstelle');
-define ('DB_COMPONENT_MB_NAME', 'mb_name');
 
 // define network card attributes for DB
 define ('DB_COMPONENT_NC_ID', 'pk_nk_id');
@@ -153,7 +150,6 @@ define ('DB_COMPONENT_NC_SPEEDMBIT', 'nk_bandbreitegeschwindigkeit');
 define ('DB_COMPONENT_NC_INTERFACEINTERN', 'nk_internschnittstelle');
 define ('DB_COMPONENT_NC_INTERFACEEXTERN', 'nk_externschnittstelle');
 define ('DB_COMPONENT_NC_PORTSCOUNT', 'nk_anzahlexternports');
-define ('DB_COMPONENT_NC_NAME', 'nk_name');
 
 // define printer attributes for DB
 define ('DB_COMPONENT_P_ID', 'pk_dr_id');
@@ -166,7 +162,6 @@ define ('DB_COMPONENT_P_CONNECTIONTYPE', 'dr_anschlussart');
 define ('DB_COMPONENT_RC_ID', 'pk_rc_id');
 define ('DB_COMPONENT_RC_NAME', 'rc_name');
 define ('DB_COMPONENT_RC_RAIDLEVEL', 'rc_raidlvl');
-define ('DB_COMPONENT_RC_NAME', 'rc_name');
 
 // define RAM attributes for DB
 define ('DB_COMPONENT_RAM_ID', 'pk_ram_id');
@@ -264,7 +259,7 @@ class DbConnector
         }
 		
 	}
-
+	
 	public static function getInstance()
 	{
 		static $instance = null;
