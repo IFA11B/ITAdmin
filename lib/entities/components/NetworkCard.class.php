@@ -42,6 +42,34 @@ class NetworkCard extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Geschwindigkeit',
+	        'type' => 'number',
+	        'value' => $this->getSpeedMbit());
+	     
+	    $result[] = array(
+	        'name' => 'Schnittstelle Intern',
+	        'type' => 'enum',
+	        'value' => $this->getInterfaceIntern(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Schnittstelle Extern',
+	        'type' => 'enum',
+	        'value' => $this->getInterfaceExtern(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Anzahl Ports',
+	        'type' => 'number',
+	        'value' => $this->getPortsCount());
+	     
+	    return $result;
+	}
+	
 	public function getSpeedMbit()
 	{
 		return $this->speedMbit;

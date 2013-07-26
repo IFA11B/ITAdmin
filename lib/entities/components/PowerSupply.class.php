@@ -41,6 +41,34 @@ class PowerSupply extends Component
 	
 	    return $copy;
 	}
+	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Nutzleistung',
+	        'type' => 'number',
+	        'value' => $this->getOutputWatt());
+	     
+	    $result[] = array(
+	        'name' => 'Anschluss CPU',
+	        'type' => 'enum',
+	        'value' => $this->getConnectorTypeCPU(),
+	        'values' => null);
+	     
+	    $result[] = array(
+	        'name' => 'Anschluss Mainboard',
+	        'type' => 'enum',
+	        'value' => $this->getConnectorTypeMB(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Anschlussanzahl',
+	        'type' => 'number',
+	        'value' => $this->getConnectorsCount());
+	    
+	    return $result;
+	}
 
 	public function getOutputWatt()
 	{

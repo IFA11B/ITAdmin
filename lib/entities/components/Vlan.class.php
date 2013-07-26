@@ -36,6 +36,22 @@ class Vlan extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'VLAN ID',
+	        'type' => 'number',
+	        'value' => $this->getTag());
+	     
+	    $result[] = array(
+	        'name' => 'Port',
+	        'type' => 'number',
+	        'value' => $this->getConfigurationFilePath());
+	     
+	    return $result;
+	}
+	
 	public function getTag()
 	{
 		return $this->tag;

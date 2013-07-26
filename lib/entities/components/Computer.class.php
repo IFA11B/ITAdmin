@@ -8,7 +8,7 @@
 
 class Computer extends Component
 {
-	private $ipAdress;
+	private $ipAddress;
 	private $subnet;
 	private $gateway;
 	
@@ -38,14 +38,35 @@ class Computer extends Component
 	    return $copy;
 	}
 	
-	public function getIpAdress()
-	{
-		return $this->ipAdress;
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'IP Adresse',
+	        'type' => 'ip',
+	        'value' => $this->getIpAddress());
+	     
+	    $result[] = array(
+	        'name' => 'Subnetz',
+	        'type' => 'ip',
+	        'value' => $this->getSubnet());
+
+	    $result[] = array(
+	        'name' => 'Gateway',
+	        'type' => 'ip',
+	        'value' => $this->getGateway());
+	     
+	    return $result;
 	}
 	
-	public function setIpAdress($ipAdress)
+	public function getIpAddress()
 	{
-		$this->ipAdress=$ipAdress;
+		return $this->ipAddress;
+	}
+	
+	public function setIpAddress($ipAddress)
+	{
+		$this->ipAdress=$ipAddress;
 	}
 	
 	public function getSubnet()

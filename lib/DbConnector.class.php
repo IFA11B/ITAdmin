@@ -392,6 +392,7 @@ class DbConnector
 		
 		if ($query == false)
 			return false;
+
 	}
 	
 	

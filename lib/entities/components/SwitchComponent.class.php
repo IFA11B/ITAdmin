@@ -45,6 +45,38 @@ class SwitchComponent extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'IP Adresse',
+	        'type' => 'ip',
+	        'value' => $this->getIpAdress());
+	     
+	    $result[] = array(
+	        'name' => 'Anzahl Ports',
+	        'type' => 'number',
+	        'value' => $this->getPortsCount());
+	    
+	    $result[] = array(
+	        'name' => 'Steckertyp',
+	        'type' => 'enum',
+	        'value' => $this->getUplinkType(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Geschwindigkeit',
+	        'type' => 'number',
+	        'value' => $this->getSpeedMbit());
+	    
+	    $result[] = array(
+	        'name' => 'Konfiguration',
+	        'type' => 'string',
+	        'value' => $this->getConfigurationFilePath());
+	     
+	    return $result;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->ipAdress;

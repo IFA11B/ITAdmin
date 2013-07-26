@@ -42,6 +42,35 @@ class Printer extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'IP Adresse',
+	        'type' => 'ip',
+	        'value' => $this->getIpAdress());
+	     
+	    $result[] = array(
+	        'name' => 'Druckertyp',
+	        'type' => 'enum',
+	        'value' => $this->getPrinterType(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Farbmodus',
+	        'type' => 'enum',
+	        'value' => $this->getColorMode(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Anschlussart',
+	        'type' => 'enum',
+	        'value' => $this->getConnectionType(),
+	        'values' => null);
+	     
+	    return $result;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->ipAdress;

@@ -45,6 +45,38 @@ class Router extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'IP 1',
+	        'type' => 'ip',
+	        'value' => $this->getIpConfiguration1());
+	     
+	    $result[] = array(
+	        'name' => 'IP 2',
+	        'type' => 'id',
+	        'value' => $this->getIpConfiguration2());
+
+	    $result[] = array(
+	        'name' => 'IP 3',
+	        'type' => 'ip',
+	        'value' => $this->getIpConfiguration3());
+	     
+	    $result[] = array(
+	        'name' => 'IP 4',
+	        'type' => 'ip',
+	        'value' => $this->getIpConfiguration4());
+	     
+	    $result[] = array(
+	        'name' => 'Konfiguration',
+	        'type' => 'string',
+	        'value' => $this->getConfigurationFilePath());
+	     
+	    
+	    return $result;
+	}
+	
 	public function getIpConfiguration1()
 	{
 		return $this->ipConfiguration1;

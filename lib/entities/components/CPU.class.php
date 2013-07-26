@@ -8,7 +8,7 @@
 
 class Cpu extends Component
 {
-	private $sockel;
+	private $socket;
 	
 	public function __construct(array $row = null)
 	{
@@ -33,13 +33,24 @@ class Cpu extends Component
 	    return $copy;
 	}
 	
-	public function getSockel()
-	{
-		return $this->sockel;
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Sockel',
+	        'type' => 'string',
+	        'value' => $this->getSocket());
+	     
+	    return $result;
 	}
 	
-	public function setSockel($sockel)
+	public function getSocket()
 	{
-		$this->sockel=$sockel;
+		return $this->socket;
+	}
+	
+	public function setSocket($socket)
+	{
+		$this->socket=$socket;
 	}
 }

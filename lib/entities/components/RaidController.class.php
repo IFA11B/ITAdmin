@@ -33,6 +33,18 @@ class RaidController extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'RAID Level',
+	        'type' => 'enum',
+	        'value' => $this->getRaidLevel(),
+	        'values' => null);
+	      
+	    return $result;
+	}
+	
 	public function getRaidLevel()
 	{
 		return $this->raidLevel;

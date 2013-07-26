@@ -36,6 +36,22 @@ class Ram extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Gr&ouml;&szlig;e',
+	        'type' => 'number',
+	        'value' => $this->getSpaceMbyte());
+	     
+	    $result[] = array(
+	        'name' => 'Taktrate',
+	        'type' => 'number',
+	        'value' => $this->getClockSpeedMHz());
+	     
+	    return $result;
+	}
+	
 	public function getSpaceMbyte()
 	{
 		return $this->spaceMbyte;
