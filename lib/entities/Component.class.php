@@ -34,7 +34,7 @@ abstract class Component
             $this->setRoom($row[DB_COMPONENT_ROOM]);
             $this->setPurchaseDate($row[DB_COMPONENT_PURCHASE_DATE]);
             $this->setWarrantyDuration($row[DB_COMPONENT_WARRANTY_PERIOD]);
-            $this->setNotice($row[DB_COMPONENT_NOTICE]);
+            $this->setNote($row[DB_COMPONENT_NOTICE]);
             $this->setManufacturer($row[DB_COMPONENT_MANUFACTURER]);
         }
     }
@@ -48,7 +48,7 @@ abstract class Component
             $copy->setRoom($this->getRoom());
             $copy->setPurchaseDate($this->getPurchaseDate());
             $copy->setWarrantyDuration($this->getWarrantyDuration());
-            $copy->setNotice($this->getNotice());
+            $copy->setNote($this->getNote());
             $copy->setManufacturer($this->getManufacturer());
             $copy->setChildren($this->getChildren());
             $copy->setParent($this->getParent());

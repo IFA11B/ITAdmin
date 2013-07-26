@@ -193,7 +193,7 @@ class DataManagement
         
             foreach ($result as $component)
             {
-                $rows = $db->getSubcomponentsOfComponent($component);
+                $rows = DbConnector::getInstance()->getSubcomponentsOfComponent($component);
                 if ($rows !== false)
                 {
                     foreach ($rows as $row)
