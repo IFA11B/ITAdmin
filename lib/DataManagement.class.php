@@ -242,10 +242,7 @@ class DataManagement
     
     public function getHardwareComponents($filterType = null, $filterValue = null)
     {
-        if ($this->components === null)
-        {
-            $this->components = $this->getComponentsFromDB();
-        }
+        $components = $this->getComponents();
         
         $filteredComps = array();
         $filteredList = null;
@@ -255,7 +252,7 @@ class DataManagement
             $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
         }
         
-        foreach($this->components as $component) 
+        foreach($components as $component) 
         {
             if ((get_class($component) !== Software::getClassName())
                 && ($filteredList == null || in_array($component->getId(), $filteredList)))
@@ -265,6 +262,16 @@ class DataManagement
         }
         
         return $filteredComps;
+    }
+    
+    public function getComponents()
+    {
+        if ($this->components === null)
+        {
+            $this->components = $this->getComponentsFromDB();
+        }
+        
+        return $this->components;
     }
 
     private static function getEntityFromArrayById(array $array, $entityId)
