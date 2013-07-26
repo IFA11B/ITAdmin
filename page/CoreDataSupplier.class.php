@@ -9,24 +9,12 @@ class CoreDataSupplier implements Page
 
     function getContent()
     {
-        $components = null;
+        $supplier = null;
         
-        // Check if we need filtered or unfiltered component lists
-        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
-        {
-            $filterType = $_POST["filterType"];
-            $filterValue = $_POST["filterValue"];
-            
-            
-            $components = DataManagement::getInstance()->getSuppliers($filterType, $filterValue);
-        }
-        else
-        {
-            $components = DataManagement::getInstance()->getSuppliers();
-        }
+        $supplier = DataManagement::getInstance()->getSuppliers();
         
         return array(
-            'components' => $components
+            'supplier' => $supplier
         );
     }
     

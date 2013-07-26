@@ -3,7 +3,7 @@
  * Represents the list page.
  * Responsible for listing components.
  *
- * @author Lukas Bagaric <lukas.bagaric@gmail.com>
+ * @author Silas Heck <silas-heck@arcor.de>
  * @see Page
  */
 class ChooseMaincomponent implements Page

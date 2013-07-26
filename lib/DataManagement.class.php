@@ -14,6 +14,7 @@ class DataManagement
     private $suppliers;
     private $components;
     private $users;
+    private $modules;
 
     private function __construct()
     {
@@ -21,6 +22,7 @@ class DataManagement
         $this->suppliers = null;
         $this->components = null;
         $this->users = null;
+        $this->modules = null;
     }
 
     public static function getInstance()
@@ -78,6 +80,29 @@ class DataManagement
             return $result;
         }
         return false;
+    }
+    
+    public function getModules(){
+    	if ($this->$modules !== null)
+    	{
+    		return $this->$modules;
+    	}
+    	
+    	$result = array();
+    	$rows = DbConnector::getInstance()->getAllModules();
+    	
+    	if ($rows !== false)
+    	{
+    		foreach ($rows as $row)
+    		{
+    			//$result[] = new User($row);
+    		}
+    	
+    		$this->$modules = $result;
+    		return $result;
+    	}
+    	return false;
+    	
     }
 
     public function getSuppliers()
@@ -193,7 +218,7 @@ class DataManagement
         
             foreach ($result as $component)
             {
-                $rows = $db->getSubcomponentsOfComponent($component);
+                $rows = DbConnector::getInstance()->getSubcomponentsOfComponent($component);
                 if ($rows !== false)
                 {
                     foreach ($rows as $row)

@@ -9,6 +9,7 @@
 require('db_defines.php');
 require('db_module_to_module_class_mapper.php');
 
+
 class DbConnector
 {
 	private $db;
@@ -18,8 +19,7 @@ class DbConnector
 	 */
 	private function __construct()
 	{
-		//$DbHost = "192.168.1.116";
-		$DbHost = "192.168.1.2";
+		$DbHost = "192.168.1.116";
 		$DbName = "itv_v1";
 		$DbUser = "entwickler";
 		$DbPass = "entwickler12";
@@ -47,7 +47,7 @@ class DbConnector
         }
         catch (Exception $e)
         {
-            die("Fehler bei der Verbindung zur Datenbank.");
+            die("Fehler bei der Verbindung zur Datenbank: ". $e->getMessage());
         }
 		
 	}
@@ -672,8 +672,8 @@ class DbConnector
 	    $query .= "        ON kha.pk_komponentenattribute_pk_kat_id = ka.pk_kat_id ";
 	    $query .= "    LEFT JOIN komponentenarten kar ";
 	    $query .= "        ON k.fk_ka_k_kompart = kar.pk_ka_id;";
-	    
-	    return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC); 
+
+	    return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	/**
@@ -694,15 +694,19 @@ class DbConnector
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
 		$query .= "AND " . DB_SUBCOMPONENT_AGGREGAT . " = :id";
 	
-		$statement = $this->db->query($query);
-		$statement->bindparam(':id', $Component->getId());
+		$statement = $this->db->prepare($query);
+		
+		$id = $Component->getId();
+		$statement->bindparam(':id', $id);
+		
 		$statement->execute();
 	
-		$result = array();
 		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		
-		if($result == false)
-		return false;
+		if($result === false)
+		{
+            return false;
+		}
 	
 		return $result;
 	}

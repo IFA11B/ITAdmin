@@ -48,7 +48,7 @@ define ('DB_COMPONENT_ID', 'pk_k_id');
 define ('DB_COMPONENT_SUPPLIER', 'fk_l_k_lieferid');
 define ('DB_COMPONENT_ROOM', 'fk_r_komp_kompraum');
 define ('DB_COMPONENT_PURCHASE_DATE', 'k_einkaufsdatum');
-define ('DB_COMPONENT_WARRANTY_PERIOD', 'k_gewaehrleistungsdatum');
+define ('DB_COMPONENT_WARRANTY_PERIOD', 'k_gewaehrleistungsdauer');
 define ('DB_COMPONENT_NOTICE', 'k_notiz');
 define ('DB_COMPONENT_MANUFACTURER', 'k_hersteller');
 
@@ -57,7 +57,7 @@ define ('DB_MODULE_ID', 'pk_mod_id');
 define ('DB_MODULE_NAME', 'mod_name');
 
 // define subcomponent attributes for DB
-define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponeten_pk_k_id_aggregat');
+define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponenten_pk_k_id_aggregat');
 define ('DB_SUBCOMPONENT_UNIT', 'pk_komponenten_pk_k_id_teil');
 define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
 define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
@@ -176,12 +176,12 @@ define ('DB_COMPONENT_R_CONFIGFILE', 'rout_konfigdatei');
 // define software attributes for DB
 define ('DB_COMPONENT_S_ID', 'pk_sw_id');
 define ('DB_COMPONENT_S_NAME', 'sw_name');
-define ('DB_COMPONENT_S_VERSION', 'sw_versionsnummer');
+define ('DB_COMPONENT_S_VERSION', 'sw_versionnummer');
 define ('DB_COMPONENT_S_LICENSETYPE', 'sw_lizenztyp');
 define ('DB_COMPONENT_S_LICENSECOUNT', 'sw_lizenzanzahl');
 define ('DB_COMPONENT_S_LICENSEDURATION', 'sw_lizenzlaufzeit');
 define ('DB_COMPONENT_S_LICENSEINFORMATION', 'sw_lizenzinformationen');
-define ('DB_COMPONENT_S_INSTALLHINT', 'sw_lizenzhinweis');
+define ('DB_COMPONENT_S_INSTALLHINT', 'sw_installationshinweis');
 
 // define switch attributes for DB
 define ('DB_COMPONENT_SC_ID', 'pk_s_id');
