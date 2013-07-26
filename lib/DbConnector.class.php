@@ -112,7 +112,7 @@ define ('DB_COMPONENT_DC_DISKTYPE', 'ka_komponentenart');
 // define graphics Card attributes for DB
 define ('DB_COMPONENT_GC_ID', 'pk_gk_id');
 define ('DB_COMPONENT_GC_NAME', 'gk_name');
-define ('DB_COMPONENT_GC_INTERFACETYPE', 'gk_interneschnittestelle');
+define ('DB_COMPONENT_GC_INTERFACETYPE', 'gk_interneschnittstelle');
 define ('DB_COMPONENT_GC_SPACEMBYTE', 'gk_speicher');
 define ('DB_CPMPONENT_GC_NAME', 'gk_name');
 
@@ -806,7 +806,18 @@ class DbConnector
 	
 	public function getAllComponents()
 	{
-	    return array();
+	    $query = "SELECT\n";
+	    $query .= "    *\n";
+	    $query .= "FROM\n";
+	    $query .= "    komponenten k\n";
+	    $query .= "    LEFT JOIN komponente_hat_attribute kha\n";
+	    $query .= "        ON k.pk_k_id = kha.pk_komponenten_pk_k_id\n";
+	    $query .= "    LEFT JOIN v_alle_komp_attribute ka\n";
+	    $query .= "        ON kha.pk_komponentenattribute_pk_kat_id = ka.pk_kat_id\n";
+	    $query .= "    LEFT JOIN komponentenarten kar\n";
+	    $query .= "        ON k.fk_ka_k_kompart = kar.pk_ka_id;";
+	    
+	    return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC); 
 	}
 	
 	/**
