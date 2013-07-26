@@ -72,21 +72,23 @@ define ('DB_SUBCOMPONENT_DATE', 'khk_datum');
 
 // define component_types attributes for DB
 define ('DB_COMPONENT_TYPE', 'ka_komponentenart');
-define ('DB_COMPONENT_TYPE_ACCESS_POINT', 'pk_ap_id');
-define ('DB_COMPONENT_TYPE_CPU', 'pk_cpu_id');
-define ('DB_COMPONENT_TYPE_DISK_CONTROLLER', 'pk_ol_id');
-define ('DB_COMPONENT_TYPE_GRAPHICS_CARD', 'pk_gk_id');
-define ('DB_COMPONENT_TYPE_HARD_DRIVE', 'pk_fp_id');
-define ('DB_COMPONENT_TYPE_HUB', 'pk_hub_id');
-define ('DB_COMPONENT_TYPE_MAINBOARD', 'pk_mb_id');
-define ('DB_COMPONENT_TYPE_NETWORK_CARD', 'pk_nk_id');
-define ('DB_COMPONENT_TYPE_PRINTER', 'pk_dr_id');
-define ('DB_COMPONENT_TYPE_RAID_CONTROLLER', 'pk_rc_id');
-define ('DB_COMPONENT_TYPE_RAM', 'pk_ram_id');
-define ('DB_COMPONENT_TYPE_ROUTER', 'pk_rout_id');
-define ('DB_COMPONENT_TYPE_SOFTWARE', 'pk_sw_id');
-define ('DB_COMPONENT_TYPE_SWITCH_COMPONENT', 'pk_s_id');
-define ('DB_COMPONENT_TYPE_VLAN', 'pk_vlan_id');
+define ('DB_COMPONENT_TYPE_ACCESS_POINT', 'accesspoints');
+define ('DB_COMPONENT_TYPE_COMPUTER', 'pckomplett');
+define ('DB_COMPONENT_TYPE_CPU', 'cpu');
+define ('DB_COMPONENT_TYPE_ODD', 'optische_laufwerke');
+define ('DB_COMPONENT_TYPE_GRAPHICS_CARD', 'grafikkarten');
+define ('DB_COMPONENT_TYPE_HARD_DRIVE', 'festplatten');
+define ('DB_COMPONENT_TYPE_HUB', 'hub');
+define ('DB_COMPONENT_TYPE_MAINBOARD', 'mainboards');
+define ('DB_COMPONENT_TYPE_NETWORK_CARD', 'netzwerkkarten');
+define ('DB_COMPONENT_TYPE_POWER_SUPPLY', 'netzteile');
+define ('DB_COMPONENT_TYPE_PRINTER', 'drucker');
+define ('DB_COMPONENT_TYPE_RAID_CONTROLLER', 'raidcontroller');
+define ('DB_COMPONENT_TYPE_RAM', 'ram');
+define ('DB_COMPONENT_TYPE_ROUTER', 'router');
+define ('DB_COMPONENT_TYPE_SOFTWARE', 'software');
+define ('DB_COMPONENT_TYPE_SWITCH_COMPONENT', 'switches');
+define ('DB_COMPONENT_TYPE_VLAN', 'vlan');
 
 // define Access Point attributes for DB
 define ('DB_COMPONENT_AP_IP', 'ap_ip');

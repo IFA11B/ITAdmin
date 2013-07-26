@@ -55,6 +55,9 @@ function getModule()
     {
     case Reporting::MODULE_NAME:
         return new Reporting();
+        
+    case Order::MODULE_NAME:
+        return new OrderData();
 
     }
     return null;

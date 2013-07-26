@@ -6,7 +6,7 @@
  * @author SeiresS <keckchris@web.de>
  */
 
-class DiskController extends Component
+class OpticalDrive extends Component
 {
 	private $diskType;
 	
