@@ -8,18 +8,18 @@
  
 abstract class Component
 {
-	private $Id;
-	private $ComponentType;
-	private $Name;
-	private $Manufacturer;
-	private $Room;
-	private $PurchaseDate;
-	private $WarrantyDuration;
-	private $Supplier;
-	private $Note;
-	private $Parent;
-	private $Childs;
-	private $HasParent;
+	private $id;
+	private $componentType;
+	private $name;
+	private $manufacturer;
+	private $room;
+	private $purchaseDate;
+	private $warrantyDuration;
+	private $supplier;
+	private $note;
+	
+	private $parent;
+	private $children;
 	
 	public function __construct(array $row = null)
 	{
@@ -41,135 +41,137 @@ abstract class Component
     
     public function update()
     {
-        $db = DbConnector::getInstance();
-        $db->updateComponent($this);
+        DbConnector::getInstance()->updateComponent($this);
     }
     
     public function delete()
     {
-        $db = DbConnector::getInstance();
-        $db->deleteComponent($this);
+        DbConnector::getInstance()->deleteComponent($this);
     }
     
     public function create()
     {
-        $db = DbConnector::getInstance();
-        $db->createComponent($this);
+        DbConnector::getInstance()->createComponent($this);
     }
     
-    public function copyBase($TargetComponent)
+    public function copy(Component $copy = null)
     {
-        $TargetComponent->setId($this->getId());
-        $TargetComponent->setComponentType($this->getComponentType());
-        $TargetComponent->setSupplier($this->getSupplier());
-        $TargetComponent->setRoom($this->getRoom());
-        $TargetComponent->setPurchaseDate($this->getPurchaseDate());
-        $TargetComponent->setWarrantyPeriod($this->getWarrantyPeriod());
-        $TargetComponent->setNotice($this->getNotice());
-        $TargetComponent->setManufacturer($this->getManufacturer());
-        $TargetComponent->setChilds($this->getChildren());
-        $TargetComponent->setParent($this->getParent());
-        return $TargetComponent;
+        if ($copy !== null) {
+            $copy->setId($this->getId());
+            $copy->setComponentType($this->getComponentType());
+            $copy->setSupplier($this->getSupplier());
+            $copy->setRoom($this->getRoom());
+            $copy->setPurchaseDate($this->getPurchaseDate());
+            $copy->setWarrantyPeriod($this->getWarrantyPeriod());
+            $copy->setNotice($this->getNotice());
+            $copy->setManufacturer($this->getManufacturer());
+            $copy->setChildren($this->getChildren());
+            $copy->setParent($this->getParent());
+        }
+    }
+    
+    public static function getClassName() {
+        return get_called_class();
     }
     
 	public function getId()
 	{
-		return $this->Id;
+		return $this->id;
 	}
 	
-	public function setId($Id)
+	public function setId($id)
 	{
-		$this->Id = $Id;
+		$this->id = $id;
 	}
 	
 	public function getComponentType()
 	{
-		return $this->ComponentType;
+		return $this->componentType;
 	}
 	
 	public function setComponentType($componentType)
 	{
-		$this->ComponentType=$componentType;
+		$this->componentType=$componentType;
 	}
 	
 	public function getName()
 	{
-		return $this->Name;
+		return $this->name;
 	}
 	
 	public function setName($name)
 	{
-		$this->Name=$name;
+		$this->name=$name;
 	}
 	
 	public function getManufacturer()
 	{
-		return $this->Manufacturer;
+		return $this->manufacturer;
 	}
 	
 	public function setManufacturer($manufacturer)
 	{
-		$this->Manufacturer=$manufacturer;
+		$this->manufacturer=$manufacturer;
 	}
 	
 	public function getRoom()
 	{
-		return $this->Room;
+		return $this->room;
 	}
 	public function setRoom($room)
 	{
-		$this->Room=$room;
+		$this->room=$room;
 	}
 	
 	public function getPurchaseDate()
 	{
-		return $this->PurchaseDate;
+		return $this->purchaseDate;
 	}
 	public function setPurchaseDate($purchaseDate)
 	{
-		$this->PurchaseDate=$purchaseDate;
+		$this->purchaseDate=$purchaseDate;
 	}
 	
 	public function getWarrantyDuration()
 	{
-		return $this->WarrantyDuration;
+		return $this->warrantyDuration;
 	}
 	public function setWarrantyDuration($warrantyDuration)
 	{
-		$this->WarrantyDuration=$warrantyDuration;
+		$this->warrantyDuration=$warrantyDuration;
 	}
 	
 	public function getSupplier()
 	{
-		return $this->Supplier;
+		return $this->supplier;
 	}
 	public function setSupplier($supplier)
 	{
-		$this->Supplier=$supplier;
+		$this->supplier=$supplier;
 	}
 	
 	public function getNote()
 	{
-		return $this->Note;
+		return $this->note;
 	}
 	public function setNote($note)
 	{
-		$this->Note=$note;
+		$this->note=$note;
 	}
 	
 	public function getParent()
 	{
-		return $this->Parent; 
+		return $this->parent; 
 	}
 	
 	public function setParent(Component $parent)
 	{
-		$this->Parent=$parent;
+		$this->parent=$parent;
 	}
 	
 	public function getHasParent()
 	{
-		if ($this->Parent==null)
+		if ($this->parent==null)
 		{
 			return false;
 		}
@@ -178,52 +180,50 @@ abstract class Component
 	
 	public function getChilds()
 	{
-		return $this->Childs;
+		return $this->childs;
 	}
 	
 	public function addChild(Component $child)
 	{
-		$this->Childs []= $child;
+		$this->children []= $child;
 		
 	}
 	
 	public function getChild($index)
 	{
-		return $this->Childs[$index];
+		return $this->children[$index];
 	}
 	
-	public function getChildsCount()
+	public function getChildrenCount()
 	{
-		if ($this->Childs==null) {
+		if ($this->children == null) {
 			return 0;
 		}
-		return count($this->Childs);
+		return count($this->children);
 	}
 	
-	public function clearChilds()
+	public function clearChildren()
 	{
-		$this->Childs = array();
+		$this->children = array();
 	}
 	
-	public function setChilds(array $childs)
+	public function setChildren(array $children)
 	{
-		$this->Childs=$childs;
+		$this->children = $children;
 	}
 	
-	public function assignChilds(array $childs)
+	public function assignChildren(array $children)
 	{
-		foreach ($childs as $child)
+		foreach ($children as $child)
 		{
-			$child->Parent=$this;
+			$child->parent = $this;
 			$child->update();
 		}
 	}
 	
-	public function assignParent($Parent)
+	public function assignParent($parent)
 	{
-		$this->Parent=$Parent;
+		$this->parent=$parent;
 		$this->update();
 	}
 }
-
-?>
