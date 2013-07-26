@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$components item=$component}
+{foreach from=$components item=component}
         <tr>
                 	<td>        
         	<select id="SelectedSource">
@@ -66,7 +66,7 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$components item=$component}
+{foreach from=$components item=component}
         <tr>
                 	<td>        
         	<select id="SelectedTarget">
