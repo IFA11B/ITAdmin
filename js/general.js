@@ -20,13 +20,13 @@ var spinnerOptions = {
 
 $(document).ready(function(){
 	
-	$('.navbar').click(function(){
-		
+	
+	$('.navbar').click(function(event){
+				
 		/* Navigation */
 		$.ajax({
-		    url: './?module=' event.target.id,
+		    url: './?module='+event.target.id,
 		    type: 'POST',
-		    
 		    
 		    success: function(data)
 		    {
