@@ -21,6 +21,8 @@
         <div id="wrapper">
         	<div id="detailsBlock">
         	</div>
+        	<div id="listBlock">
+        	</div>
         
             <div id="head">
             	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/></div>
