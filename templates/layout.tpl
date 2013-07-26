@@ -13,6 +13,7 @@
         <script type="text/javascript" src="./js/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom"></script>
         <script type="text/javascript" src="./js/general.js"></script>
         <script type="text/javascript" src="./js/componentDetails.js"></script>
+        <script type="text/javascript" src="./js/chooseMain.js"></script>
         
         {block name=js}{/block}
     </head>
