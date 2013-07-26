@@ -24,20 +24,20 @@ class Home implements Page
         session_start();
         $result = array();
         
-        //if (User::isLoggedIn() === true)
-        //{
+        if (User::isLoggedIn() === true)
+        {
             $navbar = new Navbar();
             
             $user = User::getSessionUser();
             
             $result = array_merge($result, $navbar->getContent());
             $result['userRole'] = $user->getName();
-        //}
-        //else
-        //{
-        //    session_destroy();
+        }
+        else
+        {
+            session_destroy();
             //header('Location: ');
-        //}
+        }
         
         return $result;
     }
