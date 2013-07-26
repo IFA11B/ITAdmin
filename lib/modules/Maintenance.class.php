@@ -124,7 +124,9 @@ class Maintencancer
 				continue;
 			}
 			$maintaining=new Maintencancer(null, $TargetRow,$child,null);
-			$maintaining->Maintain();
+			if (!$maintaining->Maintain()) {
+				return false;
+			}
 		}
 		return true;
 	}
