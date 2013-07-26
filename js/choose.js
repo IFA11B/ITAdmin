@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
     $('#chooseComponent .header').click(function() {
