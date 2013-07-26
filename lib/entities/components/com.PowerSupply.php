@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * class for a component type.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class PowerSupply extends Component
 {
 	private $OutputWatt;

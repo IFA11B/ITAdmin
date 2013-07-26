@@ -78,18 +78,30 @@ function getPage()
     return new Login();
 }
 
-
+/**
+ * Returns content from GET array stored under $key or null if $key cant be found.
+ * 
+ * @param string $key
+ * @return (string &#124; NULL)
+ */
 function getVar($key)
 {
     if (isset($_GET[$key]) === true) return $_GET[$key];
     return null;
 }
 
+/**
+ * Returns content from POST array stored under $key or null if $key cant be found.
+ *
+ * @param string $key
+ * @return (string &#124; NULL)
+ */
 function postVar($key)
 {
     if (isset($_POST[$key]) === true) return $_POST[$key];
     return null;
 }
+
 /**
  * Creates a Smarty instance and configures it for immediate use.
  *

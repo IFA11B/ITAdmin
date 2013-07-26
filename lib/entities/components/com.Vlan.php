@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * class for a component type.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class Vlan extends Component
 {
 	private $Tag;

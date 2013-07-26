@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Class for Maintenance.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class Maintencancer
 {
 	const MODULE_NAME = "MAINTENANCE";

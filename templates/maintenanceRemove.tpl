@@ -25,8 +25,12 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$components item=$component}
+{foreach from=$components item=component}
         <tr>
+        	<td>        
+        	<select id="SelectedSource">
+            <option value="{$component.ComponentId}"></option>
+       		</td>
             <td>{$component.Room.Name}</td>
             <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
             <td>{$component.Room.Note}</td>
@@ -35,3 +39,10 @@
 {/foreach}
     </tbody>
 </table>
+<div style="float: left;">
+    <input type="submit" id="maintainStock" name="Ausbauen" />
+</div>
+
+<div style="float: left;">
+    <input type="submit" id="maintainDiscard" name="Ausmustern" />
+</div>
