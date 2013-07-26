@@ -154,7 +154,11 @@ class DataManagement
                     case DB_COMPONENT_TYPE_PRINTER:
                         $result[] = new Printer($row);
                         break;
-        
+                    
+                    case DB_COMPONENT_POWER_SUPPLY:
+                        $result[] = new PowerSupply($row);
+                        break;
+                        
                     case DB_COMPONENT_TYPE_RAID_CONTROLLER:
                         $result[] = new RaidController($row);
                         break;
@@ -216,14 +220,8 @@ class DataManagement
     
     public function getSoftwareComponents($filterType = null, $filterValue = null)
     {
-        return array();
-    }
-    
-    public function getHardwareComponents($filterType = null, $filterValue = null)
-    {
         $components = $this->getComponents();
         
-        // copy array
         $filteredComps = array();
         $filteredList = null;
         
@@ -234,7 +232,30 @@ class DataManagement
         
         foreach($components as $component) 
         {
-            if ((get_class($component) !== Software::getClassName()) && ($filteredList == null || in_array($component->getId(), $filteredList)))
+            if ((get_class($component) === Software::getClassName())
+                && ($filteredList == null || in_array($component->getId(), $filteredList)))
+            {
+                $filteredComps[] = $component;
+            }
+        }
+    }
+    
+    public function getHardwareComponents($filterType = null, $filterValue = null)
+    {
+        $components = $this->getComponents();
+        
+        $filteredComps = array();
+        $filteredList = null;
+        
+        if ($filterType !== null && $filterValue !== null)
+        {
+            $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
+        }
+        
+        foreach($components as $component) 
+        {
+            if ((get_class($component) !== Software::getClassName())
+                && ($filteredList == null || in_array($component->getId(), $filteredList)))
             {
                 $filteredComps[] = $component;
             }

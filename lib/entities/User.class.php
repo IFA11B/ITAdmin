@@ -282,7 +282,7 @@ class User implements Entity
      */
     public static function isLoggedIn()
     {
-        return User::getSessionUser() !== false;
+        return User::getSessionUser() != false;
     }
 }
 ?>
