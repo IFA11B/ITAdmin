@@ -3,7 +3,7 @@
  * Represents the list page.
  * Responsible for listing components.
  *
- * @author Silas Heck <silas-heck@arcor.de>
+ * @author Lukas Bagaric <lukas.bagaric@gmail.com>
  * @see Page
  */
 class Choose implements Page

@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * class for a component type.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
 class Mainboard extends Component
 {
 	private $Sockel;

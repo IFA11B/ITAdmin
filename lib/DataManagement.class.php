@@ -154,10 +154,10 @@ class DataManagement
                     case DB_COMPONENT_TYPE_PRINTER:
                         $result[] = new Printer($row);
                         break;
-                    
-                    case DB_COMPONENT_POWER_SUPPLY:
-                        $result[] = new PowerSupply($row);
-                        break;
+        			
+                        case DB_COMPONENT_POWER_SUPPLY:
+                            $result[] = new PowerSupply($row);
+                            break;
                         
                     case DB_COMPONENT_TYPE_RAID_CONTROLLER:
                         $result[] = new RaidController($row);
@@ -221,16 +221,16 @@ class DataManagement
     public function getSoftwareComponents($filterType = null, $filterValue = null)
     {
         $components = $this->getComponents();
-        
+    
         $filteredComps = array();
         $filteredList = null;
-        
+    
         if ($filterType !== null && $filterValue !== null)
         {
             $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
         }
-        
-        foreach($components as $component) 
+    
+        foreach($components as $component)
         {
             if ((get_class($component) === Software::getClassName())
                 && ($filteredList == null || in_array($component->getId(), $filteredList)))
@@ -242,7 +242,10 @@ class DataManagement
     
     public function getHardwareComponents($filterType = null, $filterValue = null)
     {
-        $components = $this->getComponents();
+        if ($this->components === null)
+        {
+            $this->components = $this->getComponentsFromDB();
+        }
         
         $filteredComps = array();
         $filteredList = null;
@@ -252,7 +255,7 @@ class DataManagement
             $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
         }
         
-        foreach($components as $component) 
+        foreach($this->components as $component) 
         {
             if ((get_class($component) !== Software::getClassName())
                 && ($filteredList == null || in_array($component->getId(), $filteredList)))
@@ -262,16 +265,6 @@ class DataManagement
         }
         
         return $filteredComps;
-    }
-    
-    public function getComponents()
-    {
-        if ($this->components === null)
-        {
-            $this->components = $this->getComponentsFromDB();
-        }
-        
-        return $this->components;
     }
 
     private static function getEntityFromArrayById(array $array, $entityId)
