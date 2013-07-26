@@ -1,6 +1,6 @@
 <?php
 
-class Reporting extends Module
+class Order extends Module
 {
     const MODULE_NAME = "ORDER";
     const MODULE_TITLE = "Bestellung";
