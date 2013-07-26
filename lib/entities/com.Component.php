@@ -3,8 +3,9 @@
 /**
  * Base class for all components to be managed.
  *
- * @author 
+ * @author SeiresS <keckchris@web.de>
  */
+ 
 abstract class Component
 {
 	private $Id;
@@ -25,7 +26,7 @@ abstract class Component
 	    $this->setParent(null);
         $this->clearChildren();
         
-        if ($row !== null) {
+        if ($row != null) {
             $this->setId($row[DB_COMPONENT_ID]);
             $this->setName($row[DB_COMPONENT_NAME]);
             $this->setComponentType($row[DB_COMPONENT_TYPE]);
@@ -69,13 +70,6 @@ abstract class Component
         $TargetComponent->setChilds($this->getChildren());
         $TargetComponent->setParent($this->getParent());
         return $TargetComponent;
-    }
-    
-    public function MoveToRoom($room)
-    {
-    	$this->delete();
-    	$this->setRoom($room);
-    	$this->create();
     }
     
 	public function getId()
@@ -190,6 +184,7 @@ abstract class Component
 	public function addChild(Component $child)
 	{
 		$this->Childs []= $child;
+		
 	}
 	
 	public function getChild($index)
@@ -213,6 +208,21 @@ abstract class Component
 	public function setChilds(array $childs)
 	{
 		$this->Childs=$childs;
+	}
+	
+	public function assignChilds(array $childs)
+	{
+		foreach ($childs as $child)
+		{
+			$child->Parent=$this;
+			$child->update();
+		}
+	}
+	
+	public function assignParent($Parent)
+	{
+		$this->Parent=$Parent;
+		$this->update();
 	}
 }
 

@@ -11,9 +11,7 @@
 {block name=navbar}
 	<div id="navbar">
        <ul>
-			{foreach from=$modules item=module}
- 					<li><a id="{$module.name}" title="{$module.descr}" class="navbar">{$module.title}</a></li>
-			{/foreach}
+			<li><a id="REPORTING" title="super awesome reporting" class="navbar">Reporting</a></li>
 		</ul>
 	</div>
 {/block}
