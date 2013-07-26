@@ -27,3 +27,8 @@ function openChoose(listType, filterType, filterValue){
 		}
 	});	
 }
+
+function submitChoice(id)
+{
+	
+}
