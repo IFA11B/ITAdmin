@@ -154,10 +154,10 @@ class DataManagement
                     case DB_COMPONENT_TYPE_PRINTER:
                         $result[] = new Printer($row);
                         break;
-        			
-                        case DB_COMPONENT_POWER_SUPPLY:
-                            $result[] = new PowerSupply($row);
-                            break;
+                        
+                    case DB_COMPONENT_POWER_SUPPLY:
+                        $result[] = new PowerSupply($row);
+                        break;
                         
                     case DB_COMPONENT_TYPE_RAID_CONTROLLER:
                         $result[] = new RaidController($row);
@@ -238,6 +238,22 @@ class DataManagement
                 $filteredComps[] = $component;
             }
         }
+    }
+    
+    public function getNetworkComponents()
+    {
+        $components = $this->getComponents();
+        $returnComps = array();
+        
+        foreach($components as $component)
+        {
+            if((get_class($component) === Computer::getClassName()))
+            {
+                $returnComps[] = $component;
+            }
+        }
+        
+        return $returnComps;
     }
     
     public function getHardwareComponents($filterType = null, $filterValue = null)
