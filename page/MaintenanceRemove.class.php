@@ -1,5 +1,5 @@
 <?php
-class MaintenanceChange implements Page
+class MaintenanceRemove implements Page
 {
 	function getTemplate()
 	{
@@ -8,14 +8,30 @@ class MaintenanceChange implements Page
 
 	function getContent()
 	{
-		return array(
-				pageTitle => 'Ausbauen'
-		);
+        $components = null;
+        
+        //TODO Add constant filter to room! Must exclude stocking and discarding room
+        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        {
+            $filterType = $_POST["filterType"];
+            $filterValue = $_POST["filterValue"];
+            
+            
+            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+        }
+        else
+        {
+            $components = DataManagement::getInstance()->getHardwareComponents();
+        }
+        
+        return array(
+            'components' => $components
+        );
 	}
 
 	static function getName()
 	{
-		return 'Ausbauen';
+		return 'Ausbau';
 	}
 }
 ?>

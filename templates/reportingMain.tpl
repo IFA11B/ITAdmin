@@ -1,5 +1,3 @@
-{extends file="layout.tpl"}
-
 {block name=title}{$pageTitle}{/block}
 
 {block name=css}

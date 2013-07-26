@@ -105,6 +105,7 @@ class DataManagement
 
     private function getComponentsFromDB()
     {
+        
         $result = array();
         $rows = DbConnector::getInstance()->getAllComponents();
         
@@ -211,6 +212,11 @@ class DataManagement
             return $result;
         }
         return false;
+    }
+    
+    public function getSoftwareComponents($filterType = null, $filterValue = null)
+    {
+        return array();
     }
     
     public function getHardwareComponents($filterType = null, $filterValue = null)

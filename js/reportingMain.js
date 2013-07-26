@@ -1,4 +1,36 @@
 $(document).ready(function() {
+	
+	$('.editNotice').click(function(event){
+		var oldText = $('.notice' + event.target.id).text();
+		$('.notice' + event.target.id).html('<input id="save'+event.target.id+'" type="text" value="'+oldText+'"/>');
+		event.target.removeClass('editNotice');
+		event.target.html('speichern');
+		event.target.addClass('saveNotice');
+	});
+	
+	$('.saveNotice').click(function(event){
+		 $.ajax({
+             url: './?module=REPORTING&page=saveNotice',
+             type: 'POST',
+             data: {
+                 'noticeId': event.target.id,
+                 'noticeText': $('#save'+event.target.id).val()
+             },
+             
+             success: function(data)
+             {
+            	 removeNoticeInput(event);
+             }
+         });
+	});
+	
+	function removeNoticeInput(event){
+		var oldText = $('#save'+event.target.id).val()
+		$('.notice' + event.target.id).html(oldText);
+		event.target.removeClass('saveNotice');
+		event.target.html('&auml;ndern');
+		event.target.addClass('editNotice');
+	};
 
     $('#network .header,#software .header,#hardware .header').click(function() {
         var current = $(this).parent();
@@ -29,7 +61,8 @@ function closePanel(element)
 function openPanel(element)
 {
     var subPageName;
-    switch($(element).attr('id'))
+    var pageId = $(element).attr('id');
+    switch(pageId)
     {
         case 'network':
             subPageName = 'Network';
@@ -63,6 +96,27 @@ function openPanel(element)
         {
             $(element).find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
             $(element).find('.repContent').html(data).show(250);
+            
+            // Attach event handler to filter input
+            $('#filterValue').on('keyup', function(event)
+            {
+                if(event.which === 13)
+                {
+                    $.ajax({
+                        url: './?module=REPORTING&page=' + subPageName,
+                        type: 'POST',
+                        data: {
+                            'filterType': $('#filterType').val(),
+                            'filterValue': $('#filterValue').val()
+                        },
+                        
+                        success: function(data)
+                        {
+                            $('#' + pageId + ' .repContent').html(data);
+                        }
+                    });
+                }
+            });
         }
     });
 }
