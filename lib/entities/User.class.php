@@ -59,7 +59,7 @@ class User implements Entity
      *
      * @param int $id the new primary key.
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -81,7 +81,7 @@ class User implements Entity
      *
      * @param string $name new name of the user.
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -102,7 +102,7 @@ class User implements Entity
      *
      * @param string $password new password for this user.
      */
-    public function setPassword(string $password)
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -123,19 +123,19 @@ class User implements Entity
      *
      * @param string $createDate the new date.
      */
-    public function setCreateDate(string $createDate)
+    public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
     }
 
-    public function __construct(array $row = null)
+    function __construct(array $row = null)
     {
         if ($row != null)
         {
-            setId($row[DB_USER_ID]);
-            setName($row[DB_USER_NAME]);
-            setPassword($row[DB_USER_PWD]);
-            setCreateDate($row[DB_USER_CREATE_DATE]);
+            $this->setId($row[DB_USER_ID]);
+            $this->setName($row[DB_USER_NAME]);
+            $this->setPassword($row[DB_USER_PWD]);
+            $this->setCreateDate($row[DB_USER_CREATE_DATE]);
         }
     }
 
@@ -147,7 +147,7 @@ class User implements Entity
      * @param int $module the module you want to check read rights for.
      * @return (boolean) true if this user has read access, false if he doesnt.
      */
-    public function canReadModule(int $module)
+    public function canReadModule($module)
     {
         $result = DbConnector::getInstance()->userModuleRead($this->getId(), $module);
         
@@ -165,7 +165,7 @@ class User implements Entity
      * @param int $module the module you want to check write rights for.
      * @return (boolean) true if this user has write access, false if he doesnt.
      */
-    public function canWriteModule(int $module)
+    public function canWriteModule($module)
     {
         $result = DbConnector::getInstance()->userModuleWrite($this->getId(), $module);
         
@@ -209,9 +209,9 @@ class User implements Entity
      * @param string $password
      * @return boolean
      */
-    public function verifyPassword(string $password) {
+    public function verifyPassword($password) {
         $hash = $this->getPassword();
-        $rehash = password_needs_rehash($hash, PASSWORD_DEFAULT, array('cost' => Login::PASSWORD_COST));
+        $rehash = password_needs_rehash($hash, PASSWORD_DEFAULT, array('cost' => User::PASSWORD_COST));
         
         if ($hash !== false)
         {
@@ -221,7 +221,7 @@ class User implements Entity
             {
                 if ($rehash === true)
                 {
-                    $newHash = password_hash($password, PASSWORD_DEFAULT, array('cost' => Login::PASSWORD_COST));
+                    $newHash = password_hash($password, PASSWORD_DEFAULT, array('cost' => User::PASSWORD_COST));
         
                     $user->setPassword($newHash);
                     $user->update();
@@ -239,9 +239,9 @@ class User implements Entity
      * @param string $userName the name of the desired user.
      * @return (User &#124; boolean) a valid User instance, false otherwise;
      */
-    public static function getUserFromName(string $userName)
+    public static function getUserFromName($userName)
     {
-        return DbConnector::getInstance()->getUserByName($userName);
+    	return DbConnector::getInstance()->getUserByName($userName);
     }
 
     /**

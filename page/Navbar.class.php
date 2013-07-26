@@ -40,8 +40,8 @@ class Navbar implements Page
             if ($module->canRead($user))
             {
                 $modResult['name'] = $module->getName();
-                $modResult['title'] = $module->getTitle();
-                $modResult['descr'] = $module->getDescription();
+                //$modResult['title'] = $module->getTitle();
+                //$modResult['descr'] = $module->getDescription();
             }
             $result['modules'][] = $modResult;
         }
