@@ -81,6 +81,10 @@ function getPage()
         
         case Home::getName():
             return new Home();
+            
+        // REMOVE WHEN DONE (ASK MR HECK)
+        case Choose::getName():
+        	return new Choose();
         }
     }
     return new Login();
