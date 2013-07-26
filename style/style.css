@@ -137,3 +137,13 @@ img.headlogo{
 .centerText{
 	text-align:center;
 }
+
+.activeHeader .contentHeading .headerTitle
+{
+    color: #7AA8C6;
+}
+
+.activeHeader .contentHeading
+{
+    border-bottom: 1px solid #7AA8C6;
+}
