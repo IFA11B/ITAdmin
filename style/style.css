@@ -15,6 +15,16 @@ body {
 	color:#333333;
 }
 
+a, a:link{
+	text-decoration:underline;
+}
+
+a:hover{
+	cursor:pointer;
+	color:#7AA8C6;
+	text-decoration:underline;
+}
+
 #wrapper {
 	position:relative;
     width: 1020px;
@@ -79,8 +89,8 @@ img.headlogo{
 
 #navbar li:before { content: "|  "; }
 #navbar li:first-child:before { content: ""; }
-
-#navbar li:hover { 
+#navbar li a, #navbar li a:link { text-decoration:none;}
+#navbar li a:hover { 
 	cursor:pointer;
 	color: #7AA8C6;
 	text-decoration:underline;

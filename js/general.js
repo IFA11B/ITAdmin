@@ -16,3 +16,23 @@ var spinnerOptions = {
     top: 'auto', // Top position relative to parent in px
     left: 'auto' // Left position relative to parent in px
 };
+
+
+$(document).ready(function(){
+	
+	$('.navbar').click(function(){
+		
+		/* Navigation */
+		$.ajax({
+		    url: './?module=' event.target.id,
+		    type: 'POST',
+		    
+		    
+		    success: function(data)
+		    {
+		        $("#content").html(data);
+		    }
+		});
+		
+	});
+});

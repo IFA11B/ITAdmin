@@ -25,7 +25,7 @@ abstract class Component
 	    $this->setParent(null);
         $this->clearChildren();
         
-        if ($row !== null) {
+        if ($row != null) {
             $this->setId($row[DB_COMPONENT_ID]);
             $this->setName($row[DB_COMPONENT_NAME]);
             $this->setComponentType($row[DB_COMPONENT_TYPE]);
@@ -69,13 +69,6 @@ abstract class Component
         $TargetComponent->setChilds($this->getChildren());
         $TargetComponent->setParent($this->getParent());
         return $TargetComponent;
-    }
-    
-    public function MoveToRoom($room)
-    {
-    	$this->delete();
-    	$this->setRoom($room);
-    	$this->create();
     }
     
 	public function getId()
