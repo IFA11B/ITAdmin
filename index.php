@@ -51,16 +51,11 @@ function loadDir($directory, array $excluded = array())
  */
 function getModule()
 {
-    if (isset($_GET['module']))
+    switch(getVar('module'))
     {
-        switch($_GET['module'])
-        {
-        case Reporting::MODULE_NAME:
-            return new Reporting();
-        
-        default:
-            return null;
-        }
+    case Reporting::MODULE_NAME:
+        return new Reporting();
+
     }
     return null;
 }
@@ -72,24 +67,29 @@ function getModule()
  */
 function getPage()
 {
-    if (isset($_GET['page']))
+    switch(getVar('page'))
     {
-        switch($_GET['page'])
-        {
-        case Login::getName():
-            return new Login();
-        
-        case Home::getName():
-            return new Home();
-            
-        // REMOVE WHEN DONE (ASK MR HECK)
-        case Choose::getName():
-        	return new Choose();
-        }
+    case Login::getName():
+        return new Login();
+    
+    case Home::getName():
+        return new Home();
     }
     return new Login();
 }
 
+
+function getVar($key)
+{
+    if (isset($_GET[$key]) === true) return $_GET[$key];
+    return null;
+}
+
+function postVar($key)
+{
+    if (isset($_POST[$key]) === true) return $_POST[$key];
+    return null;
+}
 /**
  * Creates a Smarty instance and configures it for immediate use.
  *
@@ -116,7 +116,7 @@ if ($module == null)
 }
 else
 {
-    $page = $module->getPage($_GET['page']);
+    $page = $module->getPage(getVar('page'));
 }
 
 $smarty->assign($page->getContent());

@@ -103,13 +103,8 @@ class DataManagement
         return false;
     }
 
-    public function getComponents()
+    private function getComponentsFromDB()
     {
-        if ($this->components !== null)
-        {
-            return $this->components;
-        }
-        
         $result = array();
         $rows = DbConnector::getInstance()->getAllComponents();
         
@@ -119,78 +114,78 @@ class DataManagement
             {
                 switch($row[DB_COMPONENT_TYPE])
                 {
-                case DB_COMPONENT_TYPE_ACCESS_POINT:
-                    $result[] = new AccessPoint($row);
-                    break;
-                    
-                case DB_COMPONENT_TYPE_COMPUTER:
-                    $result[] = new Computer($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_CPU:
-                    $result[] = new CPU($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_DISK_CONTROLLER:
-                    $result[] = new DiskController($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_GRAPHICS_CARD:
-                    $result[] = new GraphicCard($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_HARD_DRIVE:
-                    $result[] = new HardDrive($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_HUB:
-                    $result[] = new Hub($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_MAINBOARD:
-                    $result[] = new Mainboard($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_NETWORK_CARD:
-                    $result[] = new NetworkCard($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_PRINTER:
-                    $result[] = new Printer($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_RAID_CONTROLLER:
-                    $result[] = new RaidController($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_RAM:
-                    $result[] = new RAM($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_ROUTER:
-                    $result[] = new Router($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_SOFTWARE:
-                    $result[] = new Software($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_SWITCH_COMPONENT:
-                    $result[] = new SwitchComponent($row);
-                    break;
-                
-                case DB_COMPONENT_TYPE_VLAN:
-                    $result[] = new Vlan($row);
-                    break;
-                    
-                default:
-                    return false;
+                    case DB_COMPONENT_TYPE_ACCESS_POINT:
+                        $result[] = new AccessPoint($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_COMPUTER:
+                        $result[] = new Computer($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_CPU:
+                        $result[] = new CPU($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_DISK_CONTROLLER:
+                        $result[] = new DiskController($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_GRAPHICS_CARD:
+                        $result[] = new GraphicCard($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_HARD_DRIVE:
+                        $result[] = new HardDrive($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_HUB:
+                        $result[] = new Hub($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_MAINBOARD:
+                        $result[] = new Mainboard($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_NETWORK_CARD:
+                        $result[] = new NetworkCard($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_PRINTER:
+                        $result[] = new Printer($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_RAID_CONTROLLER:
+                        $result[] = new RaidController($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_RAM:
+                        $result[] = new RAM($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_ROUTER:
+                        $result[] = new Router($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_SOFTWARE:
+                        $result[] = new Software($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_SWITCH_COMPONENT:
+                        $result[] = new SwitchComponent($row);
+                        break;
+        
+                    case DB_COMPONENT_TYPE_VLAN:
+                        $result[] = new Vlan($row);
+                        break;
+        
+                    default:
+                        return false;
                 }
             }
-            
+        
             // we need to set this now, so that getComponentById works
             $this->components = $result;
-            
+        
             foreach ($result as $component)
             {
                 $rows = $db->getSubcomponentsOfComponent($component);
@@ -199,7 +194,7 @@ class DataManagement
                     foreach ($rows as $row)
                     {
                         $subcomponent = $this->getComponentById($row);
-                        
+        
                         $subcomponent->setParent($component);
                         $component->addChild($subcomponent);
                     }
@@ -212,13 +207,40 @@ class DataManagement
                     return false;
                 }
             }
-            
+        
             return $result;
         }
         return false;
     }
+    
+    public function getHardwareComponents($filterType = null, $filterValue = null)
+    {
+        if ($this->components === null)
+        {
+            $this->components = $this->getComponentsFromDB();
+        }
+        
+        // copy array
+        $filteredComps = array();
+        $filteredList = null;
+        
+        if ($filterType !== null && $filterValue !== null)
+        {
+            $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
+        }
+        
+        foreach($this->components as $component) 
+        {
+            if ((get_class($component) !== Software::getClassName()) && ($filteredList == null || in_array($component->getId(), $filteredList)))
+            {
+                $filteredComps[] = $component;
+            }
+        }
+        
+        return $filteredComps;
+    }
 
-    private static function getEntityFromArrayById(array $array, int $entityId)
+    private static function getEntityFromArrayById(array $array, $entityId)
     {
         // binary search because we're awesome
         $maxLen = count($array);

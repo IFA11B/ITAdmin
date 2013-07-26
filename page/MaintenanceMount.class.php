@@ -1,21 +1,21 @@
 <?php
-class MaintenanceMain implements Page
+class MaintenanceChange implements Page
 {
 	function getTemplate()
 	{
-		return 'maintenanceMain.tpl';
+		return 'maintenanceMount.tpl';
 	}
-	
+
 	function getContent()
 	{
 		return array(
-				pageTitle => 'Wartung'
+				pageTitle => 'Einbau'
 		);
 	}
 
 	static function getName()
 	{
-		return 'mainMaintenance'; 
+		return 'Einbauen';
 	}
 }
 ?>
