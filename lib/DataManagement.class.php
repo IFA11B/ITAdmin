@@ -127,8 +127,8 @@ class DataManagement
                         $result[] = new CPU($row);
                         break;
         
-                    case DB_COMPONENT_TYPE_DISK_CONTROLLER:
-                        $result[] = new DiskController($row);
+                    case DB_COMPONENT_TYPE_ODD:
+                        $result[] = new OpticalDrive($row);
                         break;
         
                     case DB_COMPONENT_TYPE_GRAPHICS_CARD:
@@ -155,7 +155,7 @@ class DataManagement
                         $result[] = new Printer($row);
                         break;
                         
-                    case DB_COMPONENT_POWER_SUPPLY:
+                    case DB_COMPONENT_TYPE_POWER_SUPPLY:
                         $result[] = new PowerSupply($row);
                         break;
                         
