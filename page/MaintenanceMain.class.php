@@ -15,7 +15,7 @@ class MaintenanceMain implements Page
 
 	static function getName()
 	{
-		return 'mainMaintenance'; 
+		return 'Main'; 
 	}
 }
 ?>

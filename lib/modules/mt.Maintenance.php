@@ -60,34 +60,40 @@ class Maintencancer
 
 	public function Maintain()
 	{
-		if ($this->SourceRow[DB_COMPONENT_TYPE]==$this->TargetRow[DB_COMPONENT_TYPE]) {
-			$this->ExChanging();
+		if ($this->TargetRow[DB_COMPONENT_ROOM]==null) {
+			return false;
 		}
-		else 
+		else if ($this->SourceRow[DB_COMPONENT_TYPE]==$this->TargetRow[DB_COMPONENT_TYPE]) {
+			$this->TwoComponentsChanging();
+			$this->TargetComponent->update();
+		}
+		else
 		{
-			$this->Changing();
+			$this->OneComponentChanging();
 		}
 		$this->SourceComponent->update();
-		if ($this->TargetComponent==null) {
-			return;
-		}
-		$this->TargetComponent->update();
+		return true;
 	}
 
-	private function ExChanging()
+	private function TwoComponentsChanging()
 	{
-		$tmpRoom=$this->SourceComponent->Room;
-		$tmpParent=$this->SourceComponent->Parent;
-		$this->SourceComponent->Room=$this->TargetComponent->Room;
-		$this->SourceComponent->Parent=$this->TargetComponent->Parent;
-		$this->TargetComponent->Room=$tmpRoom;
-		$this->TargetComponent->Parent=$tmpParent;
+		$tmpRoom=$this->SourceComponent->getRoom();
+		$tmpParent=$this->SourceComponent->getParent();
+		$tmpChilds=$this->SourceComponent->getChilds();
+		
+		$this->SourceComponent->setRoom($this->TargetComponent->getRoom());
+		$this->SourceComponent->setParent($this->TargetComponent->getParent);
+		$this->SourceComponent->setChilds($this->TargetComponent->getChilds());
+		
+		$this->TargetComponent->setRoom($tmpRoom);
+		$this->TargetComponent->setParent($tmpParent);
+		$this->TargetComponent->getChilds($tmpChilds);
 	}
 
-	private function Changing()
+	private function OneComponentChanging()
 	{
-		$this->SourceComponent->Room=$this->TargetRow[DB_COMPONENT_ROOM];
-		$this->SourceComponent->Parent=$this->TargetRow[DB_COMPONENT_PARENT];
+		$this->SourceRow[DB_COMPONENT_ROOM]=$this->TargetRow[DB_COMPONENT_ROOM];
+		$this->SourceRow[DB_COMPONENT_PARENT]=$this->TargetRow[DB_COMPONENT_PARENT];
 	}
 
 	private static function getComponent($row)
