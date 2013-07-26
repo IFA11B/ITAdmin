@@ -6,14 +6,14 @@
  * @author Lukas Bagaric <lukas.bagaric@gmail.com>
  * @see Page
  */
-class Choose implements Page
+class ChooseSubcomponent implements Page
 {
     /**
      * Identifying string for this page. Intended to be used in GET parameters.
      *
      * @var string
      */
-    const PAGE_NAME = "choose";
+    const PAGE_NAME = "chooseSubcomponent";
 
     static function getName()
     {
@@ -22,21 +22,13 @@ class Choose implements Page
     
     public function getTemplate()
     {
-        return 'choose.tpl';
+        return 'chooseSubcomponent.tpl';
     }
 
     public function getContent()
     {
-    	$listType = null;
         $listResult = null;
-        
-        if(isset($_POST["listType"]))
-        {
-        	$listType = $_POST["listType"];
-        }else
-        {
-        	die();
-        }
+        $listType = $_POST["listType"];
         
         // Check if we need filtered or unfiltered component lists
         if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
@@ -44,12 +36,11 @@ class Choose implements Page
             $filterType = $_POST["filterType"];
             $filterValue = $_POST["filterValue"];
             
-            
-            $listResult = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+            $listResult = DataManagement::getInstance()->getSubcomponents($listType, $filterType, $filterValue);
         }
         else
         {
-            $listResult = DataManagement::getInstance()->getHardwareComponents();
+            $listResult = DataManagement::getInstance()->getSubcompontents($listType);
         }
         
         return array(

@@ -14,7 +14,7 @@
 
 {block name=content}
     <!-- Komponente wählen -->
-    <div id="chooseComponent">
+    <div id="chooseComponent" title="">
         <div class="header contentHeading">
             <div class="headerTitle">Komponente w&auml;hlen</div>
         </div>
