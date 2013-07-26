@@ -12,8 +12,8 @@
         <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="./js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom"></script>
         <script type="text/javascript" src="./js/general.js"></script>
-        <script type="text/javascript" src="./js/componentDetails.js"></script>
-        <script type="text/javascript" src="./js/chooseMain.js"></script>
+        <!--script type="text/javascript" src="./js/componentDetails.js"></script>
+        <script type="text/javascript" src="./js/chooseMain.js"></script-->
         
         {block name=js}{/block}
     </head>

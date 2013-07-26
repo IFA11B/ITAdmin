@@ -28,13 +28,13 @@ abstract class Component
         
         if ($row != null) {
             $this->setId($row[DB_COMPONENT_ID]);
-            $this->setName($row[DB_COMPONENT_NAME]);
+            //$this->setName($row[DB_COMPONENT_NAME]);
             $this->setComponentType($row[DB_COMPONENT_TYPE]);
             $this->setSupplier($row[DB_COMPONENT_SUPPLIER]);
             $this->setRoom($row[DB_COMPONENT_ROOM]);
             $this->setPurchaseDate($row[DB_COMPONENT_PURCHASE_DATE]);
             $this->setWarrantyDuration($row[DB_COMPONENT_WARRANTY_PERIOD]);
-            $this->setNotice($row[DB_COMPONENT_NOTICE]);
+            $this->setNote($row[DB_COMPONENT_NOTICE]);
             $this->setManufacturer($row[DB_COMPONENT_MANUFACTURER]);
         }
     }

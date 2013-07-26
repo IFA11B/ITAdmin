@@ -55,7 +55,7 @@ define ('DB_COMPONENT_ID', 'pk_k_id');
 define ('DB_COMPONENT_SUPPLIER', 'fk_l_k_lieferid');
 define ('DB_COMPONENT_ROOM', 'fk_r_komp_kompraum');
 define ('DB_COMPONENT_PURCHASE_DATE', 'k_einkaufsdatum');
-define ('DB_COMPONENT_WARRANTY_PERIOD', 'k_gewaehrleistungsdatum');
+define ('DB_COMPONENT_WARRANTY_PERIOD', 'k_gewaehrleistungsdauer');
 define ('DB_COMPONENT_NOTICE', 'k_notiz');
 define ('DB_COMPONENT_MANUFACTURER', 'k_hersteller');
 
@@ -64,7 +64,7 @@ define ('DB_MODULE_ID', 'pk_mod_id');
 define ('DB_MODULE_NAME', 'mod_name');
 
 // define subcomponent attributes for DB
-define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponeten_pk_k_id_aggregat');
+define ('DB_SUBCOMPONENT_AGGREGAT', 'pk_komponenten_pk_k_id_aggregat');
 define ('DB_SUBCOMPONENT_UNIT', 'pk_komponenten_pk_k_id_teil');
 define ('DB_SUBCOMPONENT_ID', 'pk_khpk_k_id');
 define ('DB_SUBCOMPONENT_ACTION', 'vorgangsarten_pk_v_id');
@@ -257,7 +257,7 @@ class DbConnector
         }
         catch (Exception $e)
         {
-            die("Fehler bei der Verbindung zur Datenbank.");
+            die("Fehler bei der Verbindung zur Datenbank: ". $e->getMessage());
         }
 		
 	}
@@ -819,8 +819,8 @@ class DbConnector
 	    $query .= "        ON kha.pk_komponentenattribute_pk_kat_id = ka.pk_kat_id\n";
 	    $query .= "    LEFT JOIN komponentenarten kar\n";
 	    $query .= "        ON k.fk_ka_k_kompart = kar.pk_ka_id;";
-	    
-	    return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC); 
+
+	    return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	/**
@@ -841,15 +841,19 @@ class DbConnector
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1 ";
 		$query .= "AND " . DB_SUBCOMPONENT_AGGREGAT . " = :id";
 	
-		$statement = $this->db->query($query);
-		$statement->bindparam(':id', $Component->getId());
+		$statement = $this->db->prepare($query);
+		
+		$id = $Component->getId();
+		$statement->bindparam(':id', $id);
+		
 		$statement->execute();
 	
-		$result = array();
 		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		
-		if($result == false)
-		return false;
+		if($result === false)
+		{
+            return false;
+		}
 	
 		return $result;
 	}
