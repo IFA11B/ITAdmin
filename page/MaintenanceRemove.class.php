@@ -10,7 +10,7 @@ class MaintenanceRemove implements Page
 	{
         $components = null;
         
-        // Check if we need filtered or unfiltered component lists
+        //TODO Add constant filter to room! Must exclude stocking and discarding room
         if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
         {
             $filterType = $_POST["filterType"];

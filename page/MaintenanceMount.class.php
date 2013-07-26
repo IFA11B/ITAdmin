@@ -10,7 +10,7 @@ class MaintenanceMount implements Page
 	{
         $components = null;
         
-        // Check if we need filtered or unfiltered component lists
+        // TODO Add constant filter to room. Only stocking and discarding room is allowed!
         if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
         {
             $filterType = $_POST["filterType"];
