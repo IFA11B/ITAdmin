@@ -183,12 +183,12 @@ define ('DB_COMPONENT_R_CONFIGFILE', 'rout_konfigdatei');
 // define software attributes for DB
 define ('DB_COMPONENT_S_ID', 'pk_sw_id');
 define ('DB_COMPONENT_S_NAME', 'sw_name');
-define ('DB_COMPONENT_S_VERSION', 'sw_versionsnummer');
+define ('DB_COMPONENT_S_VERSION', 'sw_versionnummer');
 define ('DB_COMPONENT_S_LICENSETYPE', 'sw_lizenztyp');
 define ('DB_COMPONENT_S_LICENSECOUNT', 'sw_lizenzanzahl');
 define ('DB_COMPONENT_S_LICENSEDURATION', 'sw_lizenzlaufzeit');
 define ('DB_COMPONENT_S_LICENSEINFORMATION', 'sw_lizenzinformationen');
-define ('DB_COMPONENT_S_INSTALLHINT', 'sw_lizenzhinweis');
+define ('DB_COMPONENT_S_INSTALLHINT', 'sw_installationshinweis');
 
 // define switch attributes for DB
 define ('DB_COMPONENT_SC_ID', 'pk_s_id');
