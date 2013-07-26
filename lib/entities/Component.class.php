@@ -48,7 +48,7 @@ abstract class Component
             $copy->setRoom($this->getRoom());
             $copy->setPurchaseDate($this->getPurchaseDate());
             $copy->setWarrantyDuration($this->getWarrantyDuration());
-            $copy->setNotice($this->getNotice());
+            $copy->setNote($this->getNote());
             $copy->setManufacturer($this->getManufacturer());
             $copy->setChildren($this->getChildren());
             $copy->setParent($this->getParent());
