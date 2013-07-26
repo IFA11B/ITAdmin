@@ -39,21 +39,6 @@ abstract class Component
         }
     }
     
-    public function update()
-    {
-        DbConnector::getInstance()->updateComponent($this);
-    }
-    
-    public function delete()
-    {
-        DbConnector::getInstance()->deleteComponent($this);
-    }
-    
-    public function create()
-    {
-        DbConnector::getInstance()->createComponent($this);
-    }
-    
     public function copy(Component $copy = null)
     {
         if ($copy !== null) {
@@ -70,8 +55,74 @@ abstract class Component
         }
     }
     
+    public function update()
+    {
+        DbConnector::getInstance()->updateComponent($this);
+    }
+    
+    public function delete()
+    {
+        DbConnector::getInstance()->deleteComponent($this);
+    }
+    
+    public function create()
+    {
+        DbConnector::getInstance()->createComponent($this);
+    }
+    
     public static function getClassName() {
         return get_called_class();
+    }
+    
+    public function getFields() {
+        $result = array();
+        
+        $result[] = array(
+            'name' => 'ID',
+            'type' => 'number',
+            'value' => $this->getId());
+        
+        $result[] = array(
+            'name' => 'Name',
+            'type' => 'string',
+            'value' => $this->getName());
+        
+        $result[] = array(
+            'name' => 'Art',
+            'type' => 'string',
+            'value' => $this->getComponentType());
+        
+        $result[] = array(
+            'name' => 'Hersteller',
+            'type' => 'string',
+            'value' => $this->getManufacturer());
+        
+        $result[] = array(
+            'name' => 'Raum',
+            'type' => 'string',
+            'value' => $this->getRoom());
+        
+        $result[] = array(
+            'name' => 'Kaufdatum',
+            'type' => 'date',
+            'value' => $this->getPurchaseDate());
+        
+        $result[] = array(
+            'name' => 'Garantie',
+            'type' => 'number',
+            'value' => $this->getWarrantyDuration());
+        
+        $result[] = array(
+            'name' => 'Lieferer',
+            'type' => 'string',
+            'value' => $this->getSupplier());
+        
+        $result[] = array(
+            'name' => 'Notiz',
+            'type' => 'text',
+            'value' => $this->getNote());
+        
+        return $result;
     }
     
 	public function getId()
@@ -210,20 +261,5 @@ abstract class Component
 	public function setChildren(array $children)
 	{
 		$this->children = $children;
-	}
-	
-	public function assignChildren(array $children)
-	{
-		foreach ($children as $child)
-		{
-			$child->parent = $this;
-			$child->update();
-		}
-	}
-	
-	public function assignParent($parent)
-	{
-		$this->parent=$parent;
-		$this->update();
 	}
 }

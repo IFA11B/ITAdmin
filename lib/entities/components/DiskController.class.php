@@ -33,14 +33,26 @@ class DiskController extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Laufwerkart',
+	        'type' => 'enum',
+	        'value' => $this->getDiskType(),
+	        'values' => null); // TODO
+	     
+	    return $result;
+	}
+	
 	public function getDiskType()
 	{
 		return $this->diskType;
 	}
 	
-	public function setDiskType($DiskType)
+	public function setDiskType($diskType)
 	{
-		$this->diskType=$DiskType;
+		$this->diskType=$diskType;
 	}
 	
 }

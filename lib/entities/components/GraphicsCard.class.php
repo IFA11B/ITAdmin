@@ -36,6 +36,23 @@ class GraphicsCard extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Anschlussart',
+	        'type' => 'enum',
+	        'value' => $this->getInterfaceType(),
+	        'values' => null);
+	     
+	    $result[] = array(
+	        'name' => 'Grafikspeicher',
+	        'type' => 'number',
+	        'value' => $this->getSpaceMbyte());
+	     
+	    return $result;
+	}
+	
 	public function getInterfaceType()
 	{
 		return $this->interfaceType;

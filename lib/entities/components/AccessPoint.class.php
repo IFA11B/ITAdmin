@@ -36,6 +36,22 @@ class AccessPoint extends Component
 		return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	    
+	    $result[] = array(
+	        'name' => 'IP Adresse',
+	        'type' => 'ip',
+	        'value' => $this->getIpAdress());
+	    
+	    $result[] = array(
+	        'name' => 'Konfiguration',
+	        'type' => 'string',
+	        'value' => $this->getConfigurationFilePath());
+	    
+	    return $result;
+	}
+	
 	public function getIpAdress()
 	{
 		return $this->ipAdress;

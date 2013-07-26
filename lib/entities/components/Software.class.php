@@ -48,6 +48,42 @@ class Software extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Version',
+	        'type' => 'string',
+	        'value' => $this->getVersion());
+	     
+	    $result[] = array(
+	        'name' => 'Lizenzart',
+	        'type' => 'enum',
+	        'value' => $this->getLicenseType());
+	    
+	    $result[] = array(
+	        'name' => 'Lizenzanzahl',
+	        'type' => 'number',
+	        'value' => $this->getLicenseCount());
+	    
+	    $result[] = array(
+	        'name' => 'Lizenzdauer',
+	        'type' => 'number',
+	        'value' => $this->getLicenseDuration());
+	    
+	    $result[] = array(
+	        'name' => 'Lizenzinformationen',
+	        'type' => 'text',
+	        'value' => $this->getLicenseInformation());
+	    
+	    $result[] = array(
+	        'name' => 'Installationshinweis',
+	        'type' => 'text',
+	        'value' => $this->getInstallHint());
+	     
+	    return $result;
+	}
+	
 	public function getVersion()
 	{
 		return $this->version;

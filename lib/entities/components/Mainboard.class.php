@@ -8,7 +8,7 @@
 
 class Mainboard extends Component
 {
-	private $sockel;
+	private $socket;
 	private $ramType;
 	private $ramMaxSpace;
 	private $ramSlotsCount;
@@ -24,7 +24,7 @@ class Mainboard extends Component
 	
 	    if ($row != null)
 	    {
-	        $this->setSockel($row[DB_COMPONENT_MB_SOCKEL]);
+	        $this->setSocket($row[DB_COMPONENT_MB_SOCKEL]);
     		$this->setRamType($row[DB_COMPONENT_MB_RAMTYPE]);
     		$this->setRamMaxSpace($row[DB_COMPONENT_MB_RAMMAXSPACE]);
     		$this->setRamSlotsCount($row[DB_COMPONENT_MB_RAMSLOTSCOUNT]);
@@ -44,7 +44,7 @@ class Mainboard extends Component
 	     
 	    parent::copy($copy);
 	
-	    $copy->setSockel($this->getSockel());
+	    $copy->setSocket($this->getSocket());
 		$copy->setRamType($this->getRamType());
 		$copy->setRamMaxSpace($this->getRamMaxSpace());
 		$copy->setRamSlotsCount($this->getRamSlotsCount());
@@ -57,14 +57,63 @@ class Mainboard extends Component
 	    return $copy;
 	}
 	
-	public function getSockel()
-	{
-		return $this->sockel; 
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Sockel',
+	        'type' => 'name',
+	        'value' => $this->getSocket());
+	     
+	    $result[] = array(
+	        'name' => 'RAM-Typ',
+	        'type' => 'enum',
+	        'value' => $this->getRamType(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Max RAM',
+	        'type' => 'number',
+	        'value' => $this->getRamMaxSpace());
+	    
+	    $result[] = array(
+	        'name' => 'RAM B&auml;nke',
+	        'type' => 'number',
+	        'value' => $this->getRamSlotsCount());
+
+	    $result[] = array(
+	        'name' => 'CPU Anschluss',
+	        'type' => 'enum',
+	        'value' => $this->getConnectorTypeCpu(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Stromanschluss',
+	        'type' => 'enum',
+	        'value' => $this->getConnectorTypePowerSupply(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Schnittstellen Intern',
+	        'type' => 'string',
+	        'value' => $this->getInterfacesIntern());
+	    
+	    $result[] = array(
+	        'name' => 'Schnittstellen Extern',
+	        'type' => 'string',
+	        'value' => $this->getInterfacesExtern());
+	    
+	    return $result;
 	}
 	
-	public function setSockel($sockel)
+	public function getSocket()
 	{
-		$this->sockel=$sockel;
+		return $this->socket; 
+	}
+	
+	public function setSocket($socket)
+	{
+		$this->socket=$socket;
 	}
 	
 	public function getRamType()

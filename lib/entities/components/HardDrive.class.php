@@ -42,6 +42,35 @@ class HardDrive extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Anschlussart',
+	        'type' => 'enum',
+	        'value' => $this->getInterfaceType(),
+	        'values' => null);
+	     
+	    $result[] = array(
+	        'name' => 'Einsatzbereich',
+	        'type' => 'enum',
+	        'value' => $this->getConfigurationFilePath(),
+	        'values' => null);
+	    
+	    $result[] = array(
+	        'name' => 'Gr&ouml;&szlig;e',
+	        'type' => 'number',
+	        'value' => $this->getSpaceMbyte());
+	    
+	    $result[] = array(
+	        'name' => 'Laufwerkart',
+	        'type' => 'enum',
+	        'value' => $this->getDriveType(),
+	        'values' => null);
+	     
+	    return $result;
+	}
+	
 	public function getInterfaceType()
 	{
 		return $this->interfaceType;

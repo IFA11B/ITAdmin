@@ -36,6 +36,22 @@ class Hub extends Component
 	    return $copy;
 	}
 	
+	public function getFields() {
+	    $result = parent::getFields();
+	     
+	    $result[] = array(
+	        'name' => 'Anzahl Ports',
+	        'type' => 'number',
+	        'value' => $this->getPortsCount());
+	     
+	    $result[] = array(
+	        'name' => 'Geschwindigkeit',
+	        'type' => 'string',
+	        'value' => $this->getSpeedMbit());
+	     
+	    return $result;
+	}
+	
 	public function getPortsCount()
 	{
 		return $this->portsCount;
