@@ -25,28 +25,5 @@ function openChoose(listType, filterType, filterValue){
 			$( "#listBlock" ).html(data);
 			$( "#listBlock" ).dialog( "open" );
 		}
-	});
-	
-}
-
-function changeToInput(){
-	$('#compDetailsForm').find('.inputValue').each(function(){
-		  var newVal = this.val();
-		  this.html('<input type="text" value="'+newVal+'"/>');
-	});
-	
-	$('#compDetailsForm').find('a.changeComDetails').replaceWith('<input type="submit" value="speichern"/>');
-	
-	$('#compDetailsForm').submit(function () {
-	    $.ajax({
-	        type: frm.attr('method'),
-	        url: frm.attr('action'),
-	        data: frm.serialize(),
-	        success: function (data) {
-	            alert('ok');
-	        }
-	    });
-	
-	    return false;
-	});
+	});	
 }
