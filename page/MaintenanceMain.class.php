@@ -17,5 +17,6 @@ class MaintenanceMain implements Page
 	{
 		return 'Main'; 
 	}
+	
 }
 ?>

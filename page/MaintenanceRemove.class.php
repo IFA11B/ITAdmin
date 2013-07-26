@@ -10,6 +10,23 @@ class MaintenanceRemove implements Page
 	{
         $components = null;
         
+        if (isset($_POST['SelectedSource']))
+        {
+        	$SourceComponent=DbConnector::getInstance()->getComponentById($_POST['SelectedSource']);
+        	if (isset($_POST['maintainStock'])) {
+        		//TODO Den Leerstring mit dem Lagerraum ersetzen.
+        		$TargetRow=array(DB_COMPONENT_ROOM=>'');
+        		$maintainer=new Maintencancer(null,$TargetRow,$SourceComponent,null);
+        		$maintainer->Maintain();
+        	}
+        	elseif (isset($_POST['maintainDiscard'])) {
+        		//TODO Den Leerstring mit dem Ausmusterungsraum ersetzen.
+        		$TargetRow=array(DB_COMPONENT_ROOM=>'');
+        		$maintainer=new Maintencancer(null,$TargetRow,$SourceComponent,null);
+        		$maintainer->Maintain();
+        	}
+        }
+        
         //TODO Add constant filter to room! Must exclude stocking and discarding room
         if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
         {
@@ -23,12 +40,17 @@ class MaintenanceRemove implements Page
         {
             $components = DataManagement::getInstance()->getHardwareComponents();
         }
+
+
         
         return array(
             'components' => $components
         );
+
 	}
 
+	
+	
 	static function getName()
 	{
 		return 'Ausbau';
