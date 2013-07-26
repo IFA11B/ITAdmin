@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-{foreach $components as $component}
+{foreach from=$components item=$component}
         <tr>
             <td>{$component.Room.Name}</td>
             <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
