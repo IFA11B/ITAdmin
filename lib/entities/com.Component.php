@@ -183,6 +183,7 @@ abstract class Component
 	public function addChild(Component $child)
 	{
 		$this->Childs []= $child;
+		
 	}
 	
 	public function getChild($index)
@@ -206,6 +207,21 @@ abstract class Component
 	public function setChilds(array $childs)
 	{
 		$this->Childs=$childs;
+	}
+	
+	public function assignChilds(array $childs)
+	{
+		foreach ($childs as $child)
+		{
+			$child->Parent=$this;
+			$child->update();
+		}
+	}
+	
+	public function assignParent($Parent)
+	{
+		$this->Parent=$Parent;
+		$this->update();
 	}
 }
 
