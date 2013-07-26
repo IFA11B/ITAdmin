@@ -215,7 +215,7 @@ abstract class Component
 		return $this->parent; 
 	}
 	
-	public function setParent(Component $parent)
+	public function setParent(Component $parent = null)
 	{
 		$this->parent=$parent;
 	}
