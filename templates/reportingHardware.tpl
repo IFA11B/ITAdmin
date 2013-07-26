@@ -27,8 +27,8 @@
     <tbody>
 		{foreach from=$components item=component}
         <tr>
-            <td>{$component.Room.Name}</td>
-            <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
+            <td>{$component->getRoom()}</td>
+            <td>{$component->getComponentType()}, {$component->getId()}_{$component->getName()}</td>
             <td class="notice{$component.room}">{$component.Room.Note}</td>
             <td class="link"><a onclick="toggleInput('{$component.room}','edit')">Notiz &auml;ndern</a></td>
         </tr>
