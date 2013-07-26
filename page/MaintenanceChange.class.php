@@ -9,13 +9,13 @@ class MaintenanceChange implements Page
 	function getContent()
 	{
 		return array(
-				pageTitle => 'Austauschen'
+				pageTitle => 'Austausch'
 		);
 	}
 
 	static function getName()
 	{
-		return 'Austauschen';
+		return 'Austausch';
 	}
 }
 ?>

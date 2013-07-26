@@ -15,7 +15,7 @@ class MaintenanceChange implements Page
 
 	static function getName()
 	{
-		return 'Einbauen';
+		return 'Einbau';
 	}
 }
 ?>

@@ -6,15 +6,25 @@ class Maintencancer
 
 	private $SourceComponent;
 	private $TargetComponent;
-	private $SourceRow;
-	private $TargetRow;
+	private $TargetRoom;
 	
-	public function __construct(array $SourceRow,array $TargetRow)
+	public function __construct(array $SourceRow=null,array $TargetRow=null, $SourceComponent=NULL,$TargetComponent=NULL)
 	{
-		$this->SourceRow=$SourceRow;
-		$this->TargetRow=$TargetRow;
-		$this->SourceComponent =getComponent($SourceRow);
-		$this->TargetComponent=getComponent($ResultRow);
+		if ($SourceComponent==null){
+			$this->SourceComponent =getComponent($SourceRow);
+		}
+		else {
+			$this->SourceComponent=$SourceComponent;
+		}
+		if ($TargetComponent==null) {
+			$this->TargetComponent=getComponent($ResultRow);
+			$this->TargetRoom=$TargetRow[DB_COMPONENT_ROOM];
+		}
+		else {
+			$this->TargetComponent=$TargetComponent;
+			$this->TargetRoom=$TargetComponent->getRoom();
+		}
+		
 
 	}
 
@@ -60,42 +70,88 @@ class Maintencancer
 
 	public function Maintain()
 	{
-		if ($this->TargetRow[DB_COMPONENT_ROOM]==null) {
-			return false;
+		$MaintainSucceed=false;
+		if ($this->TargetRoom==null||$this->SourceComponent==null) {
+			return $MaintainSucceed;
 		}
-		else if ($this->SourceRow[DB_COMPONENT_TYPE]==$this->TargetRow[DB_COMPONENT_TYPE]) {
-			$this->TwoComponentsChanging();
+		else if ($this->SourceComponent->getComponentType()==$this->TargetComponent->getComponentType()) {
+			$MaintainSucceed=$this->Changing();
+			$this->TargetComponent->update();
+		}
+		else if($this->TargetComponent!=null)
+		{
+			$MaintainSucceed=$this->Mounting();
 			$this->TargetComponent->update();
 		}
 		else
 		{
-			$this->OneComponentChanging();
+			$MaintainSucceed=$this->Removing();
 		}
 		$this->SourceComponent->update();
+		return $MaintainSucceed;
+	}
+
+	private function Changing()
+	{
+		//Remove childs rows if no childs change their Parent
+		if(!$this->CanChange()){
+			return false;
+		}
+		
+		$tmpParent=$this->SourceComponent->getParent();
+		$this->SourceComponent->setParent($this->TargetComponent->getParent);
+		$this->TargetComponent->setParent($tmpParent);
+		
+		$tmpRoom=$this->SourceComponent->getRoom();
+		$this->SourceComponent->setRoom($this->TargetComponent->getRoom());
+		$this->TargetComponent->setRoom($tmpRoom);
+		
+		$tmpChilds=$this->SourceComponent->getChilds();
+		$this->SourceComponent->setChilds($this->TargetComponent->getChilds());
+		$this->TargetComponent->getChilds($tmpChilds);
 		return true;
 	}
 
-	private function TwoComponentsChanging()
+	private function Removing()
 	{
-		$tmpRoom=$this->SourceComponent->getRoom();
-		$tmpParent=$this->SourceComponent->getParent();
-		$tmpChilds=$this->SourceComponent->getChilds();
-		
+		$this->SourceComponent->setRoom($this->TargetRoom);
+		$this->SourceComponent->setParent(null);
+		$TargetRow=array(DB_COMPONENT_ROOM=>$this->TargetRoom);
+		//Removing all childs to target room
+		foreach ($this->SourceComponent->getChilds() as $child)
+		{
+			if ($child==null) {
+				continue;
+			}
+			$maintaining=new Maintencancer(null, $TargetRow,$child,null);
+			$maintaining->Maintain();
+		}
+		return true;
+	}
+
+	private function Mounting()
+	{
+		//Check if child is allowed to mount in parent
+		if(!$this->CanMount()){
+			return false;
+		}
 		$this->SourceComponent->setRoom($this->TargetComponent->getRoom());
-		$this->SourceComponent->setParent($this->TargetComponent->getParent);
-		$this->SourceComponent->setChilds($this->TargetComponent->getChilds());
-		
-		$this->TargetComponent->setRoom($tmpRoom);
-		$this->TargetComponent->setParent($tmpParent);
-		$this->TargetComponent->getChilds($tmpChilds);
+		$this->SourceComponent->setParent($this->TargetComponent);
+		return true;
 	}
-
-	private function OneComponentChanging()
+	
+	private function CanMount()
 	{
-		$this->SourceRow[DB_COMPONENT_ROOM]=$this->TargetRow[DB_COMPONENT_ROOM];
-		$this->SourceRow[DB_COMPONENT_PARENT]=$this->TargetRow[DB_COMPONENT_PARENT];
+		//Check if mounting is possible
+		return true;
 	}
-
+	
+	private function CanChange()
+	{
+		//Check if changing is possible
+		return true;
+	}
+	
 	private static function getComponent($row)
 	{
 
