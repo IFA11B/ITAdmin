@@ -27,8 +27,15 @@ class Choose implements Page
 
     public function getContent()
     {
+    	// $listType:
+    	// - "maincomponent"  lists all maincomponents
+    	// - "supplier" list all suppliers
+    	// - "room" lists all rooms
+    	// - "subcomponent" lists all subcomponents
+    	// - "stock" lists all subcomponents out of stock (room = stock)
+    	// - "(ID of a maincomponent)" list all subcomponents that are contained
+    	//								in the maincomponent with the specialised ID
     	$listType = null;
-        $listResult = null;
         
         if(isset($_POST["listType"]))
         {
@@ -38,23 +45,20 @@ class Choose implements Page
         	die();
         }
         
-        // Check if we need filtered or unfiltered component lists
-        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        switch ($listType)
         {
-            $filterType = $_POST["filterType"];
-            $filterValue = $_POST["filterValue"];
-            
-            
-            $listResult = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+        	case "maincomponent":
+        		
+        		break;
+        	case "supplier":
+        		break;
+        	case "room":
+        		break;
+        	default:
+        	case "subcomponent":
+        		new ChooseSubcomponent();
+        		break;
         }
-        else
-        {
-            $listResult = DataManagement::getInstance()->getHardwareComponents();
-        }
-        
-        return array(
-            'listResult' => $listResult
-        );
     }
 }
 
