@@ -1,37 +1,7 @@
+
+
 $(document).ready(function() {
 	
-	$('.editNotice').click(function(event){
-		var oldText = $('.notice' + event.target.id).text();
-		$('.notice' + event.target.id).html('<input id="save'+event.target.id+'" type="text" value="'+oldText+'"/>');
-		event.target.removeClass('editNotice');
-		event.target.html('speichern');
-		event.target.addClass('saveNotice');
-	});
-	
-	$('.saveNotice').click(function(event){
-		 $.ajax({
-             url: './?module=REPORTING&page=saveNotice',
-             type: 'POST',
-             data: {
-                 'noticeId': event.target.id,
-                 'noticeText': $('#save'+event.target.id).val()
-             },
-             
-             success: function(data)
-             {
-            	 removeNoticeInput(event);
-             }
-         });
-	});
-	
-	function removeNoticeInput(event){
-		var oldText = $('#save'+event.target.id).val()
-		$('.notice' + event.target.id).html(oldText);
-		event.target.removeClass('saveNotice');
-		event.target.html('&auml;ndern');
-		event.target.addClass('editNotice');
-	};
-
     $('#network .header,#software .header,#hardware .header').click(function() {
         var current = $(this).parent();
         
@@ -49,6 +19,7 @@ $(document).ready(function() {
         .hide();
 });
 
+
 function closePanel(element)
 {
     $(element).removeClass('activeHeader');
@@ -56,6 +27,34 @@ function closePanel(element)
     $(element).find(".headerArrow").removeClass('arrowRotate');
     
     $(element).find('.repContent').hide(250);
+}
+
+function toggleNoticeInput(roomId, eventType){
+		if(eventType=='edit'){
+			var oldText = $('.notice' + roomId).text();
+			$('.notice' + roomId).html('<input id="save'+roomId+'" type="text" value="'+oldText+'"/>');
+			var newLink = "<a onclick=\"toggleInput('R105','save')\">Notiz speichern</a>";
+			$('.notice' + roomId).siblings('.link').html(newLink);
+		}
+		else if(eventType=='save'){
+			$.ajax({
+				url: './?module=REPORTING&page=saveNotice',
+				type: 'POST',
+				data: {
+					'noticeId': roomId,
+					'noticeText': $('#save'+roomId).val()
+				},
+			 
+				success: function(data)
+				{
+					var newText = $('#save'+roomId).val()
+					$('.notice' + roomId).html(newText);
+					var newLink = "<a onclick=\"toggleInput('R105','edit')\">Notiz &auml;ndern</a>";
+					$('.notice' + roomId).siblings('.link').html(newLink);
+				}
+			});
+			
+		}
 }
 
 function openPanel(element)
@@ -113,6 +112,7 @@ function openPanel(element)
                         success: function(data)
                         {
                             $('#' + pageId + ' .repContent').html(data);
+							addNoticeChanger();
                         }
                     });
                 }

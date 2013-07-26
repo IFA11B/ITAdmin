@@ -25,13 +25,13 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$components item=component}
+		{foreach from=$components item=component}
         <tr>
             <td>{$component.Room.Name}</td>
             <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
             <td class="notice{$component.room}">{$component.Room.Note}</td>
-            <td class="link"><a class="editNotice" id="{$component.room}">Notiz &auml;ndern</a></td>
+            <td class="link"><a onclick="toggleInput('{$component.room}','edit')">Notiz &auml;ndern</a></td>
         </tr>
-{/foreach}
+		{/foreach}
     </tbody>
 </table>
