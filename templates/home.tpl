@@ -12,6 +12,8 @@
 	<div id="navbar">
        <ul>
 			<li><a id="REPORTING" title="super awesome reporting" class="navbar">Reporting</a></li>
+			<li><a id="COREDATA" title="well, maybe it's not that bad" class="navbar">Stammdatenverwaltung</a></li>
+			<li><a id="ORDER" title="basically... nothing" class="navbar">Bestellung</a></li>
 		</ul>
 	</div>
 {/block}

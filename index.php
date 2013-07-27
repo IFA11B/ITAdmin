@@ -57,8 +57,10 @@ function getModule()
         return new Reporting();
         
     case Order::MODULE_NAME:
-        return new OrderData();
-
+        return new Order();
+    
+    case CoreDataManagement::MODULE_NAME:
+    	return new CoreDataManagement();
     }
     return null;
 }

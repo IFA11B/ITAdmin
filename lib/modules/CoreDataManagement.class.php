@@ -7,17 +7,17 @@ class CoreDataManagement extends Module
     
     public function getId()
     {
-        return DbConnector::getInstance()->getModuleId(MODULE_NAME);
+        return DbConnector::getInstance()->getModuleId(CoreDataManagement::MODULE_NAME);
     }
     
     public function getName()
     {
-        return MODULE_NAME;
+        return CoreDataManagement::MODULE_NAME;
     }
     
     public function getTitle()
     {
-        return MODULE_TITLE;
+        return CoreDataManagement::MODULE_TITLE;
     }
     
     public function getDescription()
@@ -37,7 +37,7 @@ class CoreDataManagement extends Module
                 break;
                 
             case "Supplier":
-                $pageObject = new CoreDataSupplier();
+               $pageObject = new CoreDataSupplier();
                 break;
                 
             case "Room":

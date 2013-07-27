@@ -17,6 +17,7 @@ class CoreDataUser implements Page
         
        foreach($users As $user){
        		$returnUsers['Name'] = $user->getName();
+       		$returnUsers['Id'] = $user->getId();
        		foreach($modules As $module){
        			$returnUsers['module']['Name'] = $module->getName();
        			$returnUsers['module']['Right'] = $user->canReadModule($module);

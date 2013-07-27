@@ -112,8 +112,11 @@ img.headlogo{
 .smallContent{
 	width:70%;
 }
-
+.fullWidth{
+	width:100%;
+}
 .contentHeading{
+	display:table;
 	margin:auto;
 	color:#333333;
 	line-height:150%;

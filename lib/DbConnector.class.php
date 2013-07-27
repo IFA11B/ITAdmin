@@ -19,7 +19,7 @@ class DbConnector
 	 */
 	private function __construct()
 	{
-		$DbHost = "192.168.1.116";
+		$DbHost = "192.168.1.113";
 		$DbName = "itv_v1";
 		$DbUser = "entwickler";
 		$DbPass = "entwickler12";
@@ -634,7 +634,7 @@ class DbConnector
 	 *
 	 * @return false if an error occurs, otherwise true.
 	 */
-	public function getAllSupplier(Supplier $Supplier)
+	public function getAllSuppliers(Supplier $Supplier)
 	{
 		$query = "SELECT  ";
 		$query .= " "  . DB_SUPPLIER_COMPANYNAME . " ";
