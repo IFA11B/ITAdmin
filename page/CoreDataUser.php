@@ -14,19 +14,14 @@ class CoreDataUser implements Page
 
        $users = DataManagement::getInstance()->getUsers();
        $modules = DataManagement::getInstance()->getModules();
-        
-       foreach($users As $user){
-       		$returnUsers['Name'] = $user->getName();
-       		$returnUsers['Id'] = $user->getId();
-       		foreach($modules As $module){
-       			$returnUsers['module']['Name'] = $module->getName();
-       			$returnUsers['module']['Right'] = $user->canReadModule($module);
-       		}
-       }
-       
-        return array(
-            'users' => $returnUsers
+              
+       $var = array(
+            'users' => $users,
+       		'modules' =>$modules
         );
+       
+       
+        return $var;
     }
     
     static function getName()

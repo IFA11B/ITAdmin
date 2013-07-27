@@ -149,9 +149,9 @@ class User implements Entity
      */
     public function canReadModule($module)
     {
-        $result = DbConnector::getInstance()->userModuleRead($this->getId(), $module);
+        $result = DbConnector::getInstance()->userModuleRead($this, $module);
         
-        if ($result === 1)
+        if ($result && $result[DB_USER_PRIV_READ] === 1)
         {
             return true;
         }

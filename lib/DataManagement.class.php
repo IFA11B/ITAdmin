@@ -83,23 +83,17 @@ class DataManagement
     }
     
     public function getModules(){
-    	if ($this->$modules !== null)
+    	if ($this->modules !== null)
     	{
-    		return $this->$modules;
+    		return $this->modules;
     	}
     	
     	$result = array();
-    	$rows = DbConnector::getInstance()->getAllModules();
+    	$rows = DbConnector::getInstance()->getModules();
     	
     	if ($rows !== false)
     	{
-    		foreach ($rows as $row)
-    		{
-    			//$result[] = new User($row);
-    		}
-    	
-    		$this->$modules = $result;
-    		return $result;
+    		return $rows;
     	}
     	return false;
     	
