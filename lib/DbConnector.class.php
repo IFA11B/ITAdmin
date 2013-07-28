@@ -19,7 +19,7 @@ class DbConnector
 	 */
 	private function __construct()
 	{
-		$DbHost = "192.168.1.2";
+		$DbHost = "192.168.1.113";
 		$DbName = "itv_v1";
 		$DbUser = "entwickler";
 		$DbPass = "entwickler12";

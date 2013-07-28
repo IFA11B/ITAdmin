@@ -29,36 +29,37 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
-function toggleInput(id, eventType){
-	
+function toggleInput(id, eventType, modulename, fIdentify){
 		if(eventType == 'edit'){
-			$('form#'+id).find('.toggleInput').each(function() {
-				var oldText = this.text();
-				this.html('<input type="text" value="'+oldText+'"/>');
+
+			$('td.toggleInput').each(function() {
+				var oldText = $(this).text();
+				$(this).html('<input type="text" value="'+oldText+'"/>');
 			}); 
 			
-				var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save')\">speichern</a>";
-			$('form#'+id).find('.edit').html(newLink);
+			var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+fIdentify+"')\">speichern</a>";
+			$('a.edit').replaceWith(newLink);
 		}
 		else if(eventType=='save'){
-			/*	$.ajax({
-				url: './?module=REPORTING&page=saveNotice',
-				type: 'POST',s
-				data: {
-					'roomId': roomId,
-					'noticeText': $('#save'+roomId).val()
-				},
-			 
-				success: function(data)
-				{
-					var newText = $('#save'+roomId).val()
-					$('.notice' + roomId).html(newText);
-					var newLink = "<a onclick=\"toggleInput('R105','edit')\">Notiz &auml;ndern</a>";
-					$('.notice' + roomId).siblings('.link').html(newLink);
-				}
-			});
-			*/
 			
+			var $form = $('form#'+fIdentify+id);
+						
+			$.ajax({
+	           type: "POST",
+	           url: './?module='+modulename+'&page=save'+fIdentify,
+	           data: $form.serialize(), // serializes the form's elements.
+	           beforeSend: function()
+	           {
+	        	   
+	           },
+	           
+	           success: function(data)
+	           {
+	        	   $form.replaceWith(data);
+
+	           }
+			});
+	
 		}
 }
 
