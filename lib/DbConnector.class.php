@@ -143,7 +143,7 @@ class DbConnector {
         $query .= DB_USER_NAME . ", ";
         $query .= DB_USER_PWD . ", ";
         $query .= DB_USER_CREATE_DATE . " ";
-        $query .= "FROM " . DB_USER;
+        $query .= "FROM " . DB_USER . " ";
         $query .= " WHERE " . DB_USER_NAME . " = :userName ";
         $query .= " AND " . DB_MANAGE_VALID . " = 1";
         
@@ -240,15 +240,17 @@ class DbConnector {
         $query .= ", " . DB_SUPPLIER_FAX . " ";
         $query .= ", " . DB_SUPPLIER_EMAIL . " ";
         $query .= ", " . DB_MANAGE_CREATED . ") ";
-        $query .= "VALUES (':companyname' ";
-        $query .= ", :street ";
-        $query .= ", :zipcod ";
-        $query .= ", :city ";
-        $query .= ", :phone ";
-        $query .= ", :mobile ";
-        $query .= ", :fax ";
-        $query .= ", :email ";
-        $query .= ", sysdate()) ";
+        $query .= "VALUES (";
+        $query .= "    :companyname ";
+        $query .= ",   :street ";
+        $query .= ",   :zipcod ";
+        $query .= ",   :city ";
+        $query .= ",   :phone ";
+        $query .= ",   :mobile ";
+        $query .= ",   :fax ";
+        $query .= ",   :email ";
+        $query .= ",   sysdate() ";
+        $query .= ") ";
         $query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
         $query .= "AND vwi_valid = 1";
         
@@ -380,13 +382,15 @@ class DbConnector {
         $query .= ", " . DB_COMPONENT_NOTICE . " ";
         $query .= ", " . DB_COMPONENT_MANUFACTURER . " ";
         $query .= ", " . DB_MANAGE_CREATED . ") ";
-        $query .= "VALUES (:supplier ";
-        $query .= ", :room ";
-        $query .= ", :purchaseDate ";
-        $query .= ", :warrantyPeriod ";
-        $query .= ", :notice ";
-        $query .= ", :manufacturer ";
-        $query .= ", sysdate() ";
+        $query .= "VALUES (";
+        $query .= "    :supplier ";
+        $query .= ",   :room ";
+        $query .= ",   :purchaseDate ";
+        $query .= ",   :warrantyPeriod ";
+        $query .= ",   :notice ";
+        $query .= ",   :manufacturer ";
+        $query .= ",   sysdate()";
+        $query .= ")";
         
         $statement = $this->db->prepare($query);
         $statement->bindparam(':companyname', $Component->getCompanyname());
@@ -472,10 +476,12 @@ class DbConnector {
         $query .= ", " . DB_ROOM_NOTE . " ";
         $query .= ", " . DB_ROOM_NUMBER . " ";
         $query .= ", " . DB_MANAGE_CREATED . ") ";
-        $query .= "VALUES (:name ";
-        $query .= ", :note ";
-        $query .= ", :number ";
-        $query .= ", sysdate() ";
+        $query .= "VALUES (";
+        $query .= "    :name ";
+        $query .= ",   :note ";
+        $query .= ",   :number ";
+        $query .= ",   sysdate()";
+        $query .= ")";
         
         $statement = $this->db->prepare($query);
         $statement->bindparam(':name', $Room->getName());
@@ -556,10 +562,12 @@ class DbConnector {
         $query .= ", " . DB_USER_PWD . " ";
         $query .= ", " . DB_USER_CREATE_DATE . " ";
         $query .= ", " . DB_MANAGE_CREATED . ") ";
-        $query .= "VALUES (:name ";
-        $query .= ", :password ";
-        $query .= ", :createDate ";
-        $query .= ", sysdate() ";
+        $query .= "VALUES (";
+        $query .= "    :name ";
+        $query .= ",   :password ";
+        $query .= ",   :createDate ";
+        $query .= ",   sysdate() ";
+        $query .= ")";
         
         $statement = $this->db->prepare($query);
         $statement->bindparam(':name', $User->getName());
