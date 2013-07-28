@@ -123,8 +123,8 @@ function sessionVar($key, $default = null) {
 /**
  */
 function verifySession() {
-    $userId = sessionVar(User::SESSION_USER);
-    if ($userId !== null) {
+    $user = User::getSessionUser();
+    if ($userId != null) {
         return true;
     }
     return false;
