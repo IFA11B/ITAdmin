@@ -85,7 +85,6 @@ class DbConnector
 		
 		if($result == false)
 			return false;
-	
 		return $result;
 	}
 	
@@ -624,7 +623,7 @@ class DbConnector
 		
 		if($result == false)
 			return false;
-	
+		
 		return $result;
 	}
 	
@@ -637,7 +636,8 @@ class DbConnector
 	public function getAllSuppliers()
 	{
 		$query = "SELECT  ";
-		$query .= " "  . DB_SUPPLIER_COMPANYNAME . " ";
+		$query .= " " . DB_SUPPLIER_ID . " ";
+		$query .= ", "  . DB_SUPPLIER_COMPANYNAME . " ";
 		$query .= ", " . DB_SUPPLIER_STREET . " ";
 		$query .= ", " . DB_SUPPLIER_ZIPCODE . " ";
 		$query .= ", " . DB_SUPPLIER_CITY . " ";
