@@ -15,10 +15,10 @@
 		{foreach from=$rooms item=room}
 	        <tr>
 	        	<form id="{$room->getId()}" action="" method="post">
-		            <td>{$room->getName()}</td>
-		            <td>{$room->getId()}</td>
+		            <td name ="Name" class="toggleInput">{$room->getName()}</td>
+		            <td name ="Number" class="toggleInput">{$room->getNumber()}</td>
 		            <td class="notice{$room}">{$room->getNote()}</td>
-		            <td class="link"><a onclick="toggleInput('{$room->getName()}','edit')">Notiz &auml;ndern</a></td>
+		            <td class="link"><a onclick="toggleInput('{$room->getName()}','edit')">&auml;ndern</a></td>
 	            </form>
 	        </tr>
 		{/foreach}

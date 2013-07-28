@@ -230,7 +230,7 @@ class DbConnector
 	 */
 	public function deleteSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE " . DB_SUPPLIER;
+		$query = "UPDATE " . DB_SUPPLIER ." ";
 		$query .= "SET " . DB_MANAGE_VALID . " = 0";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";

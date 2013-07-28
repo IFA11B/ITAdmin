@@ -29,6 +29,35 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
+function toggleCheckbox(id, eventType, modulename, subPageName){
+	if(eventType == 'edit'){
+
+		$('input[type=checkbox]').each(function() {
+			$(this).removeAttr('disabled');
+		}); 
+		
+		var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+subPageName+"')\">speichern</a>";
+		$('a.edit').replaceWith(newLink);
+	}
+	else if(eventType=='save'){
+		
+		var $form = $('form#'+subPageName+id);
+					
+		$.ajax({
+           type: "POST",
+           url: './?module='+modulename+'&page='+subPageName,
+           data: $form.serialize(), // serializes the form's elements.
+
+           success: function(data)
+           {
+        	   $form.parent().replaceWith(data);
+
+           }
+		});
+
+	}
+}
+
 function toggleInput(id, eventType, modulename, subPageName){
 		if(eventType == 'edit'){
 
