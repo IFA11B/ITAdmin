@@ -314,7 +314,7 @@ class DataManagement
     {
         foreach ($array as $entry) {
             if ($entry->getId() == $entityId) {
-                return $entity;
+                return $entry;
             }
         }
         return false;
