@@ -11,7 +11,7 @@ class Room implements Entity
 	 * Sets the room's number.
 	 * @param string $number
 	 */
-	public function setNumber(string $number)
+	public function setNumber($number)
 	{
 		$this->number = $number;
 	}
@@ -29,7 +29,7 @@ class Room implements Entity
 	 * Sets the room's note.
 	 * @param string $note
 	 */
-	public function setNote(string $note)
+	public function setNote($note)
 	{
 		$this->note = $note;
 	}
@@ -47,7 +47,7 @@ class Room implements Entity
 	 * Sets the room's id.
 	 * @param string $id
 	 */
-	public function setId(int $id)
+	public function setId($id)
 	{
 		$this->id = $id;
 	}
@@ -66,7 +66,7 @@ class Room implements Entity
 	 * Sets the room's name.
 	 * @param string $name
 	 */
-	public function setName(string $name)
+	public function setName($name)
 	{
 		$this->name = $name;
 	}
@@ -88,10 +88,10 @@ class Room implements Entity
 	{
     	if ($row != null)
     	{
-    		setId($row[DB_ROOM_ID]);
-    		setNumber($row[DB_ROOM_NUMBER]);
-    		setName($row[DB_ROOM_NAME]);
-    		setNote($row[DB_ROOM_NOTE]);
+    		$this->setId($row[DB_ROOM_ID]);
+    		$this->setNumber($row[DB_ROOM_NUMBER]);
+    		$this->setName($row[DB_ROOM_NAME]);
+    		$this->setNote($row[DB_ROOM_NOTE]);
     	}
 	}
 	
