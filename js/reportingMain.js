@@ -29,33 +29,6 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
-function toggleNoticeInput(roomId, eventType){
-		if(eventType=='edit'){
-			var oldText = $('.notice' + roomId).text();
-			$('.notice' + roomId).html('<input id="save'+roomId+'" type="text" value="'+oldText+'"/>');
-			var newLink = "<a onclick=\"toggleInput('R105','save')\">Notiz speichern</a>";
-			$('.notice' + roomId).siblings('.link').html(newLink);
-		}
-		else if(eventType=='save'){
-			$.ajax({
-				url: './?module=REPORTING&page=saveNotice',
-				type: 'POST',
-				data: {
-					'roomId': roomId,
-					'noticeText': $('#save'+roomId).val()
-				},
-			 
-				success: function(data)
-				{
-					var newText = $('#save'+roomId).val()
-					$('.notice' + roomId).html(newText);
-					var newLink = "<a onclick=\"toggleInput('R105','edit')\">Notiz &auml;ndern</a>";
-					$('.notice' + roomId).siblings('.link').html(newLink);
-				}
-			});
-			
-		}
-}
 
 function openPanel(element)
 {

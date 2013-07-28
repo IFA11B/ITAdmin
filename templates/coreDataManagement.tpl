@@ -19,6 +19,7 @@
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>
         </div>
+		<a class="addNew pushRight Supplier smallLink" onclick="addNew('open','COREDATA','Supplier')">hinzuf&uuml;gen</a>
         <div class="clear"></div>
         <div class="repContent"></div>
     </div>
@@ -32,6 +33,7 @@
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>
         </div>
+        <a class="addNew pushRight Room smallLink" onclick="addNew('open','COREDATA','Room')">hinzuf&uuml;gen</a>
         <div class="clear"></div>
         <div class="repContent"></div>
     </div>

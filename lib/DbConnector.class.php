@@ -243,7 +243,7 @@ class DbConnector {
         $query .= "VALUES (";
         $query .= "    :companyname ";
         $query .= ",   :street ";
-        $query .= ",   :zipcod ";
+        $query .= ",   :zipcode ";
         $query .= ",   :city ";
         $query .= ",   :phone ";
         $query .= ",   :mobile ";
@@ -251,8 +251,6 @@ class DbConnector {
         $query .= ",   :email ";
         $query .= ",   sysdate() ";
         $query .= ") ";
-        $query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
-        $query .= "AND vwi_valid = 1";
         
         $statement = $this->db->prepare($query);
         $statement->bindparam(':companyname', $Supplier->getCompanyname());
@@ -263,7 +261,6 @@ class DbConnector {
         $statement->bindparam(':mobile', $Supplier->getMobile());
         $statement->bindparam(':fax', $Supplier->getFax());
         $statement->bindparam(':email', $Supplier->getEmail());
-        $statement->bindparam(':id', $Supplier->getId());
         $success = $statement->execute();
         
         if ($success == false) {
@@ -349,15 +346,12 @@ class DbConnector {
         $query .= "AND " . DB_MANAGE_VALID . " = 1";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':companyname', $Component->getCompanyname());
-        $statement->bindparam(':street', $Component->getStreet());
-        $statement->bindparam(':zipcode', $Component->getZipcode());
-        $statement->bindparam(':city', $Component->getCity());
-        $statement->bindparam(':phone', $Component->getPhone());
-        $statement->bindparam(':mobile', $Component->getMobile());
-        $statement->bindparam(':fax', $Component->getFax());
-        $statement->bindparam(':email', $Component->getEmail());
-        $statement->bindparam(':id', $Component->getId());
+        $statement->bindparam(':supplier', $Component->getSupplier());
+        $statement->bindparam(':room', $Component->getRoom());
+        $statement->bindparam(':purchaseDate', $Component->getPurchaseDate());
+        $statement->bindparam(':warrantyPeriod', $Component->getWarrantyDuration());
+        $statement->bindparam(':notice', $Component->getNote());
+        $statement->bindparam(':manufacturer', $Component->getManufacturer());
         $success = $statement->execute();
         
         if ($success == false) {

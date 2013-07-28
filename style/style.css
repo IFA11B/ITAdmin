@@ -26,6 +26,10 @@ a:hover{
 	text-decoration:underline;
 }
 
+a .smallLink{
+	font-size:11pt;
+}
+
 #wrapper {
 	position:relative;
     width: 1020px;

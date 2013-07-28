@@ -16,10 +16,12 @@ class CoreDataSupplier implements Page
     	if(isset($_POST['deleteData'])){
     		$this->deleteSupplier();
     	}
+    	if(isset($_POST['addSupplier'])){
+    		$this->addSupplier();
+    	}
     	
-        $supplier = null;   
-        $supplier = DataManagement::getInstance()->getSuppliers();
-        
+        	$supplier = null;   
+        	$supplier = DataManagement::getInstance()->getSuppliers();
         
         return array(
             'suppliers' => $supplier
@@ -43,7 +45,7 @@ class CoreDataSupplier implements Page
 	        $updeteSupplier->setFax($_POST['Fax']);
 	        $updeteSupplier->setEmail($_POST['Email']);	
 	        if($updeteSupplier->update()){
-	        	echo 'Ihre Angaben wurden gespeichert';
+	        	$this->reloadMe('Ihre Angaben wurden gespeichert');
 	        }
 	        else{
 	        	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
@@ -59,10 +61,40 @@ class CoreDataSupplier implements Page
     	$deleteSupplier = DataManagement::getInstance()->getSupplierById($_POST['deleteData']);
 
     	if($deleteSupplier->delete()){
-    		echo 'Der Lieferant wurde gel&ouml;scht';
+    		$this->reloadMe('Der Lieferant wurde gel&ouml;scht');
     	}
     	else{
     		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
     	}
+    }
+    
+	function addSupplier(){
+    	$newSupplier = new Supplier();
+    	if($newSupplier){
+    		$newSupplier->setStreet($_POST['Street']);
+    		$newSupplier->setZipcode($_POST['Zipcode']);
+    		$newSupplier->setCity($_POST['City']);
+    		$newSupplier->setPhone($_POST['Phone']);
+    		$newSupplier->setMobile($_POST['Mobile']);
+    		$newSupplier->setFax($_POST['Fax']);
+    		$newSupplier->setEmail($_POST['Email']);
+    		
+    		if($newSupplier->create()){
+    			$this->reloadMe('Ihre Angaben wurden gespeichert');
+    		}
+    		else{
+    			echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+    		}
+    	}
+    	else{
+    		echo 'Es konnte kein neuer Lieferant erstellt werden';
+    	}
+    }
+    
+    function reloadMe($msg = NULL){
+    	if(isset($msg)){
+    		echo '<script>alert('.$msg.');</script>';
+    	}
+    	header('./?module=COREDATA&page=Supplier');
     }
 }

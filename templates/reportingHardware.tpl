@@ -24,14 +24,37 @@
             <th style="width: 15%;">&nbsp;</th>
         </tr>
     </thead>
-    <tbody>
-		{foreach from=$components item=component}
-        <tr>
-            <td>{$component->getRoom()}</td>
-            <td>{$component->getComponentType()}, {$component->getId()}_{$component->getName()}</td>
-            <td class="notice{$component.room}">{$component.Room.Note}</td>
-            <td class="link"><a onclick="toggleInput('{$component.room}','edit')">Notiz &auml;ndern</a></td>
-        </tr>
-		{/foreach}
-    </tbody>
 </table>
+{foreach from=$rooms item=room}
+{if isset($componentByRoom.{$room->getId()})}
+	{foreach from=$componentByRoom.{$room->getId()} item=singleComponent}
+		<form id="Hardware{$singleComponent->getId()}" method="post">
+			<input type="hidden" name="save" value="{$singleComponent->getId()}">
+			<table>
+				<tbody>
+			        <tr>
+			            <td style="width: 10%;">{$room->getNumber()}_{$room->getName()}</td>
+			            <td  style="width: 40%;">{$singleComponent->getComponentType()}, {$singleComponent->getId()}_{$singleComponent->getName()}</td>
+			            <td style="width: 35%;" name="Note" class="toggleInput">{$singleComponent->getNote()}</td>
+			            <td class="link"><a class ="edit smallLink" onclick="toggleInput('{$singleComponent->getId()}','edit', 'REPORTING','Hardware')">Notiz &auml;ndern</a></td>
+				     </tr>
+				</tbody>
+			</table>
+		</form>     
+	{/foreach}
+{else}
+	<form id="Hardware{$singleComponent->getId()}" method="post">
+			<input type="hidden" name="save" value="{$singleComponent->getId()}">
+			<table>
+				<tbody>
+			        <tr>
+			            <td style="width: 10%;">{$room->getNumber()}_{$room->getName()}</td>
+			            <td style="width: 40%;"> - </td>
+			            <td style="width: 35%;" name="Note" class="toggleInput"> - </td>
+			            <td style="width: 15%;" class="link">&nbsp;</td>
+				     </tr>
+				</tbody>
+			</table>
+	</form>     
+{/if}
+{/foreach}

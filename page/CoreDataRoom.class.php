@@ -16,6 +16,9 @@ class CoreDataRoom implements Page
     	if(isset($_POST['deleteData'])){
     		$this->deleteRoom();
     	}
+    	if(isset($_POST['addRoom'])){
+    		$this->addRoom();
+    	}
     	
        $rooms = null;
         
@@ -50,6 +53,36 @@ function saveRoom(){
 	else{
 		echo 'Der Lieferant konnte nicht gefunden werden';
 		 
+	}
+}
+
+function deleteRoom(){
+	$delete = DataManagement::getInstance()->getRoomById($_POST['deleteData']);
+
+	if($delete->delete()){
+		echo 'Der Raum wurde gel&ouml;scht';
+	}
+	else{
+		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+	}
+}
+
+function addRoom(){
+	$new = new Room();
+	if($new){
+		$new->setNumber($_POST['Number']);
+		$new->setNote($_POST['Note']);
+		$new->setName($_POST['Name']);
+
+		if($new->create()){
+			//$header('./?module=COREDATA&page=Room');
+		}
+		else{
+			echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+		}
+	}
+	else{
+		echo 'Es konnte kein neuer Lieferant erstellt werden';
 	}
 }
 }

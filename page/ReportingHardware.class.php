@@ -9,6 +9,10 @@ class ReportingHardware implements Page
 
     function getContent()
     {
+    	if(isset($_POST['save'])){
+    		$this->saveNote();
+    	}
+    	
         $components = null;
         
         // Check if we need filtered or unfiltered component lists
@@ -25,13 +29,26 @@ class ReportingHardware implements Page
             $components = DataManagement::getInstance()->getHardwareComponents();
         }
         
+        $rooms =  DataManagement::getInstance()->getRooms();
+        foreach ($components As $component){
+        	$thisRoom = $component->getRoom();
+        	$componentByRoom[$thisRoom][] = $component;
+        }
+        
         return array(
-            'components' => $components
+            'componentByRoom' => $componentByRoom,
+        	'rooms' => $rooms
         );
     }
     
     static function getName()
     {
         return "Hardware";
+    }
+    
+    function saveNote(){
+    	$update = DataManagement::getInstance()->getComponentById($_POST['save']);
+    	$update->setNote($_POST['Note']);
+    	$update->update();
     }
 }

@@ -57,17 +57,17 @@ abstract class Component
     
     public function update()
     {
-        DbConnector::getInstance()->updateComponent($this);
+        return DbConnector::getInstance()->updateComponent($this);
     }
     
     public function delete()
     {
-        DbConnector::getInstance()->deleteComponent($this);
+        return DbConnector::getInstance()->deleteComponent($this);
     }
     
     public function create()
     {
-        DbConnector::getInstance()->createComponent($this);
+        return DbConnector::getInstance()->createComponent($this);
     }
     
     public static function getClassName() {
@@ -212,7 +212,7 @@ abstract class Component
 	
 	public function getParent()
 	{
-		return $this->parent; 
+		return $this->parent;
 	}
 	
 	public function setParent(Component $parent = null)
