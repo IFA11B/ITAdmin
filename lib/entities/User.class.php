@@ -178,17 +178,17 @@ class User implements Entity
 
     public function update()
     {
-        DbConnector::getInstance()->updateUser($this);
+        return DbConnector::getInstance()->updateUser($this);
     }
 
     public function delete()
     {
-        DbConnector::getInstance()->deleteUser($this);
+        return DbConnector::getInstance()->deleteUser($this);
     }
 
     public function create()
     {
-        DbConnector::getInstance()->createUser($this);
+        return DbConnector::getInstance()->createUser($this);
     }
 
     public function copy()

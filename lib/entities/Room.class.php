@@ -59,7 +59,7 @@ class Room implements Entity
 	 */
 	public function getId()
 	{
-		return $this->id;		
+		return $this->id;
 	}
 	
 	/**
@@ -102,7 +102,7 @@ class Room implements Entity
 	public function update()
 	{
 		$db = DbConnector::getInstance();
-		$db->updateRoom($this);
+		return $db->updateRoom($this);
 	}
 	
 	/**
@@ -112,7 +112,7 @@ class Room implements Entity
 	public function delete()
 	{
 		$db = DbConnector::getInstance();
-		$db->deleteRoom($this);
+		return $db->deleteRoom($this);
 	}
 	
 	/**
@@ -122,11 +122,11 @@ class Room implements Entity
 	public function create()
 	{
 		$db = DbConnector::getInstance();
-		$db->createRoom($this);
+		return $db->createRoom($this);
 	}
 	
 	/**
-	 * Deep-clones the current room. 
+	 * Deep-clones the current room.
 	 * @see Entity::copy()
 	 */
 	public function copy()
