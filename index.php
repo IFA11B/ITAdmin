@@ -123,7 +123,7 @@ function sessionVar($key, $default = null) {
 /**
  */
 function verifySession() {
-    $userId = sessionVar('user');
+    $userId = sessionVar(User::SESSION_USER);
     if ($userId !== null) {
         return true;
     }
