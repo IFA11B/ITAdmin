@@ -2,7 +2,7 @@
 
 /**
  * Class for database connection.
- * 
+ *
  * @author Thunraz <julian.dinges@gmail.com>
  */
 
@@ -65,7 +65,7 @@ class DbConnector
 	
 	/**
 	 * Fetches all users from the database.
-	 * 
+	 *
 	 * @return an array of users or false if an error occured.
 	 */
 	public function getAllUsers()
@@ -90,7 +90,7 @@ class DbConnector
 	
 	/**
 	 * Updates an user's password.
-	 * 
+	 *
 	 * @param string $user
 	 * @param string $password
 	 * @return false if an error occurs, otherwise true.
@@ -176,7 +176,7 @@ class DbConnector
 		if($result == false)
 			return false;
 		
-		return new User($result);		
+		return new User($result);
 	}
 	
 	/**
@@ -656,10 +656,10 @@ class DbConnector
 		$query .= "FROM " . DB_SUPPLIER. " ";
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
-		$statement = $this->db->query($query);
-	
+		$statement = $this->db->prepare($query);
+		$rows = $this->db->query($statement);
 		$result = array();
-		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		$result = $rows->fetchAll(PDO::FETCH_ASSOC);
 	
 		if($result == false)
 			return false;
