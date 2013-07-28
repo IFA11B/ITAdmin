@@ -34,7 +34,7 @@ function toggleInput(id, eventType, modulename, fIdentify){
 
 			$('td.toggleInput').each(function() {
 				var oldText = $(this).text();
-				$(this).html('<input type="text" value="'+oldText+'"/>');
+				$(this).html('<input type="text" name="'+$(this).attr('name')+'" value="'+oldText+'"/>');
 			}); 
 			
 			var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+fIdentify+"')\">speichern</a>";
