@@ -31,17 +31,17 @@ function closePanel(element)
 
 function toggleInput(id, eventType){
 	
-		if(eventType=='edit'){
-			$('form .'+id).find('.toggleInput').each(function() {
+		if(eventType == 'edit'){
+			$('form#'+id).find('.toggleInput').each(function() {
 				var oldText = this.text();
 				this.html('<input type="text" value="'+oldText+'"/>');
-			});
+			}); 
 			
-			var newLink = "<a onclick=\"toggleInput('"+id+"','save')\">speichern</a>";
-			$('.notice' + roomId).siblings('.link').html(newLink);
+				var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save')\">speichern</a>";
+			$('form#'+id).find('.edit').html(newLink);
 		}
 		else if(eventType=='save'){
-			$.ajax({
+			/*	$.ajax({
 				url: './?module=REPORTING&page=saveNotice',
 				type: 'POST',s
 				data: {
@@ -57,6 +57,7 @@ function toggleInput(id, eventType){
 					$('.notice' + roomId).siblings('.link').html(newLink);
 				}
 			});
+			*/
 			
 		}
 }
