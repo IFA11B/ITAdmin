@@ -188,14 +188,14 @@ class DbConnector
 	public function updateSupplier(Supplier $Supplier)
 	{
 		$query = "UPDATE " . DB_SUPPLIER;
-		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = ':companyname' ";
-		$query .= ", " . DB_SUPPLIER_STREET . " = ':street' ";
-		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= ':zipcode' ";
-		$query .= ", " . DB_SUPPLIER_CITY . " = ':city' ";
-		$query .= ", " . DB_SUPPLIER_PHONE . " = ':phone' ";
-		$query .= ", " . DB_SUPPLIER_MOBILE . " = ':mobile' ";
-		$query .= ", " . DB_SUPPLIER_FAX . " = ':fax' ";
-		$query .= ", " . DB_SUPPLIER_EMAIL . " = ':email' ";
+		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
+		$query .= ", " . DB_SUPPLIER_STREET . " = :street ";
+		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= :zipcode ";
+		$query .= ", " . DB_SUPPLIER_CITY . " = :city ";
+		$query .= ", " . DB_SUPPLIER_PHONE . " = :phone ";
+		$query .= ", " . DB_SUPPLIER_MOBILE . " = :mobile ";
+		$query .= ", " . DB_SUPPLIER_FAX . " = :fax ";
+		$query .= ", " . DB_SUPPLIER_EMAIL . " = :email ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -237,7 +237,7 @@ class DbConnector
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->prepare($query);
-		$statement->bindparam(':Id', $Supplier->getId());
+		$statement->bindparam(':id', $Supplier->getId());
 		$statement->execute();
 	
 		if ($query == false)
@@ -265,14 +265,14 @@ class DbConnector
 		$query .= "" . DB_SUPPLIER_FAX . " ";
 		$query .= "" . DB_SUPPLIER_EMAIL . " ";
 		$query .= "" . DB_MANAGE_CREATED . ") ";
-		$query .= "VALUES (:Companyname ";
-		$query .= ", :Street ";
-		$query .= ", :Zipcode ";
-		$query .= ", :City ";
-		$query .= ", :Phone ";
-		$query .= ", :Mobile ";
-		$query .= ", :Fax ";
-		$query .= ", :Email ";
+		$query .= "VALUES (':companyname' ";
+		$query .= ", :street ";
+		$query .= ", :zipcod ";
+		$query .= ", :city ";
+		$query .= ", :phone ";
+		$query .= ", :mobile ";
+		$query .= ", :fax ";
+		$query .= ", :email ";
 		$query .= ", sysdate()) ";
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
 		$query .= "AND vwi_valid = 1";
