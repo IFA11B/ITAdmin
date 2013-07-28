@@ -16,10 +16,12 @@ class CoreDataSupplier implements Page
     	if(isset($_POST['deleteData'])){
     		$this->deleteSupplier();
     	}
+    	if(isset($_POST['addSupplier'])){
+    		$this->addSupplier();
+    	}
     	
-        $supplier = null;   
-        $supplier = DataManagement::getInstance()->getSuppliers();
-        
+        	$supplier = null;   
+        	$supplier = DataManagement::getInstance()->getSuppliers();
         
         return array(
             'suppliers' => $supplier
@@ -63,6 +65,29 @@ class CoreDataSupplier implements Page
     	}
     	else{
     		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+    	}
+    }
+    
+    function addSupplier(){
+    	$newSupplier = new Supplier();
+    	if($newSupplier){
+    		$newSupplier->setStreet($_POST['Street']);
+    		$newSupplier->setZipcode($_POST['Zipcode']);
+    		$newSupplier->setCity($_POST['City']);
+    		$newSupplier->setPhone($_POST['Phone']);
+    		$newSupplier->setMobile($_POST['Mobile']);
+    		$newSupplier->setFax($_POST['Fax']);
+    		$newSupplier->setEmail($_POST['Email']);
+    		
+    		if($newSupplier->create()){
+    			echo 'Ihre Angaben wurden gespeichert';
+    		}
+    		else{
+    			echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+    		}
+    	}
+    	else{
+    		echo 'Es konnte kein neuer Lieferant erstellt werden';
     	}
     }
 }

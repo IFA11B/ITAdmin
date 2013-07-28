@@ -29,6 +29,46 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
+function addNew(eventType, modulename, subPageName){
+	
+	if(eventType == 'open'){
+		var $contentDiv = $('a.'+subPageName).parent();
+	
+		$.ajax({
+	        type: "POST",
+	        url: './?module='+modulename+'&page='+subPageName,
+	        data: {
+	        	'addNew':subPageName
+	        },
+	        beforeSend: function()
+	        {
+	        	$contentDiv.find('.headerArrow img').remove();
+	        	$contentDiv.find('.headerArrow').spin(spinnerOptions);
+	        },
+	        success: function(data)
+	        {
+	        	$contentDiv.find('.headerArrow').html('<img src="./images/chevron-right.png" alt="&#8680;" />');
+	        	$contentDiv.find('.repContent').html(data).show(250);
+	        }
+			});
+	}
+	if(eventType == 'save'){
+		var $form = $('form#new'+subPageName);
+		
+		$.ajax({
+	           type: "POST",
+	           url: './?module='+modulename+'&page='+subPageName,
+	           data: $form.serialize(), // serializes the form's elements.
+
+	           success: function(data)
+	           {
+	        	   $form.parent('.repContent').html(data);
+
+	           }
+			});
+	}
+}
+
 function toggleCheckbox(id, eventType, modulename, subPageName){
 	if(eventType == 'edit'){
 
@@ -47,7 +87,7 @@ function toggleCheckbox(id, eventType, modulename, subPageName){
            type: "POST",
            url: './?module='+modulename+'&page='+subPageName,
            data: $form.serialize(), // serializes the form's elements.
-
+           
            success: function(data)
            {
         	   $form.parent().replaceWith(data);
