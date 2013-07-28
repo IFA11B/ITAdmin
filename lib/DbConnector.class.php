@@ -85,7 +85,7 @@ class DbConnector {
             return false;
         }
         
-        $query = "UPDATE " . DB_USER;
+        $query = "UPDATE " . DB_USER . " ";
         $query .= "SET (" . DB_USER_PWD . " = :password ";
         $query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate()) ";
         $query .= "WHERE " . DB_USER_NAME . " = :user ";
@@ -230,7 +230,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function createSupplier(Supplier $Supplier) {
-        $query = "INSERT INTO " . DB_SUPPLIER;
+        $query = "INSERT INTO " . DB_SUPPLIER . " ";
         $query .= "( " . DB_SUPPLIER_COMPANYNAME . " ";
         $query .= ", " . DB_SUPPLIER_STREET . " ";
         $query .= ", " . DB_SUPPLIER_ZIPCODE . " ";
@@ -335,7 +335,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function updateComponent(Component $Component) {
-        $query = "UPDATE " . DB_KOMPONENT;
+        $query = "UPDATE " . DB_KOMPONENT . " ";
         $query .= "SET " . DB_COMPONENT_SUPPLIER . " = :supplier ";
         $query .= ", " . DB_COMPONENT_ROOM . " = :room ";
         $query .= ", " . DB_COMPONENT_PURCHASE_DATE . "= :purchaseDate ";
@@ -372,7 +372,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function createComponent(Component $Component) {
-        $query = "INSERT INTO " . DB_KOMPONENT;
+        $query = "INSERT INTO " . DB_KOMPONENT . " ";
         $query .= "(" . DB_COMPONENT_SUPPLIER . " ";
         $query .= ", " . DB_COMPONENT_ROOM . " ";
         $query .= ", " . DB_COMPONENT_PURCHASE_DATE . " ";
@@ -414,7 +414,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function deleteComponent(Component $Component) {
-        $query = "UPDATE " . DB_KOMPONENT;
+        $query = "UPDATE " . DB_KOMPONENT . " ";
         $query .= " SET " . DB_MANAGE_VALID . " = 0";
         $query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
         $query .= "WHERE " . DB_COMPONENT_ID . " = :id ";
@@ -467,7 +467,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function createRoom(Room $Room) {
-        $query = "INSERT INTO " . DB_ROOM;
+        $query = "INSERT INTO " . DB_ROOM . " ";
         $query .= " (" . DB_ROOM_NAME . " ";
         $query .= ", " . DB_ROOM_NOTE . " ";
         $query .= ", " . DB_ROOM_NUMBER . " ";
@@ -498,8 +498,8 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function deleteRoom(Room $Room) {
-        $query = "UPDATE " . DB_ROOM;
-        $query .= " SET " . DB_MANAGE_VALID . " = 0";
+        $query = "UPDATE " . DB_ROOM . " ";
+        $query .= " SET " . DB_MANAGE_VALID . " = 0 ";
         $query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
         $query .= "WHERE " . DB_ROOM_ID . " = :id ";
         $query .= "AND " . DB_MANAGE_VALID . " = 1";
@@ -522,7 +522,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function updateUser(User $User) {
-        $query = "UPDATE " . DB_USER;
+        $query = "UPDATE " . DB_USER . " ";
         $query .= " SET " . DB_USER_NAME . " = :name ";
         $query .= ", " . DB_USER_PWD . " = :password ";
         $query .= ", " . DB_USER_CREATE_DATE . "= :createDate ";
@@ -551,7 +551,7 @@ class DbConnector {
      * @return false if an error occurs, otherwise true.
      */
     public function createUser(User $User) {
-        $query = "INSERT INTO " . DB_USER;
+        $query = "INSERT INTO " . DB_USER . " ";
         $query .= "( " . DB_USER_NAME . " ";
         $query .= ", " . DB_USER_PWD . " ";
         $query .= ", " . DB_USER_CREATE_DATE . " ";
@@ -583,7 +583,7 @@ class DbConnector {
      */
     public function deleteUser(User $User) {
         $query = "UPDATE " . DB_USER;
-        $query .= " SET " . DB_MANAGE_VALID . " = 0";
+        $query .= " SET " . DB_MANAGE_VALID . " = 0 ";
         $query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
         $query .= "WHERE " . DB_USER_ID . " = :id ";
         $query .= "AND " . DB_MANAGE_VALID . " = 1";
