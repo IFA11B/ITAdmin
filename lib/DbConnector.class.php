@@ -200,6 +200,8 @@ class DbConnector
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 		
+		echo $query, '<br>';
+		
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':companyname', $Supplier->getCompanyname());
 		$statement->bindparam(':street', $Supplier->getStreet());
@@ -210,9 +212,12 @@ class DbConnector
 		$statement->bindparam(':fax', $Supplier->getFax());
 		$statement->bindparam(':email', $Supplier->getEmail());
 		$statement->bindparam(':id', $Supplier->getId());
-		$statement->execute();
 		
-		if ($query == false){
+		echo $statement, '<br>';
+		
+		$success = $statement->execute();
+		
+		if ($success == false){
 			return false;
 		}
 		else {
