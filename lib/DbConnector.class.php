@@ -231,15 +231,15 @@ class DbConnector {
      */
     public function createSupplier(Supplier $Supplier) {
         $query = "INSERT INTO " . DB_SUPPLIER;
-        $query .= "(" . DB_SUPPLIER_COMPANYNAME . " ";
-        $query .= "" . DB_SUPPLIER_STREET . " ";
-        $query .= "" . DB_SUPPLIER_ZIPCODE . " ";
-        $query .= "" . DB_SUPPLIER_CITY . " ";
-        $query .= "" . DB_SUPPLIER_PHONE . " ";
-        $query .= "" . DB_SUPPLIER_MOBILE . " ";
-        $query .= "" . DB_SUPPLIER_FAX . " ";
-        $query .= "" . DB_SUPPLIER_EMAIL . " ";
-        $query .= "" . DB_MANAGE_CREATED . ") ";
+        $query .= "( " . DB_SUPPLIER_COMPANYNAME . " ";
+        $query .= ", " . DB_SUPPLIER_STREET . " ";
+        $query .= ", " . DB_SUPPLIER_ZIPCODE . " ";
+        $query .= ", " . DB_SUPPLIER_CITY . " ";
+        $query .= ", " . DB_SUPPLIER_PHONE . " ";
+        $query .= ", " . DB_SUPPLIER_MOBILE . " ";
+        $query .= ", " . DB_SUPPLIER_FAX . " ";
+        $query .= ", " . DB_SUPPLIER_EMAIL . " ";
+        $query .= ", " . DB_MANAGE_CREATED . ") ";
         $query .= "VALUES (':companyname' ";
         $query .= ", :street ";
         $query .= ", :zipcod ";
@@ -552,10 +552,10 @@ class DbConnector {
      */
     public function createUser(User $User) {
         $query = "INSERT INTO " . DB_USER;
-        $query .= " " . DB_USER_NAME . " ";
+        $query .= "( " . DB_USER_NAME . " ";
         $query .= ", " . DB_USER_PWD . " ";
         $query .= ", " . DB_USER_CREATE_DATE . " ";
-        $query .= ", " . DB_MANAGE_CREATED . " ";
+        $query .= ", " . DB_MANAGE_CREATED . ") ";
         $query .= "VALUES (:name ";
         $query .= ", :password ";
         $query .= ", :createDate ";
@@ -607,7 +607,7 @@ class DbConnector {
      */
     public function getAllRooms() {
         $query = "SELECT ";
-        $query .= "" . DB_ROOM_ID . " ";
+        $query .= "  " . DB_ROOM_ID . " ";
         $query .= ", " . DB_ROOM_NAME . " ";
         $query .= ", " . DB_ROOM_NOTE . " ";
         $query .= ", " . DB_ROOM_NUMBER . " ";
@@ -632,7 +632,7 @@ class DbConnector {
      */
     public function getAllSuppliers() {
         $query = "SELECT  ";
-        $query .= " " . DB_SUPPLIER_ID . " ";
+        $query .= "  " . DB_SUPPLIER_ID . " ";
         $query .= ", " . DB_SUPPLIER_COMPANYNAME . " ";
         $query .= ", " . DB_SUPPLIER_STREET . " ";
         $query .= ", " . DB_SUPPLIER_ZIPCODE . " ";
@@ -678,7 +678,7 @@ class DbConnector {
      */
     public function getSubcomponentsOfComponent(Component $Component) {
         $query = "SELECT ";
-        $query .= "" . DB_SUBCOMPONENT_AGGREGAT . " ";
+        $query .= "  " . DB_SUBCOMPONENT_AGGREGAT . " ";
         $query .= ", " . DB_SUBCOMPONENT_UNIT . " ";
         $query .= ", " . DB_SUBCOMPONENT_ID . " ";
         $query .= ", " . DB_SUBCOMPONENT_ACTION . " ";
@@ -717,7 +717,7 @@ class DbConnector {
         $user_id = $User->getId();
         
         $query = "SELECT ";
-        $query .= "" . DB_USER_PRIV_READ . " ";
+        $query .= "  " . DB_USER_PRIV_READ . " ";
         $query .= "FROM " . DB_USER_PRIVILEGES . " ";
         $query .= "INNER JOIN " . DB_USER . " ON " . DB_USER_ID . " = " . DB_USER_PRIV_USER . " ";
         $query .= "INNER JOIN " . DB_MODULE . " ON " . DB_MODULE_ID . " = " . DB_USER_PRIV_MODULE . " ";
@@ -747,7 +747,7 @@ class DbConnector {
      */
     public function userModuleWrite(User $User, Module $Module) {
         $query = "SELECT ";
-        $query .= "" . DB_USER_PRIV_WRITE . " ";
+        $query .= "  " . DB_USER_PRIV_WRITE . " ";
         $query .= "FROM " . DB_USER_PRIVILEGES . " ";
         $query .= "INNER JOIN " . DB_USER . " ON " . DB_USER_ID . " = " . DB_USER_PRIV_USER . " ";
         $query .= "INNER JOIN " . DB_MODULE . " ON " . DB_MODULE_ID . " = " . DB_USER_PRIV_MODULE . " ";
