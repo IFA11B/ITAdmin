@@ -483,10 +483,19 @@ class DbConnector {
         $query .= "AND " . DB_MANAGE_VALID . " = 1";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':name', $Room->getName());
-        $statement->bindparam(':note', $Room->getNote());
-        $statement->bindparam(':number', $Room->getNumber());
-        $statement->bindparam(':id', $Room->getId());
+        
+        
+        $roomName = $Room->getName();
+        $statement->bindparam(':name', $roomName);
+        
+        $roomNote = $Room->getNote();
+        $statement->bindparam(':note', $roomNote);
+        
+        $roomNumber = $Room->getNumber();
+        $statement->bindparam(':number', $roomNumber);
+        
+        $roomId = $Room->getId();
+        $statement->bindparam(':id', $roomId);
         $success = $statement->execute();
         
         if ($success == false) {
@@ -507,19 +516,27 @@ class DbConnector {
         $query .= " (" . DB_ROOM_NAME . " ";
         $query .= ", " . DB_ROOM_NOTE . " ";
         $query .= ", " . DB_ROOM_NUMBER . " ";
-        $query .= ", " . DB_MANAGE_CREATED . ") ";
+        $query .= ", " . DB_MANAGE_CREATED . " ";
+        $query .= ", " . DB_MANAGE_VALID . ") ";
         $query .= "VALUES (";
         $query .= "    :name ";
         $query .= ",   :note ";
         $query .= ",   :number ";
         $query .= ",   sysdate()";
+        $query .= ", 1";
         $query .= ")";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':name', $Room->getName());
-        $statement->bindparam(':note', $Room->getNote());
-        $statement->bindparam(':number', $Room->getNumber());
-        $statement->bindparam(':id', $Room->getId());
+        
+        $roomName = $Room->getName();
+        $statement->bindparam(':name', $roomName);
+        
+        $roomNote = $Room->getNote();
+        $statement->bindparam(':note', $roomNote);
+        
+        $roomNumber = $Room->getNumber();
+        $statement->bindparam(':number', $roomNumber);
+        
         $success = $statement->execute();
         
         if ($success == false) {
