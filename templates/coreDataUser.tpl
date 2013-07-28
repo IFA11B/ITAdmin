@@ -1,4 +1,4 @@
-
+ {if $users != false}
 {foreach from=$users item=tpl_user}
 	<table class="resultsTable liststyleTable">
 		<form id="{$tpl_user->getId()}" action="" method="post">
@@ -20,3 +20,4 @@
 		 </form>
 	</table>
 {/foreach}
+{/if}

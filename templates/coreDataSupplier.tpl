@@ -1,3 +1,4 @@
+ {if $suppliers != false}
 {foreach from=$suppliers item=supplier}
 <table class="resultsTable liststyleTable" style="width:100%">
 <form id="{$supplier->getId()}" action="" method="post">
@@ -48,3 +49,6 @@
 </form>
 </table>
 {/foreach}
+{else}
+Keine Lieferanten in der Datenbank.
+{/if}

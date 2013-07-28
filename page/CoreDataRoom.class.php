@@ -13,6 +13,8 @@ class CoreDataRoom implements Page
         
 
        $rooms = DataManagement::getInstance()->getRooms();
+       
+       var_dump($rooms);
                
         return array(
             'rooms' => $rooms
