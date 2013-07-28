@@ -313,7 +313,7 @@ class DataManagement
     private static function getEntityFromArrayById(array $array, $entityId)
     {
         foreach ($array as $entry) {
-            if ($entry->id == $entityId) {
+            if ($entry->getId() == $entityId) {
                 return $entity;
             }
         }
