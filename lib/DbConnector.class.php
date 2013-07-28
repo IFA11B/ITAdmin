@@ -8,6 +8,8 @@
 require ('db_defines.php');
 require ('db_module_to_module_class_mapper.php');
 
+require ('db_config.php');
+
 class DbConnector {
     private $db;
 
@@ -15,10 +17,7 @@ class DbConnector {
      * Constructs a new instance of DbConnector.
      */
     private function __construct() {
-    	$DbHost = "192.168.1.2";
-    	$DbName = "itv_v1";
-    	$DbUser = "entwickler";
-    	$DbPass = "entwickler12";
+		global $DbHost, $DbName, $DbUser, $DbPass;
         try {
             // Open connection to mysql database (using PDO)
             $this->db = new PDO(
