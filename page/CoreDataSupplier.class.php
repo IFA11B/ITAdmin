@@ -34,20 +34,25 @@ class CoreDataSupplier implements Page
     function saveSupplier(){
     
     	$updeteSupplier = DataManagement::getInstance()->getSupplierById($_POST['save']);
-    	$updeteSupplier->setStreet($_POST['Street']);
-        $updeteSupplier->setZipcode($_POST['Zipcode']);
-        $updeteSupplier->setCity($_POST['City']);
-        $updeteSupplier->setPhone($_POST['Phone']);
-        $updeteSupplier->setMobile($_POST['Mobile']);
-        $updeteSupplier->setFax($_POST['Fax']);
-        $updeteSupplier->setEmail($_POST['Email']);	
-        
-        if($updeteSupplier->update()){
-        	echo 'Ihre Angaben wurden gespeichert';
-        }
-        else{
-        	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
-        }
+    	if($updeteSupplier){
+    		$updeteSupplier->setStreet($_POST['Street']);
+        	$updeteSupplier->setZipcode($_POST['Zipcode']);
+       	 	$updeteSupplier->setCity($_POST['City']);
+	        $updeteSupplier->setPhone($_POST['Phone']);
+	        $updeteSupplier->setMobile($_POST['Mobile']);
+	        $updeteSupplier->setFax($_POST['Fax']);
+	        $updeteSupplier->setEmail($_POST['Email']);	
+	        if($updeteSupplier->update()){
+	        	echo 'Ihre Angaben wurden gespeichert';
+	        }
+	        else{
+	        	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+	        }
+    	}
+	   else{
+	   	echo 'Der Lieferant konnte nicht gefunden werden';
+	    
+    	}
     }
     
     function deleteSupplier(){
