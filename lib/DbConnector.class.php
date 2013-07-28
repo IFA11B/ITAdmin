@@ -200,8 +200,6 @@ class DbConnector
 		$query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 		
-		echo $query, '<br>';
-		
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':companyname', $Supplier->getCompanyname());
 		$statement->bindparam(':street', $Supplier->getStreet());
@@ -212,9 +210,6 @@ class DbConnector
 		$statement->bindparam(':fax', $Supplier->getFax());
 		$statement->bindparam(':email', $Supplier->getEmail());
 		$statement->bindparam(':id', $Supplier->getId());
-		
-		echo $statement->queryString, '<br>';
-		
 		$success = $statement->execute();
 		
 		if ($success == false){
@@ -292,10 +287,14 @@ class DbConnector
 		$statement->bindparam(':fax', $Supplier->getFax());
 		$statement->bindparam(':email', $Supplier->getEmail());
 		$statement->bindparam(':id', $Supplier->getId());
-		$statement->execute();
-	
-		if ($query == false)
+		$success = $statement->execute();
+		
+		if ($success == false){
 			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	/**
@@ -391,10 +390,14 @@ class DbConnector
 		$statement->bindparam(':fax', $Component->getFax());
 		$statement->bindparam(':email', $Component->getEmail());
 		$statement->bindparam(':id', $Component->getId());
-		$statement->execute();
-	
-		if ($query == false)
+		$success = $statement->execute();
+		
+		if ($success == false){
 			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	/**
@@ -431,10 +434,14 @@ class DbConnector
 		$statement->bindparam(':fax', $Component->getFax());
 		$statement->bindparam(':email', $Component->getEmail());
 		$statement->bindparam(':id', $Component->getId());
-		$statement->execute();
-	
-		if ($query == false)
+		$success = $statement->execute();
+		
+		if ($success == false){
 			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	
@@ -454,10 +461,14 @@ class DbConnector
 	
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':id', $Component->getId());
-		$statement->execute();
-	
-		if ($query == false)
+		$success = $statement->execute();
+		
+		if ($success == false){
 			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	/**
@@ -568,10 +579,13 @@ class DbConnector
 		$statement->bindparam(':password', $User->getPassword());
 		$statement->bindparam(':createDate', $User->getCreateDate());
 		$statement->bindparam(':id', $User->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
@@ -597,10 +611,13 @@ class DbConnector
 		$statement->bindparam(':password', $User->getPassword());
 		$statement->bindparam(':createDate', $User->getCreateDate());
 		$statement->bindparam(':id', $User->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
@@ -619,10 +636,13 @@ class DbConnector
 	
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':id', $User->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
