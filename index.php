@@ -85,7 +85,7 @@ function getPage()
 
 /**
  * Returns content from GET array stored under $key or null if $key cant be found.
- * 
+ *
  * @param string $key
  * @return (string &#124; NULL)
  */
@@ -108,6 +108,29 @@ function postVar($key)
 }
 
 /**
+ * Returns content from SESSION array stored under $key or $default if $key cant be found.
+ *
+ * @param string $key
+ * @param string $default (optional) default value if $key cannot be found
+ * @return (string &#124; NULL)
+ */
+function sessionVar($key, $default = null) {
+    if (isset($_SESSION[$key]) === true)
+        return $_SESSION[$key];
+    return $default;
+}
+
+/**
+ */
+function verifySession() {
+    $userId = sessionVar('user');
+    if ($userId !== null) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * Creates a Smarty instance and configures it for immediate use.
  *
  * @return Smarty the new Smarty instance.
@@ -126,14 +149,18 @@ function createSmarty()
 
 $smarty = createSmarty();
 
-$module = getModule();
-if ($module == null)
-{
-    $page = getPage();
-}
-else
-{
-    $page = $module->getPage(getVar('page'));
+if (verifySession()) {
+    $module = getModule();
+    if ($module == null)
+    {
+        $page = getPage();
+    }
+    else
+    {
+        $page = $module->getPage(getVar('page'));
+    }
+} else {
+    $page = new Login();
 }
 
 $smarty->assign($page->getContent());
