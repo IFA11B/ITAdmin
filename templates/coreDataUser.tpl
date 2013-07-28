@@ -1,6 +1,6 @@
 
 {foreach from=$users item=tpl_user}
-	<table class="resultsTable">
+	<table class="resultsTable liststyleTable">
 		<form id="{$tpl_user->getId()}" action="" method="post">
 		    <thead>
 		        <tr>

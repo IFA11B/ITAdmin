@@ -35,3 +35,13 @@ td
 td.room{
     text-align:center;
 }
+
+table.liststyleTable tr td:first-child{
+	text-align:left;
+	
+}
+
+table.liststyleTable th{
+	text-align:left;
+	
+}

@@ -607,14 +607,14 @@ class DbConnector
 	 * @param ???
 	 * @return false if an error occurs, otherwise true.
 	 */
-	public function getAllRooms(Room $Room)
+	public function getAllRooms()
 	{
 		$query = "SELECT ";
 		$query .= "" . DB_ROOM_ID . " ";
 		$query .= ", " . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
 		$query .= ", " . DB_ROOM_NUMBER . " ";
-		$query .= "FROM " . DB_USER;
+		$query .= "FROM " . DB_USER. " ";
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);
@@ -634,7 +634,7 @@ class DbConnector
 	 *
 	 * @return false if an error occurs, otherwise true.
 	 */
-	public function getAllSuppliers(Supplier $Supplier)
+	public function getAllSuppliers()
 	{
 		$query = "SELECT  ";
 		$query .= " "  . DB_SUPPLIER_COMPANYNAME . " ";
@@ -646,7 +646,7 @@ class DbConnector
 		$query .= ", " . DB_SUPPLIER_FAX . " ";
 		$query .= ", " . DB_SUPPLIER_EMAIL . " ";
 		$query .= ", " . DB_MANAGE_CREATED . " ";
-		$query .= "FROM " . DB_SUPPLIER;
+		$query .= "FROM " . DB_SUPPLIER. " ";
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->query($query);

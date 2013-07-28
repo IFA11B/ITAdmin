@@ -1,30 +1,50 @@
-<table class="resultsTable">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Strasse</th>
-            <th>PLZ</th>
-            <th>Ort</th>
-            <th>Tel</th>
-            <th>Mobil</th>
-            <th>Fax</th>
-            <th>E-mail</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-		{foreach from=$suppliers item=supplier}
+{foreach from=$suppliers item=supplier}
+<table class="resultsTable liststyleTable" style="width:100%">
+<form id="{$supplier->getId()}" action="" method="post">
+	    <thead>
+        	<tr>
+	            <th colspan="2">{$supplier->getCompanyname()}</th>
+	            <th>&nbsp;</th>
+	            <td class="link"><a class="edit" onclick="toggleInput('{$supplier->getId()}','edit')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="delete('{$supplier->getId()}')">l&ouml;schen</a></td>
+	    	 </tr>
+    	</thead>
+	    <tbody>
 	        <tr>
-	            <td>{$supplier.Name}</td>
-	            <td>{$supplier.Street}</td>
-	            <td>{$supplier.Postal}</td>
-	            <td>{$supplier.Location}</td>
-	            <td>{$supplier.Phone}</td>
-	            <td>{$supplier.Mobile}</td>
-	            <td>{$supplier.Fax}</td>
-	            <td>{$supplier.Mail}</td>
-	            <td class="link"><a onclick="toggleInput('{$supplier.Id}','edit')">&auml;ndern</a><a onclick="delete('{$supplier.Id}')">L&ouml;schen</a></td>
+	        	<td>&nbsp;</td>
+	            <td>Strasse</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getStreet()}</td>
 	        </tr>
-		{/foreach}
-    </tbody>
+	        <tr>
+	       		<td>&nbsp;</td>
+	            <td>PLZ</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getZipcode()}</td>
+	        </tr>
+	        <tr>
+	        	<td>&nbsp;</td>
+	            <td>Ort</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getCity()}</td>
+	        </tr>
+	        <tr>
+	       	 	<td>&nbsp;</td>
+	            <td>Tel</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getPhone()}</td>
+	        </tr>
+	        <tr>
+	       	 	<td>&nbsp;</td>
+	            <td>Mobil</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getMobile()}</td>
+	        </tr>
+	        <tr>
+	        	<td>&nbsp;</td>
+	            <td>Fax</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getFax()}</td>
+	        </tr>
+	        <tr>
+	        	<td>&nbsp;</td>
+	            <td>E-mail</td> 
+	            <td class="toggleInput" colspan="2">{$supplier->getEmail()}</td>            
+	        </tr>
+	   </tbody>
+</form>
 </table>
+{/foreach}

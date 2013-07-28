@@ -61,7 +61,7 @@ class Supplier implements Entity
     	return $this->city;
     }
     
-    public function set($city)
+    public function setCity($city)
     {
     	$this->city = $city;
     }
@@ -110,15 +110,15 @@ class Supplier implements Entity
     {
     	if ($row != null)
     	{
-    		setId($row[DB_SUPPLIER_ID]);
-    		setCompanyame($row[DB_SUPPLIER_COMPANYNAME]);
-    		setStreet($row[DB_SUPPLIER_STREET]);
-    		setZipcode($row[DB_SUPPLIER_ZIPCODE]);
-    		setCity($row[DB_SUPPLIER_CITY]);
-    		setPhone($row[DB_SUPPLIER_PHONE]);
-    		setMobile($row[DB_SUPPLIER_MOBILE]);
-    		setFax($row[DB_SUPPLIER_FAX]);
-    		setEmail($row[DB_SUPPLIER_EMAIL]);
+    		$this->setId($row[DB_SUPPLIER_ID]);
+    		$this->setCompanyname($row[DB_SUPPLIER_COMPANYNAME]);
+    		$this->setStreet($row[DB_SUPPLIER_STREET]);
+    		$this->setZipcode($row[DB_SUPPLIER_ZIPCODE]);
+    		$this->setCity($row[DB_SUPPLIER_CITY]);
+    		$this->setPhone($row[DB_SUPPLIER_PHONE]);
+    		$this->setMobile($row[DB_SUPPLIER_MOBILE]);
+    		$this->setFax($row[DB_SUPPLIER_FAX]);
+    		$this->setEmail($row[DB_SUPPLIER_EMAIL]);
     	}
     }
     

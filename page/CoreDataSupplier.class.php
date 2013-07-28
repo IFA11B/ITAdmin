@@ -14,7 +14,7 @@ class CoreDataSupplier implements Page
         $supplier = DataManagement::getInstance()->getSuppliers();
         
         return array(
-            'supplier' => $supplier
+            'suppliers' => $supplier
         );
     }
     

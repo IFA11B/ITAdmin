@@ -29,17 +29,21 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
-function toggleNoticeInput(roomId, eventType){
+function toggleInput(id, eventType){
+	
 		if(eventType=='edit'){
-			var oldText = $('.notice' + roomId).text();
-			$('.notice' + roomId).html('<input id="save'+roomId+'" type="text" value="'+oldText+'"/>');
-			var newLink = "<a onclick=\"toggleInput('R105','save')\">Notiz speichern</a>";
+			$('form .'+id).find('.toggleInput').each(function() {
+				var oldText = this.text();
+				this.html('<input type="text" value="'+oldText+'"/>');
+			});
+			
+			var newLink = "<a onclick=\"toggleInput('"+id+"','save')\">speichern</a>";
 			$('.notice' + roomId).siblings('.link').html(newLink);
 		}
 		else if(eventType=='save'){
 			$.ajax({
 				url: './?module=REPORTING&page=saveNotice',
-				type: 'POST',
+				type: 'POST',s
 				data: {
 					'roomId': roomId,
 					'noticeText': $('#save'+roomId).val()
