@@ -49,4 +49,6 @@
 </form>
 </table>
 {/foreach}
+{else}
+Keine Lieferanten in der Datenbank.
 {/if}
