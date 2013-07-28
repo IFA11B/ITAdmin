@@ -656,10 +656,9 @@ class DbConnector
 		$query .= "FROM " . DB_SUPPLIER. " ";
 		$query .= "WHERE " . DB_MANAGE_VALID . " = 1";
 	
-		$statement = $this->db->prepare($query);
-		$rows = $this->db->query($statement);
+		$statement = $this->db->query($query);
 		$result = array();
-		$result = $rows->fetchAll(PDO::FETCH_ASSOC);
+		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 	
 		if($result == false)
 			return false;
