@@ -8,8 +8,6 @@
 require ('db_defines.php');
 require ('db_module_to_module_class_mapper.php');
 
-require ('db_config.php');
-
 class DbConnector {
     private $db;
 
