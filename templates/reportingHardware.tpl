@@ -24,14 +24,21 @@
             <th style="width: 15%;">&nbsp;</th>
         </tr>
     </thead>
-    <tbody>
-		{foreach from=$components item=component}
-        <tr>
-            <td>{$component->getRoom()}</td>
-            <td>{$component->getComponentType()}, {$component->getId()}_{$component->getName()}</td>
-            <td class="notice{$component.room}">{$component.Room.Note}</td>
-            <td class="link"><a onclick="toggleInput('{$component.room}','edit')">Notiz &auml;ndern</a></td>
-        </tr>
-		{/foreach}
-    </tbody>
 </table>
+{foreach from=$rooms item=room}
+	{foreach from=$componentByRoom.{$room->getId()} item=singleComponent}
+		<form id="Hardware{$singleComponent->getId()}" method="post">
+			<input type="hidden" name="save" value="{$singleComponent->getId()}">
+			<table>
+				<tbody>
+			        <tr>
+			            <td>{$room->getNumber()}_{$room->getName()}</td>
+			            <td>{$singleComponent->getComponentType()}, {$singleComponent->getId()}_{$singleComponent->getName()}</td>
+			            <td name="Note" class="toggleInput">{$singleComponent->getNote()}</td>
+			            <td class="link"><a class ="edit" onclick="toggleInput('{$singleComponent->getId()}','edit', 'REPORTING','Hardware')">Notiz &auml;ndern</a></td>
+				     </tr>
+				</tbody>
+			</table>
+		</form>     
+	{/foreach}
+{/foreach}
