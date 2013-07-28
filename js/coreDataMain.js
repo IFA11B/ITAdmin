@@ -48,19 +48,33 @@ function toggleInput(id, eventType, modulename, subPageName){
 	           type: "POST",
 	           url: './?module='+modulename+'&page='+subPageName,
 	           data: $form.serialize(), // serializes the form's elements.
-	           beforeSend: function()
-	           {
-	        	   
-	           },
-	           
+
 	           success: function(data)
 	           {
-	        	   $form.replaceWith(data);
+	        	   $form.parent().replaceWith(data);
 
 	           }
 			});
 	
 		}
+}
+
+
+function deleteData(id, modulename, subPageName){
+	
+	$.ajax({
+        type: "POST",
+        url: './?module='+modulename+'&page='+subPageName,
+        data: {
+            'deleteData': id
+        },
+
+	    success: function(data)
+	      {
+	    	$('form#'+subPageName+id).parent().replaceWith(data);
+	      }
+		});
+	
 }
 
 function openPanel(element)

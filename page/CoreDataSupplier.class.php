@@ -13,6 +13,10 @@ class CoreDataSupplier implements Page
     		$this->saveSupplier();
     	}
     	
+    	if(isset($_POST['deleteData'])){
+    		$this->deleteSupplier();
+    	}
+    	
         $supplier = null;   
         $supplier = DataManagement::getInstance()->getSuppliers();
         
@@ -44,5 +48,16 @@ class CoreDataSupplier implements Page
         else{
         	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
         }
+    }
+    
+    function deleteSupplier(){
+    	$deleteSupplier = DataManagement::getInstance()->getSupplierById($_POST['deleteData']);
+
+    	if($deleteSupplier->delete()){
+    		echo 'Der Lieferant wurde gelöscht';
+    	}
+    	else{
+    		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+    	}
     }
 }

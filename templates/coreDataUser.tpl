@@ -1,23 +1,24 @@
  {if $users != false}
 {foreach from=$users item=tpl_user}
+<form id="User{$tpl_user->getId()}"  method="post">
+<input type="hidden" name="save" value="id">
 	<table class="resultsTable liststyleTable">
-		<form id="{$tpl_user->getId()}" action="" method="post">
 		    <thead>
 		        <tr>
 		            <th colspan="2">{$tpl_user->getName()}</th>
 		            <td colspan="3"></td>
-		            <td><td class="link"><a onclick="toggleInput('{$tpl_user->getId()}','edit')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="delete('{$tpl_user->getId()}')">l&ouml;schen</a></td></td>
+		            <td><td class="link"><a onclick="toggleInput('{$tpl_user->getId()}','edit', 'COREDATA','User')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="deleteData('{$tpl_user->getId()}', 'COREDATA','User')">l&ouml;schen</a></td></td>
 		        </tr>
 		    </thead>
 		    <tbody>
 		    	{foreach from=$modules item=module}
 		        <tr>
 		            	<td>{$module->getTitle()}</td>
-		            	<td><input type="checkbox" {if $tpl_user->canReadModule($module)}checked="checked"{/if}  value="{$module->getName()}"></td>
+		            	<td><input type="checkbox" name="{$module->getName()}"  value="{$module->getName()}" {if $tpl_user->canReadModule($module)}checked="checked"{/if}></td>
 		        </tr>
 		        {/foreach}
 		    </tbody>
-		 </form>
 	</table>
+	</form>
 {/foreach}
 {/if}

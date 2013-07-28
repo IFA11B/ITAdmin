@@ -7,7 +7,7 @@
         	<tr>
 	            <th colspan="2">{$supplier->getCompanyname()}</th>
 	            <th>&nbsp;</th>
-	            <td class="link"><a class="edit" onclick="toggleInput('{$supplier->getId()}','edit', 'COREDATA','Supplier')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="delete('{$supplier->getId()}')">l&ouml;schen</a></td>
+	            <td class="link"><a class="edit" onclick="toggleInput('{$supplier->getId()}','edit', 'COREDATA','Supplier')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="deleteData('{$supplier->getId()}','COREDATA','Supplier')">l&ouml;schen</a></td>
 	    	 </tr>
     	</thead>
 	    <tbody>

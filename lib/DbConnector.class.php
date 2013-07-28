@@ -237,11 +237,14 @@ class DbConnector
 		$query .= "AND " . DB_MANAGE_VALID . " = 1";
 	
 		$statement = $this->db->prepare($query);
-		$statement->bindparam(':Id', $Supplier->id);
+		$statement->bindparam(':Id', $Supplier->getId());
 		$statement->execute();
 	
 		if ($query == false)
 			return false;
+		else{
+			return true;
+		}
 	}
 	
 	/**
