@@ -187,8 +187,8 @@ class DbConnector
 	*/
 	public function updateSupplier(Supplier $Supplier)
 	{
-		$query = "UPDATE " . DB_SUPPLIER;
-		$query .= " SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
+		$query = "UPDATE " . DB_SUPPLIER . " ";
+		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
 		$query .= ", " . DB_SUPPLIER_STREET . " = :street ";
 		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= :zipcode ";
 		$query .= ", " . DB_SUPPLIER_CITY . " = :city ";
@@ -213,7 +213,7 @@ class DbConnector
 		$statement->bindparam(':email', $Supplier->getEmail());
 		$statement->bindparam(':id', $Supplier->getId());
 		
-		echo $statement, '<br>';
+		echo $statement->queryString, '<br>';
 		
 		$success = $statement->execute();
 		
@@ -468,8 +468,8 @@ class DbConnector
 	 */
 	public function updateRoom(Room $Room)
 	{
-		$query = "UPDATE " . DB_ROOM;
-		$query .= " SET " . DB_ROOM_NAME . " = :name ";
+		$query = "UPDATE " . DB_ROOM . " ";
+		$query .= "SET " . DB_ROOM_NAME . " = :name ";
 		$query .= ", " . DB_ROOM_NOTE . " = :note ";
 		$query .= ", " . DB_ROOM_NUMBER . "= :number ";
 		$query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
@@ -479,11 +479,15 @@ class DbConnector
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':name', $Room->getName());
 		$statement->bindparam(':note', $Room->getNote());
+		$statement->bindparam(':number', $Room->getNumber());
 		$statement->bindparam(':id', $Room->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
@@ -497,19 +501,25 @@ class DbConnector
 		$query = "INSERT INTO " . DB_ROOM;
 		$query .= " (" . DB_ROOM_NAME . " ";
 		$query .= ", " . DB_ROOM_NOTE . " ";
+		$query .= ", " . DB_ROOM_NUMBER . " ";
 		$query .= ", " . DB_MANAGE_CREATED . ") ";
 		$query .= "VALUES (:name ";
 		$query .= ", :note ";
+		$query .= ", :number ";
 		$query .= ", sysdate() ";
 	
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':name', $Room->getName());
 		$statement->bindparam(':note', $Room->getNote());
+		$statement->bindparam(':number', $Room->getNumber());
 		$statement->bindparam(':id', $Room->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
@@ -528,10 +538,13 @@ class DbConnector
 	
 		$statement = $this->db->prepare($query);
 		$statement->bindparam(':id', $Room->getId());
-		$statement->execute();
+		$success = $statement->execute();
 	
-		if ($query == false)
+		if ($success == false) {
 			return false;
+		} else {
+		    return true;
+		}
 	}
 	
 	/**
