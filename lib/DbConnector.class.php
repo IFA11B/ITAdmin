@@ -181,15 +181,33 @@ class DbConnector {
         $query .= "AND " . DB_MANAGE_VALID . " = 1";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':companyname', $Supplier->getCompanyname());
-        $statement->bindparam(':street', $Supplier->getStreet());
-        $statement->bindparam(':zipcode', $Supplier->getZipcode());
-        $statement->bindparam(':city', $Supplier->getCity());
-        $statement->bindparam(':phone', $Supplier->getPhone());
-        $statement->bindparam(':mobile', $Supplier->getMobile());
-        $statement->bindparam(':fax', $Supplier->getFax());
-        $statement->bindparam(':email', $Supplier->getEmail());
-        $statement->bindparam(':id', $Supplier->getId());
+        
+		$supplierName = $Supplier->getCompanyname();
+        $statement->bindparam(':companyname', $supplierName);
+        
+        $supplierStreet = $Supplier->getStreet();
+        $statement->bindparam(':street', $supplierStreet);
+        
+        $supplierZip = $Supplier->getZipcode();
+        $statement->bindparam(':zipcode', $supplierZip);
+        
+        $supplierCity = $Supplier->getCity();
+        $statement->bindparam(':city', $supplierCity);
+        
+        $supplierPhone = $Supplier->getPhone();
+        $statement->bindparam(':phone', $supplierPhone);
+        
+        $supplierMobile = $Supplier->getMobile();
+        $statement->bindparam(':mobile', $supplierMobile);
+        
+        $supplierFax = $Supplier->getFax();
+        $statement->bindparam(':fax', $supplierFax);
+        
+        $supplierEmail = $Supplier->getEmail();
+        $statement->bindparam(':email', $supplierEmail);
+        
+        $supplierId = $Supplier->getId();
+        $statement->bindparam(':id', $supplierId);
         $success = $statement->execute();
         
         if ($success == false) {
@@ -239,7 +257,8 @@ class DbConnector {
         $query .= ", " . DB_SUPPLIER_MOBILE . " ";
         $query .= ", " . DB_SUPPLIER_FAX . " ";
         $query .= ", " . DB_SUPPLIER_EMAIL . " ";
-        $query .= ", " . DB_MANAGE_CREATED . ") ";
+        $query .= ", " . DB_MANAGE_CREATED . " ";
+        $query .= ", " . DB_MANAGE_VALID . ") ";
         $query .= "VALUES (";
         $query .= "    :companyname ";
         $query .= ",   :street ";
@@ -250,17 +269,36 @@ class DbConnector {
         $query .= ",   :fax ";
         $query .= ",   :email ";
         $query .= ",   sysdate() ";
+        $query .= ", 1 ";
         $query .= ") ";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':companyname', $Supplier->getCompanyname());
-        $statement->bindparam(':street', $Supplier->getStreet());
-        $statement->bindparam(':zipcode', $Supplier->getZipcode());
-        $statement->bindparam(':city', $Supplier->getCity());
-        $statement->bindparam(':phone', $Supplier->getPhone());
-        $statement->bindparam(':mobile', $Supplier->getMobile());
-        $statement->bindparam(':fax', $Supplier->getFax());
-        $statement->bindparam(':email', $Supplier->getEmail());
+        
+        
+		$supplierName = $Supplier->getCompanyname();
+        $statement->bindparam(':companyname', $supplierName);
+        
+        $supplierStreet = $Supplier->getStreet();
+        $statement->bindparam(':street', $supplierStreet);
+        
+        $supplierZip = $Supplier->getZipcode();
+        $statement->bindparam(':zipcode', $supplierZip);
+        
+        $supplierCity = $Supplier->getCity();
+        $statement->bindparam(':city', $supplierCity);
+        
+        $supplierPhone = $Supplier->getPhone();
+        $statement->bindparam(':phone', $supplierPhone);
+        
+        $supplierMobile = $Supplier->getMobile();
+        $statement->bindparam(':mobile', $supplierMobile);
+        
+        $supplierFax = $Supplier->getFax();
+        $statement->bindparam(':fax', $supplierFax);
+        
+        $supplierEmail = $Supplier->getEmail();
+        $statement->bindparam(':email', $supplierEmail);
+        
         $success = $statement->execute();
         
         if ($success == false) {

@@ -35,16 +35,16 @@ class CoreDataSupplier implements Page
     
     function saveSupplier(){
     
-    	$updeteSupplier = DataManagement::getInstance()->getSupplierById($_POST['save']);
-    	if($updeteSupplier){
-    		$updeteSupplier->setStreet($_POST['Street']);
-        	$updeteSupplier->setZipcode($_POST['Zipcode']);
-       	 	$updeteSupplier->setCity($_POST['City']);
-	        $updeteSupplier->setPhone($_POST['Phone']);
-	        $updeteSupplier->setMobile($_POST['Mobile']);
-	        $updeteSupplier->setFax($_POST['Fax']);
-	        $updeteSupplier->setEmail($_POST['Email']);	
-	        if($updeteSupplier->update()){
+    	$updateSupplier = DataManagement::getInstance()->getSupplierById($_POST['save']);
+    	if($updateSupplier){
+    		$updateSupplier->setStreet($_POST['Street']);
+        	$updateSupplier->setZipcode($_POST['Zipcode']);
+       	 	$updateSupplier->setCity($_POST['City']);
+	        $updateSupplier->setPhone($_POST['Phone']);
+	        $updateSupplier->setMobile($_POST['Mobile']);
+	        $updateSupplier->setFax($_POST['Fax']);
+	        $updateSupplier->setEmail($_POST['Email']);	
+	        if($updateSupplier->update()){
 	        	$this->reloadMe('Ihre Angaben wurden gespeichert');
 	        }
 	        else{
@@ -71,6 +71,7 @@ class CoreDataSupplier implements Page
 	function addSupplier(){
     	$newSupplier = new Supplier();
     	if($newSupplier){
+    		$newSupplier->setCompanyName($_POST['Name']);
     		$newSupplier->setStreet($_POST['Street']);
     		$newSupplier->setZipcode($_POST['Zipcode']);
     		$newSupplier->setCity($_POST['City']);
