@@ -137,7 +137,7 @@ class Supplier implements Entity
     public function create()
     {
     	$db = DbConnector::getInstance();
-    	$db->createSupplier($this);
+    	return $db->createSupplier($this);
     }
     
     public function copy()
