@@ -54,6 +54,7 @@ class DataManagement
             }
             
             $this->rooms = $result;
+            
             return $result;
         }
         return false;
@@ -329,11 +330,6 @@ class DataManagement
             }
             $len = ($len + 1) / 2;
             $entity = $array[$index];
-        }
-        
-        if ($entity->getId() == $entityId)
-        {
-            return null;
         }
         
         return $entity;
