@@ -251,8 +251,6 @@ class DbConnector {
         $query .= ",   :email ";
         $query .= ",   sysdate() ";
         $query .= ") ";
-        $query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
-        $query .= "AND vwi_valid = 1";
         
         $statement = $this->db->prepare($query);
         $statement->bindparam(':companyname', $Supplier->getCompanyname());
