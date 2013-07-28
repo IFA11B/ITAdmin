@@ -15,10 +15,10 @@ class DbConnector {
      * Constructs a new instance of DbConnector.
      */
     private function __construct() {
-		$DbHost = "192.168.1.2";
-		$DbName = "itv_v1";
-		$DbUser = "entwickler";
-		$DbPass = "entwickler12";
+		$DbHost = CONFIG_DB_HOST;
+		$DbName = CONFIG_DB_NAME;
+		$DbUser = CONFIG_DB_USER;
+		$DbPass = CONFIG_DB_PASS;
         try {
             // Open connection to mysql database (using PDO)
             $this->db = new PDO(
