@@ -24,7 +24,6 @@ class ReportingNetwork implements Page
         {
             $components = DataManagement::getInstance()->getNetworkComponents();
         }
-
         return array(
                 'components' => $components
         );

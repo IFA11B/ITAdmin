@@ -309,7 +309,17 @@ class DataManagement
         
         return $this->components;
     }
-
+    
+    public function getComponentData($component_type, $component_id)
+    {
+    	switch($component_type)
+    	{
+    		case DB_COMPONENT_TYPE_COMPUTER:
+    			return DbConnector::getInstance()->getComputerData($component_id);
+    		break;
+    	}
+    }
+    
     private static function getEntityFromArrayById(array $array, $entityId)
     {
         foreach ($array as $entry) {

@@ -14,7 +14,7 @@ class DbConnector {
      * Constructs a new instance of DbConnector.
      */
     private function __construct() {
-        $DbHost = "192.168.1.113";
+        $DbHost = "192.168.1.2";
         $DbName = "itv_v1";
         $DbUser = "entwickler";
         $DbPass = "entwickler12";
@@ -668,11 +668,11 @@ class DbConnector {
         $query .= "    * ";
         $query .= "FROM ";
         $query .= "    komponenten k ";
-        $query .= "    LEFT JOIN komponente_hat_attribute kha ";
+        $query .= "    JOIN komponente_hat_attribute kha ";
         $query .= "        ON k.pk_k_id = kha.pk_komponenten_pk_k_id ";
-        $query .= "    LEFT JOIN v_alle_komp_attribute ka ";
-        $query .= "        ON kha.pk_komponentenattribute_pk_kat_id = ka.pk_kat_id ";
-        $query .= "    LEFT JOIN komponentenarten kar ";
+//         $query .= "    LEFT JOIN v_alle_komp_attribute ka ";
+//         $query .= "        ON kha.pk_komponentenattribute_pk_kat_id = ka.pk_kat_id ";
+        $query .= "    JOIN komponentenarten kar ";
         $query .= "        ON k.fk_ka_k_kompart = kar.pk_ka_id;";
         
         return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -775,6 +775,29 @@ class DbConnector {
             return false;
         
         return $result;
+    }
+    
+    public function getComputerData($computerId)
+    {
+    	$query = "SELECT ";
+    	$query .= "  " . DB_COMPONENT_PC_GATEWAY . ", ";
+    	$query .= "  " . DB_COMPONENT_PC_IP . ", ";
+    	$query .= "  " . DB_COMPONENT_PC_SUBNET . ", ";
+    	$query .= "  " . DB_COMPONENT_PC_NAME . " ";
+    	$query .= "FROM " . DB_TBL_PC . " ";
+    	$query .= "WHERE ". DB_COMPONENT_PC_ID . " = :pc_id";
+    	
+    	$statement = $this->db->prepare($query);
+    	$statement->bindparam(':pc_id', $computerId);
+    	$statement->execute();
+    	
+    	$result = array();
+    	$result = $statement->fetch(PDO::FETCH_ASSOC);
+    	
+    	if ($result == false)
+    		return false;
+    	
+    	return $result;
     }
 }
 ?>

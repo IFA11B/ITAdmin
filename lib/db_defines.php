@@ -7,6 +7,7 @@ define('DB_USER', 'benutzer');
 define('DB_SUPPLIER', 'lieferant');
 define('DB_KOMPONENT', 'komponenten');
 define('DB_ROOM', 'raeume');
+define('DB_TBL_PC', 'pckomplett');
 
 // define management information attributes for DB
 define ('DB_MANAGE_VALID', 'vwi_valid');
@@ -198,7 +199,7 @@ define ('DB_COMPONENT_VLAN_PORT', 'vlan_port');
 define ('DB_COMPONENT_VLAN_NAME', 'vlan_name');
 define ('DB_COMPONENT_VLAN_ID', 'pk_vlan_id');
 
-
+define('DB_COMPONENT_ATTRIBUTE_TO_COMPONENT_ENTITY', 'pk_komponentenattribute_pk_kat_id');
 
 
 // define subcomponent attributes for DB

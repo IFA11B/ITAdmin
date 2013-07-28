@@ -21,17 +21,17 @@ class Home implements Page
 
     public function getContent()
     {
-        session_start();
-        $result = array();
+//         session_start();
+//         $result = array();
 
-        $navbar = new Navbar();
+//         $navbar = new Navbar();
         
-        $user = User::getSessionUser();
+//         $user = User::getSessionUser();
         
-        $result = array_merge($result, $navbar->getContent());
-        $result['userRole'] = $user->getName();
+//         $result = array_merge($result, $navbar->getContent());
+//         $result['userRole'] = $user->getName();
 
-        return $result;
+//         return $result;
     }
 }
 

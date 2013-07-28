@@ -11,15 +11,48 @@ class Computer extends Component
 	private $ipAddress;
 	private $subnet;
 	private $gateway;
+
+	public function getIpAddress()
+	{
+		return $this->ipAddress;
+	}
+	
+	public function setIpAddress($ipAddress)
+	{
+		$this->ipAddress=$ipAddress;
+	}
+	
+	public function getSubnet()
+	{
+		return $this->subnet;
+	}
+	
+	public function setSubnet($subnet)
+	{
+		$this->subnet=$subnet;
+	}
+	
+	public function getGateway()
+	{
+		return $this->gateway;
+	}
+	
+	public function setGateway($gateway)
+	{
+		$this->gateway=$gateway;
+	}	
 	
 	public function __construct(array $row=NULL)
 	{
-		parent::__construct($row);	
+		if ($row != null) {
 		
-		if ($row == null) {
-    		$this->setIpAdress($row[DB_COMPONENT_PC_IP]);
-    		$this->setSubnet($row[DB_COMPONENT_PC_SUBNET]);
-    		$this->setGateway($row[DB_COMPONENT_PC_GATEWAY]);
+			parent::__construct($row);	
+			
+			$component_row = DataManagement::getInstance()->getComponentData($row[DB_COMPONENT_TYPE], $row[DB_COMPONENT_ATTRIBUTE_TO_COMPONENT_ENTITY]);
+			
+    		$this->setIpAddress($component_row[DB_COMPONENT_PC_IP]);
+    		$this->setSubnet($component_row[DB_COMPONENT_PC_SUBNET]);
+    		$this->setGateway($component_row[DB_COMPONENT_PC_GATEWAY]);
     	}
 	}
 	
@@ -57,36 +90,6 @@ class Computer extends Component
 	        'value' => $this->getGateway());
 	     
 	    return $result;
-	}
-	
-	public function getIpAddress()
-	{
-		return $this->ipAddress;
-	}
-	
-	public function setIpAddress($ipAddress)
-	{
-		$this->ipAdress=$ipAddress;
-	}
-	
-	public function getSubnet()
-	{
-		return $this->subnet;
-	}
-	
-	public function setSubnet($subnet)
-	{
-		$this->subnet=$subnet;
-	}
-	
-	public function getGateway()
-	{
-		return $this->gateway;
-	}
-	
-	public function setGateway($gateway)
-	{
-		$this->gateway=$gateway;
 	}
 	
 }
