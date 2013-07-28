@@ -10,20 +10,23 @@
             <th style="width: 15%;">&nbsp;</th>
         </tr>
     </thead>
-    <tbody>
-    {if $rooms != false}
-		{foreach from=$rooms item=room}
-	        <tr>
-	        	<form id="Rooms{$room->getId()}" action="" method="post">
+</table>
+{if $rooms != false}
+{foreach from=$rooms item=room}
+	<form id="Room{$room->getId()}" method="post">
+	<input type="hidden" name="save" value="{$room->getId()}">
+		<table>
+		    <tbody>
+		        <tr>
 		            <td name ="Number" class="toggleInput">{$room->getNumber()}</td>
 		            <td name ="Name" class="toggleInput">{$room->getName()}</td>
 		            <td name ="Note" class="toggleInput">{$room->getNote()}</td>
-		            <td class="link"><a class="edit" onclick="toggleInput('{$room->getId()}','edit', 'COREDATA','Rooms')">&auml;ndern</a>
+		            <td class="link"><a class="edit" onclick="toggleInput('{$room->getId()}','edit', 'COREDATA','Room')">&auml;ndern</a>
 		            &nbsp;|&nbsp;
-		            <a onclick="deleteData('{$room->getId()}','COREDATA','Rooms')">l&ouml;schen</a></td>
-	            </form>
-	        </tr>
-		{/foreach}
-	{/if}
-    </tbody>
-</table>
+		            <a onclick="deleteData('{$room->getId()}','COREDATA','Room')">l&ouml;schen</a></td>
+		        </tr>
+		    </tbody>
+		</table>
+	</form>
+{/foreach}
+{/if}

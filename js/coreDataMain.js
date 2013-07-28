@@ -59,9 +59,12 @@ function toggleCheckbox(id, eventType, modulename, subPageName){
 }
 
 function toggleInput(id, eventType, modulename, subPageName){
+	
+	var $form = $('form#'+subPageName+id);
+	
 		if(eventType == 'edit'){
-
-			$('td.toggleInput').each(function() {
+			$form.addClass('found');
+			$form.find('.toggleInput').each(function() {
 				var oldText = $(this).text();
 				$(this).html('<input type="text" name="'+$(this).attr('name')+'" value="'+oldText+'"/>');
 			}); 
@@ -70,9 +73,7 @@ function toggleInput(id, eventType, modulename, subPageName){
 			$('a.edit').replaceWith(newLink);
 		}
 		else if(eventType=='save'){
-			
-			var $form = $('form#'+subPageName+id);
-						
+									
 			$.ajax({
 	           type: "POST",
 	           url: './?module='+modulename+'&page='+subPageName,
@@ -80,7 +81,7 @@ function toggleInput(id, eventType, modulename, subPageName){
 
 	           success: function(data)
 	           {
-	        	   $form.parent().replaceWith(data);
+	        	   $form.parent('.repContent').html(data);
 
 	           }
 			});
