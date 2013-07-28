@@ -288,7 +288,7 @@ class DataManagement
             $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
         }
         
-        foreach($components as $component) 
+        foreach($components as $component)
         {
             if ((get_class($component) !== Software::getClassName())
                 && ($filteredList == null || in_array($component->getId(), $filteredList)))
@@ -312,27 +312,12 @@ class DataManagement
 
     private static function getEntityFromArrayById(array $array, $entityId)
     {
-        // binary search because we're awesome
-        $maxLen = count($array);
-        $len = $maxLen - 1;
-        $index = 0;
-        $entity = $array[$index];
-        
-        while ($entity != null && $entity->getId() !== $entityId && $index < $maxLen && $index >= 0)
-        {
-            if ($entity->getId() > $entityId)
-            {
-                $index -= $len;
+        foreach ($array as $entry) {
+            if ($entry == $entityId) {
+                return $entity;
             }
-            elseif ($entity->getId() < $entityId)
-            {
-                $index += $len;
-            }
-            $len = ($len + 1) / 2;
-            $entity = $array[$index];
         }
-        
-        return $entity;
+        return false;
     }
 
     public function getComponentById($componentId)
