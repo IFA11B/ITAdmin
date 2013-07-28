@@ -72,15 +72,7 @@ function getModule()
  */
 function getPage()
 {
-    switch(getVar('page'))
-    {
-    case Login::getName():
-        return new Login();
-    
-    case Home::getName():
-        return new Home();
-    }
-    return new Login();
+    return new Home();
 }
 
 /**
@@ -148,19 +140,14 @@ function createSmarty()
 }
 
 $smarty = createSmarty();
-
-if (verifySession()) {
-    $module = getModule();
-    if ($module == null)
-    {
-        $page = getPage();
-    }
-    else
-    {
-        $page = $module->getPage(getVar('page'));
-    }
-} else {
-    $page = new Login();
+$module = getModule();
+if ($module == null)
+{
+    $page = getPage();
+}
+else
+{
+    $page = $module->getPage(getVar('page'));
 }
 
 $smarty->assign($page->getContent());

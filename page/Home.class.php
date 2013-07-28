@@ -23,22 +23,14 @@ class Home implements Page
     {
         session_start();
         $result = array();
+
+        $navbar = new Navbar();
         
-        if (User::isLoggedIn() === true)
-        {
-            $navbar = new Navbar();
-            
-            $user = User::getSessionUser();
-            
-            $result = array_merge($result, $navbar->getContent());
-            $result['userRole'] = $user->getName();
-        }
-        else
-        {
-            session_destroy();
-            //header('Location: ');
-        }
+        $user = User::getSessionUser();
         
+        $result = array_merge($result, $navbar->getContent());
+        $result['userRole'] = $user->getName();
+
         return $result;
     }
 }
