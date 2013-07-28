@@ -212,8 +212,12 @@ class DbConnector
 		$statement->bindparam(':id', $Supplier->getId());
 		$statement->execute();
 		
-		if ($query == false)
+		if ($query == false){
 			return false;
+		}
+		else {
+			return true;
+		}
 
 	}
 	

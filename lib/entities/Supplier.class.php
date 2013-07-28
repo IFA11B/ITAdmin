@@ -125,7 +125,7 @@ class Supplier implements Entity
     public function update()
     {
     	$db = DbConnector::getInstance();
-    	$db->updateSupplier($this);
+    	return $db->updateSupplier($this);
     }
     
     public function delete()

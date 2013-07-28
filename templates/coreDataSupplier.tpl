@@ -1,7 +1,7 @@
  {if $suppliers != false}
 {foreach from=$suppliers item=supplier}
 <form id="Supplier{$supplier->getId()}" method="post">
-<input type="hidden" name="save" value="save">
+<input type="hidden" name="save" value="id">
 <table class="resultsTable liststyleTable" style="width:100%">
 	    <thead>
         	<tr>

@@ -28,7 +28,21 @@ class CoreDataSupplier implements Page
     }
     
     function saveSupplier(){
-    	var_dump($_POST);
-    	//DbConnector::getInstance()->getSupplierById();
+    
+    	$updeteSupplier = DataManagement::getInstance()->getSupplierById($_POST['save']);
+    	$updeteSupplier->setStreet($_POST['Street']);
+        $updeteSupplier->setZipcode($_POST['Zipcode']);
+        $updeteSupplier->setCity($_POST['City']);
+        $updeteSupplier->setPhone($_POST['Phone']);
+        $updeteSupplier->setMobile($_POST['Mobile']);
+        $updeteSupplier->setFax($_POST['Fax']);
+        $updeteSupplier->setEmail($_POST['Email']);	
+        
+        if($updeteSupplier->update()){
+        	echo 'Ihre Angaben wurden gespeichert';
+        }
+        else{
+        	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
+        }
     }
 }
