@@ -188,7 +188,7 @@ class DbConnector
 	public function updateSupplier(Supplier $Supplier)
 	{
 		$query = "UPDATE " . DB_SUPPLIER;
-		$query .= "SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
+		$query .= " SET " . DB_SUPPLIER_COMPANYNAME . " = :companyname ";
 		$query .= ", " . DB_SUPPLIER_STREET . " = :street ";
 		$query .= ", " . DB_SUPPLIER_ZIPCODE . "= :zipcode ";
 		$query .= ", " . DB_SUPPLIER_CITY . " = :city ";
