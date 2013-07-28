@@ -26,10 +26,15 @@ td.link
     text-align:right;
 }
 
+
 td
 {
     padding: 0px 5px;
     vertical-align: top;
+}
+
+td a, td a:link{
+	font-size:10pt;
 }
 
 td.room{

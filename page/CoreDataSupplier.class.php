@@ -45,7 +45,7 @@ class CoreDataSupplier implements Page
 	        $updeteSupplier->setFax($_POST['Fax']);
 	        $updeteSupplier->setEmail($_POST['Email']);	
 	        if($updeteSupplier->update()){
-	        	echo 'Ihre Angaben wurden gespeichert';
+	        	$this->reloadMe('Ihre Angaben wurden gespeichert');
 	        }
 	        else{
 	        	echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
@@ -61,14 +61,14 @@ class CoreDataSupplier implements Page
     	$deleteSupplier = DataManagement::getInstance()->getSupplierById($_POST['deleteData']);
 
     	if($deleteSupplier->delete()){
-    		echo 'Der Lieferant wurde gel&ouml;scht';
+    		$this->reloadMe('Der Lieferant wurde gel&ouml;scht');
     	}
     	else{
     		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
     	}
     }
     
-    function addSupplier(){
+	function addSupplier(){
     	$newSupplier = new Supplier();
     	if($newSupplier){
     		$newSupplier->setStreet($_POST['Street']);
@@ -80,7 +80,7 @@ class CoreDataSupplier implements Page
     		$newSupplier->setEmail($_POST['Email']);
     		
     		if($newSupplier->create()){
-    			echo 'Ihre Angaben wurden gespeichert';
+    			$this->reloadMe('Ihre Angaben wurden gespeichert');
     		}
     		else{
     			echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';
@@ -89,5 +89,12 @@ class CoreDataSupplier implements Page
     	else{
     		echo 'Es konnte kein neuer Lieferant erstellt werden';
     	}
+    }
+    
+    function reloadMe($msg = NULL){
+    	if(isset($msg)){
+    		echo '<script>alert('.$msg.');</script>';
+    	}
+    	header('./?module=COREDATA&page=Supplier');
     }
 }
