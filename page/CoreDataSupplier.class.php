@@ -59,7 +59,7 @@ class CoreDataSupplier implements Page
     	$deleteSupplier = DataManagement::getInstance()->getSupplierById($_POST['deleteData']);
 
     	if($deleteSupplier->delete()){
-    		echo 'Der Lieferant wurde gelöscht';
+    		echo 'Der Lieferant wurde gel&ouml;scht';
     	}
     	else{
     		echo 'Ein Fehler ist aufgetreten. Ihre Angaben konnten nicht gespeichtert werden';

@@ -30,7 +30,7 @@ class CoreDataRoom implements Page
     {
         return "Räume";
     }
-}
+
 
 function saveRoom(){
 	
@@ -51,4 +51,5 @@ function saveRoom(){
 		echo 'Der Lieferant konnte nicht gefunden werden';
 		 
 	}
+}
 }

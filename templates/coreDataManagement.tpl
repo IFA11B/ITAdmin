@@ -37,7 +37,7 @@
     </div>
     <div class="clear"></div>
     
-    <!-- user -->
+    <!-- user 
     <div id="user">
         <div class="header contentHeading fullWidth">
             <div class="headerTitle">Benutzer</div>
@@ -47,6 +47,6 @@
         </div>
         <div class="clear"></div>
         <div class="repContent"></div>
-    </div>
+    </div>-->
     <div class="clear"></div>
 {/block}
