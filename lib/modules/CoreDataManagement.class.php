@@ -48,11 +48,6 @@ class CoreDataManagement extends Module
                 $pageObject = new CoreDataUser();
                 break;
 
-           	case "savesupplier":
-           		$this->saveSupplier();
-                $pageObject = new CoreDataSupplier();
-               	break;
-            
             case "Main":
             default:
                 $pageObject = new CoreDataManagementMain();
@@ -62,10 +57,6 @@ class CoreDataManagement extends Module
         return $pageObject;
     }
     
-    function saveSupplier(){
-    	var_dump($_POST);
-    	 //DbConnector::getInstance()->getSupplierById();
-    }
 }
 
 ?>

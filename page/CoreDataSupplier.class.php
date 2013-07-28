@@ -9,9 +9,13 @@ class CoreDataSupplier implements Page
 
     function getContent()
     {
-        $supplier = null;
-        
+    	if(isset($_POST['save'])){
+    		$this->saveSupplier();
+    	}
+    	
+        $supplier = null;   
         $supplier = DataManagement::getInstance()->getSuppliers();
+        
         
         return array(
             'suppliers' => $supplier
@@ -21,5 +25,10 @@ class CoreDataSupplier implements Page
     static function getName()
     {
         return "Lieferanten";
+    }
+    
+    function saveSupplier(){
+    	var_dump($_POST);
+    	//DbConnector::getInstance()->getSupplierById();
     }
 }

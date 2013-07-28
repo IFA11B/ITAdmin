@@ -1,12 +1,13 @@
  {if $suppliers != false}
 {foreach from=$suppliers item=supplier}
-<form id="supplier{$supplier->getId()}" action="" method="post">
+<form id="Supplier{$supplier->getId()}" method="post">
+<input type="hidden" name="save" value="save">
 <table class="resultsTable liststyleTable" style="width:100%">
 	    <thead>
         	<tr>
 	            <th colspan="2">{$supplier->getCompanyname()}</th>
 	            <th>&nbsp;</th>
-	            <td class="link"><a class="edit" onclick="toggleInput('{$supplier->getId()}','edit', 'COREDATA','supplier')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="delete('{$supplier->getId()}')">l&ouml;schen</a></td>
+	            <td class="link"><a class="edit" onclick="toggleInput('{$supplier->getId()}','edit', 'COREDATA','Supplier')">&auml;ndern</a>&nbsp;|&nbsp;<a onclick="delete('{$supplier->getId()}')">l&ouml;schen</a></td>
 	    	 </tr>
     	</thead>
 	    <tbody>

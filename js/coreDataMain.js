@@ -29,7 +29,7 @@ function closePanel(element)
     $(element).find('.repContent').hide(250);
 }
 
-function toggleInput(id, eventType, modulename, fIdentify){
+function toggleInput(id, eventType, modulename, subPageName){
 		if(eventType == 'edit'){
 
 			$('td.toggleInput').each(function() {
@@ -37,16 +37,16 @@ function toggleInput(id, eventType, modulename, fIdentify){
 				$(this).html('<input type="text" name="'+$(this).attr('name')+'" value="'+oldText+'"/>');
 			}); 
 			
-			var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+fIdentify+"')\">speichern</a>";
+			var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+subPageName+"')\">speichern</a>";
 			$('a.edit').replaceWith(newLink);
 		}
 		else if(eventType=='save'){
 			
-			var $form = $('form#'+fIdentify+id);
+			var $form = $('form#'+subPageName+id);
 						
 			$.ajax({
 	           type: "POST",
-	           url: './?module='+modulename+'&page=save'+fIdentify,
+	           url: './?module='+modulename+'&page='+subPageName,
 	           data: $form.serialize(), // serializes the form's elements.
 	           beforeSend: function()
 	           {
