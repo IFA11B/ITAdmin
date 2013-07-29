@@ -770,7 +770,7 @@ class DbConnector {
         
         //Note: user is logged in thus user DB_MANAGE_VALID is 1
         //also Note: module's DB_MANAGE_VALID is 1 because we got it's id
-        $module_id = $Module->getId()[DB_MODULE_ID];
+        $module_id = $Module->getId();
         $user_id = $User->getId();
         
         $query = "SELECT ";
