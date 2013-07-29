@@ -1,6 +1,7 @@
 .headerTitle
 {
     float: left;
+    cursor: Pointer;
 }
 
 .headerArrow
