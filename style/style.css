@@ -26,6 +26,10 @@ a:hover{
 	text-decoration:underline;
 }
 
+div.header {
+	cursor: pointer;
+}
+
 a .smallLink{
 	font-size:11pt;
 }
@@ -92,7 +96,7 @@ img.headlogo{
     padding:5px;
 }
 
-#navbar li:before { content: "|  "; }
+#navbar li:before { content: "|  ";  padding: "0 5px 0 0";}
 #navbar li:first-child:before { content: ""; }
 #navbar li a, #navbar li a:link { text-decoration:none;}
 #navbar li a:hover { 
