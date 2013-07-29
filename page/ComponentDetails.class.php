@@ -6,7 +6,7 @@ class ComponentDetails implements Page
      * 
      * @var string
      */
-    const PAGE_NAME = 'comDetails';
+    const PAGE_NAME = 'ComponentDetails';
     
     public static function getName()
     {
@@ -26,7 +26,7 @@ class ComponentDetails implements Page
     
     public function getTemplate()
     {
-        return 'comDetails.tpl';
+        return 'componentDetails.tpl';
     }
     
     public function getContent()

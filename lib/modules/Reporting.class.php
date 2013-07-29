@@ -33,7 +33,7 @@ class Reporting extends Module
         switch ($page)
         {
             case "Detail":
-                $pageObject = new Detail();
+                $pageObject = new ComponentDetails();
                 break;
                 
             case "Network":

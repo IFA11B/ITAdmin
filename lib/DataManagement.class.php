@@ -258,6 +258,7 @@ class DataManagement
                 $filteredComps[] = $component;
             }
         }
+        return $filteredComps;
     }
     
     public function getNetworkComponents()
