@@ -26,6 +26,10 @@ a:hover{
 	text-decoration:underline;
 }
 
+a .smallLink{
+	font-size:11pt;
+}
+
 #wrapper {
 	position:relative;
     width: 1020px;
@@ -112,8 +116,11 @@ img.headlogo{
 .smallContent{
 	width:70%;
 }
-
+.fullWidth{
+	width:100%;
+}
 .contentHeading{
+	display:table;
 	margin:auto;
 	color:#333333;
 	line-height:150%;
@@ -136,4 +143,14 @@ img.headlogo{
 
 .centerText{
 	text-align:center;
+}
+
+.activeHeader .contentHeading .headerTitle
+{
+    color: #7AA8C6;
+}
+
+.activeHeader .contentHeading
+{
+    border-bottom: 1px solid #7AA8C6;
 }

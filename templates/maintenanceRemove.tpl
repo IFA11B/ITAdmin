@@ -1,16 +1,16 @@
 
 <div style="float: left; margin-right: 20px;">
     <div style="float: left;">Filter:</div>
-    <div class="styled-select">
-        <select>
-            <option>Raum</option>
-            <option>Komponente</option>
+    <div class="styled-select" style="margin-top: 5px">
+        <select id="filterType">
+            <option value="room">Raum</option>
+            <option value="component">Komponente</option>
         </select>
     </div>
 </div>
 
 <div style="float: left;">
-    <input type="text" />
+    <input type="text" id="filterValue" />
 </div>
 
 <div class="clear"></div>
@@ -25,11 +25,24 @@
         </tr>
     </thead>
     <tbody>
+{foreach from=$components item=component}
         <tr>
-            <td>R001</td>
-            <td>Beamer, 105_AcerX112</td>
-            <td>Eine Notiz zum Beamer. Diese kann teilweise auch sehr lang werden.</td>
+        	<td>        
+        	<select id="SelectedSource">
+            <option value="{$component.ComponentId}"></option>
+       		</td>
+            <td>{$component.Room.Name}</td>
+            <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
+            <td>{$component.Room.Note}</td>
             <td class="link"><a href="#">Notiz &auml;ndern</a></td>
         </tr>
+{/foreach}
     </tbody>
 </table>
+<div style="float: left;">
+    <input type="submit" id="maintainStock" name="Ausbauen" />
+</div>
+
+<div style="float: left;">
+    <input type="submit" id="maintainDiscard" name="Ausmustern" />
+</div>

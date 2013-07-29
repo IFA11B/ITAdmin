@@ -29,9 +29,11 @@ class Login implements Page
     {
         $result = array();
         
-        if (isset($_POST['username']) && isset($_POST['password']))
+        
+        if (isset($_POST['user']) && isset($_POST['password']))
         {
-            $userName = $_POST['username'];
+        	
+            $userName = $_POST['user'];
             $pwd = $_POST['password'];
             
             if ($userName != '' && $pwd != '')
@@ -39,9 +41,9 @@ class Login implements Page
                 $user = User::getUserFromName($userName);
                 if ($user->verifyPassword($pwd))
                 {
-                    session_start();
+                	session_start();
                     User::setSessionUser($user);
-                    header('Location: ' . HOME_DIR . 'index.php?page=home');
+                    header('Location: index.php?page=home');
                 }
                 else
                 {

@@ -14,6 +14,7 @@ class DataManagement
     private $suppliers;
     private $components;
     private $users;
+    private $modules;
 
     private function __construct()
     {
@@ -21,6 +22,7 @@ class DataManagement
         $this->suppliers = null;
         $this->components = null;
         $this->users = null;
+        $this->modules = null;
     }
 
     public static function getInstance()
@@ -52,6 +54,7 @@ class DataManagement
             }
             
             $this->rooms = $result;
+            
             return $result;
         }
         return false;
@@ -78,6 +81,23 @@ class DataManagement
             return $result;
         }
         return false;
+    }
+    
+    public function getModules(){
+    	if ($this->modules !== null)
+    	{
+    		return $this->modules;
+    	}
+    	
+    	$result = array();
+    	$rows = DbConnector::getInstance()->getModules();
+    	
+    	if ($rows !== false)
+    	{
+    		return $rows;
+    	}
+    	return false;
+    	
     }
 
     public function getSuppliers()
@@ -127,8 +147,8 @@ class DataManagement
                         $result[] = new CPU($row);
                         break;
         
-                    case DB_COMPONENT_TYPE_DISK_CONTROLLER:
-                        $result[] = new DiskController($row);
+                    case DB_COMPONENT_TYPE_ODD:
+                        $result[] = new OpticalDrive($row);
                         break;
         
                     case DB_COMPONENT_TYPE_GRAPHICS_CARD:
@@ -154,7 +174,11 @@ class DataManagement
                     case DB_COMPONENT_TYPE_PRINTER:
                         $result[] = new Printer($row);
                         break;
-        
+                        
+                    case DB_COMPONENT_TYPE_POWER_SUPPLY:
+                        $result[] = new PowerSupply($row);
+                        break;
+                        
                     case DB_COMPONENT_TYPE_RAID_CONTROLLER:
                         $result[] = new RaidController($row);
                         break;
@@ -189,7 +213,7 @@ class DataManagement
         
             foreach ($result as $component)
             {
-                $rows = $db->getSubcomponentsOfComponent($component);
+                $rows = DbConnector::getInstance()->getSubcomponentsOfComponent($component);
                 if ($rows !== false)
                 {
                     foreach ($rows as $row)
@@ -214,14 +238,48 @@ class DataManagement
         return false;
     }
     
-    public function getHardwareComponents($filterType = null, $filterValue = null)
+    public function getSoftwareComponents($filterType = null, $filterValue = null)
     {
-        if ($this->components === null)
+        $components = $this->getComponents();
+    
+        $filteredComps = array();
+        $filteredList = null;
+    
+        if ($filterType !== null && $filterValue !== null)
         {
-            $this->components = $this->getComponentsFromDB();
+            $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
+        }
+    
+        foreach($components as $component)
+        {
+            if ((get_class($component) === Software::getClassName())
+                && ($filteredList == null || in_array($component->getId(), $filteredList)))
+            {
+                $filteredComps[] = $component;
+            }
+        }
+    }
+    
+    public function getNetworkComponents()
+    {
+        $components = $this->getComponents();
+        $returnComps = array();
+        
+        foreach($components as $component)
+        {
+            if((get_class($component) === Computer::getClassName()))
+            {
+                $returnComps[] = $component;
+            }
         }
         
-        // copy array
+        return $returnComps;
+    }
+    
+    public function getHardwareComponents($filterType = null, $filterValue = null)
+    {
+        $components = $this->getComponents();
+        
         $filteredComps = array();
         $filteredList = null;
         
@@ -230,9 +288,10 @@ class DataManagement
             $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filterValue);
         }
         
-        foreach($this->components as $component) 
+        foreach($components as $component)
         {
-            if ((get_class($component) !== Software::getClassName()) && ($filteredList == null || in_array($component->getId(), $filteredList)))
+            if ((get_class($component) !== Software::getClassName())
+                && ($filteredList == null || in_array($component->getId(), $filteredList)))
             {
                 $filteredComps[] = $component;
             }
@@ -240,35 +299,35 @@ class DataManagement
         
         return $filteredComps;
     }
-
+    
+    public function getComponents()
+    {
+        if ($this->components === null)
+        {
+            $this->components = $this->getComponentsFromDB();
+        }
+        
+        return $this->components;
+    }
+    
+    public function getComponentData($component_type, $component_id)
+    {
+    	switch($component_type)
+    	{
+    		case DB_COMPONENT_TYPE_COMPUTER:
+    			return DbConnector::getInstance()->getComputerData($component_id);
+    		break;
+    	}
+    }
+    
     private static function getEntityFromArrayById(array $array, $entityId)
     {
-        // binary search because we're awesome
-        $maxLen = count($array);
-        $len = $maxLen - 1;
-        $index = 0;
-        $entity = $array[$index];
-        
-        while ($entity != null && $entity->getId() !== $entityId && $index < $maxLen && $index >= 0)
-        {
-            if ($entity->getId() > $entityId)
-            {
-                $index -= $len;
+        foreach ($array as $entry) {
+            if ($entry->getId() == $entityId) {
+                return $entry;
             }
-            elseif ($entity->getId() < $entityId)
-            {
-                $index += $len;
-            }
-            $len = ($len + 1) / 2;
-            $entity = $array[$index];
         }
-        
-        if ($entity->getId() == $entityId)
-        {
-            return null;
-        }
-        
-        return $entity;
+        return false;
     }
 
     public function getComponentById($componentId)
