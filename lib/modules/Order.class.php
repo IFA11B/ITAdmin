@@ -36,6 +36,10 @@ class Order extends Module
                 $pageObject = new Detail();
                 break;
                 
+            case "chooseMain":
+                $pageObject = new ChooseMain();
+                break;
+                
             case "Main":
             default:
                 $pageObject = new OrderMain();

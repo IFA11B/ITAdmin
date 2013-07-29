@@ -24,9 +24,19 @@ class ReportingSoftware implements Page
         {
             $components = DataManagement::getInstance()->getSoftwareComponents();
         }
-
+        $roomByComponent=array();
+        $componentNames=array();
+        foreach ($components As $component){
+        	$thisRoom = $component->getRoom();
+        	$componentNames[]=$component->getName();
+        	$roomByComponent[$component->getName()] =$roomByComponent[$component->getName()].', '.$thisRoom->getNumber().'_'.$thisRoom->getName();
+        }
+        
+        
+        
         return array(
-                'components' => $components
+            'roomByComponent' => $roomByComponent,
+        	'componentNames' => $componentNames
         );
     }
     

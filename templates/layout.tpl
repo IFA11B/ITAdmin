@@ -15,7 +15,7 @@
         <script type="text/javascript" src="./js/formFunctions.js"></script>
         
         <script type="text/javascript" src="./js/componentDetails.js"></script>
-       <!-- <script type="text/javascript" src="./js/chooseMain.js"></script>-->
+       <script type="text/javascript" src="./js/chooseMain.js"></script>
         
         {block name=js}{/block}
     </head>

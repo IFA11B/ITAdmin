@@ -40,7 +40,7 @@ class ChooseSubcomponent implements Page
         }
         else
         {
-            $listResult = DataManagement::getInstance()->getSubcompontents($listType);
+            $listResult = DataManagement::getInstance()->getSubcomponents($listType);
         }
         
         return array(
