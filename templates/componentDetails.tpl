@@ -1,14 +1,16 @@
 
- <form id="compDetailsForm" action="'./?module='+modulename+'&page=comDetailsSave'" method="post">
+ <form id="Details{$component->getid()}" method="post">
+    <input name="comId" type="hidden" value="{$component->getId()}">
+    <input name="saving" type="hidden" value="1">
 	<div class="contentHeading">Komponenten Details</div>
-	<div class="detailsLeft pushLeft">
-		<div class="formrow"><div class="inputlabel"> Name:</div><div class="inputValue"> Name</div></div>
+	<table>
+        {foreach $component->getFields() as $attribute}
+            <tr>
+                <td>{$attribute.name}:<input type="hidden" name="properties[]" value="{$attribute.internal}"></td>
+                <td name="{$attribute.internal}" class="toggleInput">{$attribute.value}</td>
+            </tr>
+        {/foreach}
+	</table>
 
-	</div>
-
-	<div class="detailsRight pushRight">
-		<div class="formrow"><div class="inputlabel"> Ist Teilkomponente von:</div><div class="inputValue">Hauptkomponente </div></div>
-	</div>
-
-	<a class="changeComDetails" onclick="changeToInput()">bearbeiten</a>
+	<!-- <a class="edit pushRight" onclick="toggleInput()">bearbeiten</a> -->
 </form>
