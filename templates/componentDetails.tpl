@@ -12,7 +12,7 @@
         {/foreach}
 	</table>
     <div class="pushRight">
-	<a class="edit" onclick="toggleInput({$component->getId()}, 'edit', '{$smarty.get.module}', '{$smarty.get.page}')">bearbeiten</a> 
+	<!-- <a class="edit" onclick="toggleInput({$component->getId()}, 'edit', '{$smarty.get.module}', '{$smarty.get.page}')">bearbeiten</a> --> 
     </div>
 </form>
 </div>
