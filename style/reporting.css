@@ -7,6 +7,7 @@
 .headerArrow
 {
     float: right;
+    cursor: Pointer;
 }
 
 #network .header,
