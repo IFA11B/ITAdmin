@@ -19,7 +19,7 @@ var spinnerOptions = {
 
 
 $(document).ready(function(){
-	
+
 	
 	$('.navbar').click(function(event){
 				
@@ -36,3 +36,4 @@ $(document).ready(function(){
 		
 	});
 });
+

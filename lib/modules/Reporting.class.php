@@ -7,17 +7,17 @@ class Reporting extends Module
     
     public function getId()
     {
-        return DbConnector::getInstance()->getModuleId(MODULE_NAME);
+        return DbConnector::getInstance()->getModuleId(Reporting::MODULE_NAME);
     }
     
     public function getName()
     {
-        return MODULE_NAME;
+        return Reporting::MODULE_NAME;
     }
     
     public function getTitle()
     {
-        return MODULE_TITLE;
+        return Reporting::MODULE_TITLE;
     }
     
     public function getDescription()

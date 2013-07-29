@@ -1,5 +1,7 @@
-$(document).ready(function() {
 
+
+$(document).ready(function() {
+	
     $('#network .header,#software .header,#hardware .header').click(function() {
         var current = $(this).parent();
         
@@ -17,6 +19,7 @@ $(document).ready(function() {
         .hide();
 });
 
+
 function closePanel(element)
 {
     $(element).removeClass('activeHeader');
@@ -25,6 +28,7 @@ function closePanel(element)
     
     $(element).find('.repContent').hide(250);
 }
+
 
 function openPanel(element)
 {
@@ -81,6 +85,7 @@ function openPanel(element)
                         success: function(data)
                         {
                             $('#' + pageId + ' .repContent').html(data);
+							addNoticeChanger();
                         }
                     });
                 }

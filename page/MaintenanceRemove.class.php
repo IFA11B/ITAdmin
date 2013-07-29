@@ -1,5 +1,12 @@
 <?php
-class MaintenanceChange implements Page
+
+/**
+ * Class for Viewing Maintenance.
+ *
+ * @author SeiresS <keckchris@web.de>
+ */
+
+class MaintenanceRemove implements Page
 {
 	function getTemplate()
 	{
@@ -8,14 +15,52 @@ class MaintenanceChange implements Page
 
 	function getContent()
 	{
-		return array(
-				pageTitle => 'Ausbauen'
-		);
+        $components = null;
+        
+        if (isset($_POST['SelectedSource']))
+        {
+        	$SourceComponent=DbConnector::getInstance()->getComponentById($_POST['SelectedSource']);
+        	if (isset($_POST['maintainStock'])) {
+        		//TODO Den Leerstring mit dem Lagerraum ersetzen.
+        		$TargetRow=array(DB_COMPONENT_ROOM=>'');
+        		$maintainer=new Maintencancer(null,$TargetRow,$SourceComponent,null);
+        		$maintainer->Maintain();
+        	}
+        	elseif (isset($_POST['maintainDiscard'])) {
+        		//TODO Den Leerstring mit dem Ausmusterungsraum ersetzen.
+        		$TargetRow=array(DB_COMPONENT_ROOM=>'');
+        		$maintainer=new Maintencancer(null,$TargetRow,$SourceComponent,null);
+        		$maintainer->Maintain();
+        	}
+        }
+        
+        //TODO Add constant filter to room! Must exclude stocking and discarding room
+        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        {
+            $filterType = $_POST["filterType"];
+            $filterValue = $_POST["filterValue"];
+            
+            
+            $components = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+        }
+        else
+        {
+            $components = DataManagement::getInstance()->getHardwareComponents();
+        }
+
+
+        
+        return array(
+            'components' => $components
+        );
+
 	}
 
+	
+	
 	static function getName()
 	{
-		return 'Ausbauen';
+		return 'Ausbau';
 	}
 }
 ?>

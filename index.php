@@ -55,7 +55,12 @@ function getModule()
     {
     case Reporting::MODULE_NAME:
         return new Reporting();
-
+        
+    case Order::MODULE_NAME:
+        return new Order();
+    
+    case CoreDataManagement::MODULE_NAME:
+    	return new CoreDataManagement();
     }
     return null;
 }
@@ -67,29 +72,56 @@ function getModule()
  */
 function getPage()
 {
-    switch(getVar('page'))
-    {
-    case Login::getName():
-        return new Login();
-    
-    case Home::getName():
-        return new Home();
-    }
-    return new Login();
+    return new Home();
 }
 
-
+/**
+ * Returns content from GET array stored under $key or null if $key cant be found.
+ *
+ * @param string $key
+ * @return (string &#124; NULL)
+ */
 function getVar($key)
 {
     if (isset($_GET[$key]) === true) return $_GET[$key];
     return null;
 }
 
+/**
+ * Returns content from POST array stored under $key or null if $key cant be found.
+ *
+ * @param string $key
+ * @return (string &#124; NULL)
+ */
 function postVar($key)
 {
     if (isset($_POST[$key]) === true) return $_POST[$key];
     return null;
 }
+
+/**
+ * Returns content from SESSION array stored under $key or $default if $key cant be found.
+ *
+ * @param string $key
+ * @param string $default (optional) default value if $key cannot be found
+ * @return (string &#124; NULL)
+ */
+function sessionVar($key, $default = null) {
+    if (isset($_SESSION[$key]) === true)
+        return $_SESSION[$key];
+    return $default;
+}
+
+/**
+ */
+function verifySession() {
+    $user = User::getSessionUser();
+    if ($userId != null) {
+        return true;
+    }
+    return false;
+}
+
 /**
  * Creates a Smarty instance and configures it for immediate use.
  *
@@ -108,7 +140,6 @@ function createSmarty()
 }
 
 $smarty = createSmarty();
-
 $module = getModule();
 if ($module == null)
 {
