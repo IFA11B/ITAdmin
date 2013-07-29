@@ -30,5 +30,8 @@ function openChoose(listType, filterType, filterValue){
 
 function submitChoice(id)
 {
-	
+	$.ajax({
+		url: './?module='+modulename,
+		type
+	})
 }

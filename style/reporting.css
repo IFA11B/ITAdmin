@@ -1,11 +1,13 @@
 .headerTitle
 {
     float: left;
+    cursor: Pointer;
 }
 
 .headerArrow
 {
     float: right;
+    cursor: Pointer;
 }
 
 #network .header,

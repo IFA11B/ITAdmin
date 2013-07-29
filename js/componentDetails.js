@@ -6,7 +6,7 @@ $(document).ready(function(){
 	});
 });
 
-function openDetails(modulename,compId){
+function openDetails(modulename,comId){
 	if ($("#detailsBlock").dialog( "isOpen" )===true) {
 		$( "#detailsBlock" ).dialog( "close" );
 	}
@@ -15,7 +15,7 @@ function openDetails(modulename,compId){
 		url: './?module='+modulename+'&page=comDetails',
 		type: 'POST',
 		data: {
-			'comId': compId
+			'comId': comId
 		},
 	 
 		success: function(data)
@@ -25,26 +25,4 @@ function openDetails(modulename,compId){
 		}
 	});
 	
-}
-
-function changeToInput(){
-	$('#compDetailsForm').find('.inputValue').each(function(){
-		  var newVal = this.val();
-		  this.html('<input type="text" value="'+newVal+'"/>');
-	});
-	
-	$('#compDetailsForm').find('a.changeComDetails').replaceWith('<input type="submit" value="speichern"/>');
-	
-	$('#compDetailsForm').submit(function () {
-	    $.ajax({
-	        type: frm.attr('method'),
-	        url: frm.attr('action'),
-	        data: frm.serialize(),
-	        success: function (data) {
-	            alert('ok');
-	        }
-	    });
-	
-	    return false;
-	});
 }
