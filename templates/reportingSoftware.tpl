@@ -6,11 +6,23 @@
         </tr>
     </thead>
     <tbody>
-{foreach from=$components item=component}
-        <tr>
-            <td>{$component->getName()}</td>
-            <td>{implode(', ', array(1, 2))}</td>
-        </tr>
-{/foreach}
+{foreach from=$componentNames item=Name}
+
+	
+		<table>
+				<tbody>
+			        <tr>
+			            <td style="width: 10%;">{$Name}</td>
+			            <td  style="width: 40%;">
+			            {foreach from=$roomByComponent item=room}
+			            {$room}
+			            {/foreach}
+			            </td>
+			         </tr>
+				</tbody>
+			</table>
+	   
+	{/foreach}
+	
     </tbody>
 </table>

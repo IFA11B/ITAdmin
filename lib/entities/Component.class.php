@@ -8,15 +8,15 @@
  
 abstract class Component
 {
-	private $id;
-	private $componentType;
-	private $name;
-	private $manufacturer;
-	private $room;
-	private $purchaseDate;
-	private $warrantyDuration;
-	private $supplier;
-	private $note;
+	public $id;
+	public $componentType;
+	public $name;
+	public $manufacturer;
+	public $room;
+	public $purchaseDate;
+	public $warrantyDuration;
+	public $supplier;
+	public $note;
 	
 	private $parent;
 	private $children;
@@ -79,46 +79,55 @@ abstract class Component
         
         $result[] = array(
             'name' => 'ID',
+            'internal' => 'id',
             'type' => 'number',
             'value' => $this->getId());
         
         $result[] = array(
             'name' => 'Name',
+            'internal' => 'name',
             'type' => 'string',
             'value' => $this->getName());
         
         $result[] = array(
             'name' => 'Art',
+            'internal' => 'componentType',
             'type' => 'string',
             'value' => $this->getComponentType());
         
         $result[] = array(
             'name' => 'Hersteller',
+            'internal' => 'manufacturer',
             'type' => 'string',
             'value' => $this->getManufacturer());
         
         $result[] = array(
             'name' => 'Raum',
+            'internal' => 'room',
             'type' => 'string',
             'value' => $this->getRoom());
         
         $result[] = array(
             'name' => 'Kaufdatum',
+            'internal' => 'purchaseDate',
             'type' => 'date',
             'value' => $this->getPurchaseDate());
         
         $result[] = array(
             'name' => 'Garantie',
+            'internal' => 'warrantyDuration',
             'type' => 'number',
             'value' => $this->getWarrantyDuration());
         
         $result[] = array(
             'name' => 'Lieferer',
+            'internal' => 'supplier',
             'type' => 'string',
             'value' => $this->getSupplier());
         
         $result[] = array(
             'name' => 'Notiz',
+            'internal' => 'note',
             'type' => 'text',
             'value' => $this->getNote());
         

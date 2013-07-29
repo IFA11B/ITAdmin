@@ -6,7 +6,7 @@ class ComponentDetails implements Page
      * 
      * @var string
      */
-    const PAGE_NAME = 'comDetails';
+    const PAGE_NAME = 'ComponentDetails';
     
     public static function getName()
     {
@@ -26,7 +26,7 @@ class ComponentDetails implements Page
     
     public function getTemplate()
     {
-        return 'comDetails.tpl';
+        return 'componentDetails.tpl';
     }
     
     public function getContent()
@@ -34,21 +34,24 @@ class ComponentDetails implements Page
         /** @var array */
         $result = array();
         
-        if (User::isLoggedIn() !== true)
-        {
-            $result['error'] = 'notLoggedIn';
-            return;
-        }
-        
-        /** @var User */
-        $user = User::getSessionUser();
         /** @var Component */
-        $com = DataManagement::getInstance()->getComponentById($_GET['comId']);
+        $com = DataManagement::getInstance()->getComponentById($_POST['comId']);
         
-        $result['writeAccess'] = $this->module->canWrite($user);
-        $result['fields'] = $com->getFields();
-        $result['parent'] = $com->getParent();
-        $result['children'] = $com->getChildren();
+        $result['component'] = $com;
+        
+        if (postVar('saving') != null) {
+            // were saving
+            
+            foreach(postVar('properties') as $property) {
+                $com->$property = postVar($property);
+            }
+            
+            $com->update();
+        } else {
+            // were displaying
+            
+            
+        }
         
         return $result;
     }

@@ -14,8 +14,8 @@
         <script type="text/javascript" src="./js/general.js"></script>
         <script type="text/javascript" src="./js/formFunctions.js"></script>
         
-        <!-- <script type="text/javascript" src="./js/componentDetails.js"></script>-->
-       <!-- <script type="text/javascript" src="./js/chooseMain.js"></script>-->
+        <script type="text/javascript" src="./js/componentDetails.js"></script>
+       <script type="text/javascript" src="./js/chooseMain.js"></script>
         
         {block name=js}{/block}
     </head>
@@ -27,7 +27,7 @@
         	</div>
         
             <div id="head">
-            	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fürth"/></div>
+            	<div id="headlogo"> <img class="headlogo" src="images/Logo.png" alt="Logo B3 Fï¿½rth"/></div>
             	<div id="headtitle">IT-Systembetreuung</div>
             </div>
             <div id="main">

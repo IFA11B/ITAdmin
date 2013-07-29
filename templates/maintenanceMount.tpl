@@ -75,7 +75,6 @@
             <td>{$component.Room.Name}</td>
             <td>{$component.ComponentType}, {$component.ComponentId}_{$component.ComponentName}</td>
             <td>{$component.Room.Note}</td>
-            <td class="link"><a href="#">Notiz &auml;ndern</a></td>
         </tr>
 {/foreach}
     </tbody>

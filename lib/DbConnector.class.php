@@ -375,22 +375,40 @@ class DbConnector {
         $query = "UPDATE " . DB_KOMPONENT . " ";
         $query .= "SET " . DB_COMPONENT_SUPPLIER . " = :supplier ";
         $query .= ", " . DB_COMPONENT_ROOM . " = :room ";
-        $query .= ", " . DB_COMPONENT_PURCHASE_DATE . "= :purchaseDate ";
+        $query .= ", " . DB_COMPONENT_PURCHASE_DATE . " = :purchaseDate ";
         $query .= ", " . DB_COMPONENT_WARRANTY_PERIOD . " = :warrantyPeriod ";
         $query .= ", " . DB_COMPONENT_NOTICE . " = :notice ";
         $query .= ", " . DB_COMPONENT_MANUFACTURER . " = :manufacturer ";
         $query .= ", " . DB_MANAGE_LASTUPDATED . " = sysdate() ";
-        $query .= "WHERE " . DB_SUPPLIER_ID . " = :id ";
-        $query .= "AND " . DB_MANAGE_VALID . " = 1";
+        $query .= "WHERE " . DB_COMPONENT_ID . " = :id ";
+        $query .= "AND " . DB_MANAGE_VALID . " = 1 ";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':supplier', $Component->getSupplier());
-        $statement->bindparam(':room', $Component->getRoom());
-        $statement->bindparam(':purchaseDate', $Component->getPurchaseDate());
-        $statement->bindparam(':warrantyPeriod', $Component->getWarrantyDuration());
-        $statement->bindparam(':notice', $Component->getNote());
-        $statement->bindparam(':manufacturer', $Component->getManufacturer());
+        
+        $componentId = $Component->getId();
+        $statement->bindparam(':id', $componentId);
+        
+        $componentSupplier = $Component->getSupplier();
+        $statement->bindparam(':supplier', $componentSupplier);
+        
+        $componentRoom = $Component->getRoom();
+        $statement->bindparam(':room', $componentRoom);
+        
+        $componentPurchaseDate = $Component->getPurchaseDate();
+        $statement->bindparam(':purchaseDate', $componentPurchaseDate);
+        
+        $componentWarrantyPeriod = $Component->getWarrantyDuration();
+        $statement->bindparam(':warrantyPeriod', $componentWarrantyPeriod);
+        
+        $componentNote = $Component->getNote();
+        $statement->bindparam(':notice', $componentNote);
+        
+        $componentManufacturer = $Component->getManufacturer();
+        $statement->bindparam(':manufacturer', $componentManufacturer);
+        
         $success = $statement->execute();
+        
+        echo $statement->debugDumpParams(), '<br>';
         
         if ($success == false) {
             return false;
@@ -425,15 +443,25 @@ class DbConnector {
         $query .= ")";
         
         $statement = $this->db->prepare($query);
-        $statement->bindparam(':companyname', $Component->getCompanyname());
-        $statement->bindparam(':street', $Component->getStreet());
-        $statement->bindparam(':zipcode', $Component->getZipcode());
-        $statement->bindparam(':city', $Component->getCity());
-        $statement->bindparam(':phone', $Component->getPhone());
-        $statement->bindparam(':mobile', $Component->getMobile());
-        $statement->bindparam(':fax', $Component->getFax());
-        $statement->bindparam(':email', $Component->getEmail());
-        $statement->bindparam(':id', $Component->getId());
+        
+        $componentSupplier = $Component->getSupplier();
+        $statement->bindparam(':supplier', $componentSupplier);
+        
+        $componentRoom = $Component->getRoom();
+        $statement->bindparam(':room', $componentRoom);
+        
+        $componentPurchaseDate = $Component->getPurchaseDate();
+        $statement->bindparam(':purchaseDate', $componentPurchaseDate);
+        
+        $componentWarrantyPeriod = $Component->getWarrantyDuration();
+        $statement->bindparam(':warrantyPeriod', $componentWarrantyPeriod);
+        
+        $componentNote = $Component->getNote();
+        $statement->bindparam(':notice', $componentNote);
+        
+        $componentManufacturer = $Component->getManufacturer();
+        $statement->bindparam(':manufacturer', $componentManufacturer);
+        
         $success = $statement->execute();
         
         if ($success == false) {

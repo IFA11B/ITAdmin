@@ -79,7 +79,7 @@ function toggleInput(id, eventType, modulename, subPageName){
 			}); 
 			
 			var newLink = "<a class='save' onclick=\"toggleInput('"+id+"','save', '"+modulename+"','"+subPageName+"')\">speichern</a>";
-			$('a.edit').replaceWith(newLink);
+			$form.find('a.edit').replaceWith(newLink);
 		}
 		else if(eventType=='save'){
 									
