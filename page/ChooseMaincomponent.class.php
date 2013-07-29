@@ -35,13 +35,11 @@ class ChooseMaincomponent implements Page
             $filterType = $_POST["filterType"];
             $filterValue = $_POST["filterValue"];
             
-            //TODO: change getHardwareComponents() to getMaincomponents()
-            $listResult = DataManagement::getInstance()->getHardwareComponents($filterType, $filterValue);
+            $listResult = DataManagement::getInstance()->getMainomponents($filterType, $filterValue);
         }
         else
         {
-            //TODO: change getHardwareComponents() to getMaincomponents()
-            $listResult = DataManagement::getInstance()->getHardwareComponents();
+            $listResult = DataManagement::getInstance()->getMaincomponents();
         }
         
         return array(

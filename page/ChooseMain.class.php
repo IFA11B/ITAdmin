@@ -6,7 +6,7 @@
  * @author Lukas Bagaric <lukas.bagaric@gmail.com>
  * @see Page
  */
-class Choose implements Page
+class ChooseMain implements Page
 {
     /**
      * Identifying string for this page. Intended to be used in GET parameters.
@@ -17,7 +17,7 @@ class Choose implements Page
 
     static function getName()
     {
-        return Choose::PAGE_NAME;
+        return ChooseMain::PAGE_NAME;
     }
     
     public function getTemplate()
