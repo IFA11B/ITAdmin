@@ -13,7 +13,7 @@ class ChooseMain implements Page
      *
      * @var string
      */
-    const PAGE_NAME = "choose";
+    const PAGE_NAME = "chooseMain";
 
     static function getName()
     {
@@ -38,17 +38,17 @@ class ChooseMain implements Page
 	        switch ($_POST["listType"])
 	        {
 	        	case "maincomponent":
-	        		$return = new ChooseMaincomponent().getTemplate();
+	        		$return = 'chooseMaincomponent.tpl';
 	        		break;
 	        	case "supplier":
-	        		$return = new ChooseSupplier().getTemplate();
+	        		$return = "chooseSupplier.tpl";
 	        		break;
 	        	case "room":
-	        		$return = new ChooseRoom().getTemplate();
+	        		$return = "chooseRoom.tpl";
 	        		break;
 	        	default:
 	        	case "subcomponent":
-	        		$return = new ChooseSubcomponent().getTemplate();
+	        		$return = "chooseSubcomponent.tpl";
 	        		break;
 	        }
 	        return $return;
@@ -77,17 +77,17 @@ class ChooseMain implements Page
 	        switch ($_POST["listType"])
 	        {
 	        	case "maincomponent":
-	        		$return = new ChooseMaincomponent().getContent();
+	        		$return = $this->getMainComponentContent();
 	        		break;
 	        	case "supplier":
-	        		$return = new ChooseSupplier().getContent();
+	        		$return = $this->getSupplierContent();
 	        		break;
 	        	case "room":
-	        		$return = new ChooseRoom().getContent();
+	        		$return = $this->getRoomContent();;
 	        		break;
 	        	default:
 	        	case "subcomponent":
-	        		$return = new ChooseSubcomponent().getContent();
+	        		$return = $this->getSubcomponentContent();;
 	        		break;
 	        }
 	        return $return;
@@ -96,6 +96,60 @@ class ChooseMain implements Page
         {
         	die();
         }    
+    }
+    
+    private function getMainComponentContent()
+    {
+        $listResult = null;
+        
+        // Check if we need filtered or unfiltered component lists
+        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        {
+            $filterType = $_POST["filterType"];
+            $filterValue = $_POST["filterValue"];
+        
+            $listResult = DataManagement::getInstance()->getMaincomponents($filterType, $filterValue);
+        }
+        else
+        {
+            $listResult = DataManagement::getInstance()->getMaincomponents();
+        }
+        
+        return array(
+                'listResult' => $listResult
+        );
+    }
+    
+    private function getSupplierContent()
+    {
+        $listResult = null;
+        
+        // Check if we need filtered or unfiltered component lists
+        if(isset($_POST["filterType"]) && isset($_POST["filterValue"]))
+        {
+            $filterType = $_POST["filterType"];
+            $filterValue = $_POST["filterValue"];
+        
+            $listResult = DataManagement::getInstance()->getMaincomponents($filterType, $filterValue);
+        }
+        else
+        {
+            $listResult = DataManagement::getInstance()->getMaincomponents();
+        }
+        
+        return array(
+                'listResult' => $listResult
+        );
+    }
+    
+    private function getRoomContent()
+    {
+        
+    }
+    
+    private function getSubcomponentContent()
+    {
+        
     }
 }
 

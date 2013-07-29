@@ -301,6 +301,30 @@ class DataManagement
         return $filteredComps;
     }
     
+    public function getMainComponents($filterType, $filterValue)
+    {
+        $components = $this->getComponents();
+        $filteredComps = array();
+        $filteredList = null;
+        
+        if($filterType !== "" && $filterValue !== "")
+        {
+            var_dump($_POST);
+            die();
+            $filteredList = DbConnector::getInstance()->getFilteredComponentList($filterType, $filteredValue);
+        }
+        
+        foreach($components as $component)
+        {
+            if($component->getParent() === $component)
+            {
+                $filteredList[] = $component;
+            }
+        }
+        
+        return $filteredList;
+    }
+    
     public function getComponents()
     {
         if ($this->components === null)
