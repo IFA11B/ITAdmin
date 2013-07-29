@@ -8,9 +8,9 @@
 
 class Computer extends Component
 {
-	private $ipAddress;
-	private $subnet;
-	private $gateway;
+	public $ipAddress;
+	public $subnet;
+	public $gateway;
 
 	public function getIpAddress()
 	{
@@ -64,7 +64,7 @@ class Computer extends Component
 	     
 	    parent::copy($copy);
 	
-	    $copy->setIpAdress($this->getIpAdress());
+	    $copy->setIpAddress($this->getIpAddress());
 		$copy->setSubnet($this->getSubnet());
 		$copy->setGateway($this->getGateway());
 	
@@ -76,16 +76,19 @@ class Computer extends Component
 	     
 	    $result[] = array(
 	        'name' => 'IP Adresse',
+	        'internal' => 'ipAddress',
 	        'type' => 'ip',
 	        'value' => $this->getIpAddress());
 	     
 	    $result[] = array(
 	        'name' => 'Subnetz',
+	        'internal' => 'subnet',
 	        'type' => 'ip',
 	        'value' => $this->getSubnet());
 
 	    $result[] = array(
 	        'name' => 'Gateway',
+	        'internal' => 'gateway',
 	        'type' => 'ip',
 	        'value' => $this->getGateway());
 	     

@@ -7,12 +7,13 @@ $(document).ready(function(){
 });
 
 function openDetails(modulename,comId){
+	
 	if ($("#detailsBlock").dialog( "isOpen" )===true) {
 		$( "#detailsBlock" ).dialog( "close" );
 	}
 	
 	$.ajax({
-		url: './?module='+modulename+'&page=comDetails',
+		url: './?module='+modulename+'&page=Detail',
 		type: 'POST',
 		data: {
 			'comId': comId

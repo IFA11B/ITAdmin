@@ -1,4 +1,4 @@
-
+<!-- 
 <div style="float: left; margin-right: 20px;">
     <div style="float: left;">Filter:</div>
     <div class="styled-select" style="margin-top: 5px">
@@ -14,7 +14,7 @@
 </div>
 
 <div class="clear"></div>
-
+ -->
 <table class="resultsTable">
     <thead>
         <tr>
@@ -34,7 +34,11 @@
 				<tbody>
 			        <tr>
 			            <td style="width: 10%;">{$room->getNumber()}_{$room->getName()}</td>
-			            <td  style="width: 40%;">{$singleComponent->getComponentType()}, {$singleComponent->getId()}_{$singleComponent->getName()}</td>
+			            <td  style="width: 40%;">
+                         <a onclick="openDetails('REPORTING','{$singleComponent->getId()}')">
+                                {$singleComponent->getComponentType()}, {$singleComponent->getId()}_
+                                {$singleComponent->getName()}
+                         </a></td>
 			            <td style="width: 35%;" name="Note" class="toggleInput">{$singleComponent->getNote()}</td>
 			            <td class="link"><a class ="edit smallLink" onclick="toggleInput('{$singleComponent->getId()}','edit', 'REPORTING','Hardware')">Notiz &auml;ndern</a></td>
 				     </tr>
