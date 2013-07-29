@@ -28,7 +28,7 @@
     <!-- rooms -->
     <div id="room">
         <div class="header contentHeading fullWidth">
-            <div class="headerTitle">R&auml;me</div>
+            <div class="headerTitle">R&auml;ume</div>
             <div class="headerArrow">
                 <img src="./images/chevron-right.png" alt="&#8680;" />
             </div>
