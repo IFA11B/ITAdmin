@@ -26,6 +26,10 @@ a:hover{
 	text-decoration:underline;
 }
 
+div.header {
+	cursor: pointer;
+}
+
 a .smallLink{
 	font-size:11pt;
 }
