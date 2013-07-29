@@ -7,7 +7,8 @@ $(document).ready(function(){
 	});
 });
 
-function openChoose(listType, moduleName, filterType, filterValue){
+function openChoose(listType, moduleName, filterType, filterValue, returnId)
+{
     $.ajax({
 		url: './?module=' + moduleName + '&page=chooseMain',
 		type: 'POST',
@@ -21,6 +22,7 @@ function openChoose(listType, moduleName, filterType, filterValue){
 		{
 			$( "#listBlock" ).html(data);
 			$('#listBlock').find('#filterValue').attr('data-modulename', moduleName);
+			$('#listBlock').find('#filterValue').attr('data-updateid', returnId);
 			
 			$('#listBlock').find('#filterValue').keyup(updateFilter);
 			
@@ -43,7 +45,9 @@ function updateFilter(event)
     {
         var listType = $('#filterValue').attr('data-listtype');
         var moduleName = $('#filterValue').attr('data-modulename');
+        var filterValue = $('#filterValue').val();
+        var updateId = $('#filterValue').attr('data-updateid');
         
-        openChoose(listType, moduleName, null, $('#filterValue').val());
+        openChoose(listType, moduleName, null, filterValue, updateId);
     }
 }

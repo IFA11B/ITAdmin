@@ -10,7 +10,7 @@
 		</div>
 		
 		<div style="float: left;">
-		    <input type="text" id="filterValue" data-listtype="maincomponent" data-modulename="" />
+		    <input type="text" id="filterValue" data-listtype="maincomponent" data-modulename="" data-updateid="" />
 		</div>
 		
 		<div class="clear"></div>
@@ -18,21 +18,23 @@
 		<table class="resultsTable">
 		    <thead>
 		        <tr>
-		            <th style="width: 40%;">Komponente</th>
-		            <th style="width: 10%;">Art</th>
-		            <th style="width: 10%;">Gew&auml;hrleistung bis</th>
-		            <th style="width: 35%;">Notiz</th>
-		            <th style="width: 5%;">Raum</th>
+		            <th>Komponente</th>
+		            <th>Art</th>
+		            <th>Gew&auml;hrleistung bis</th>
+		            <th>Notiz</th>
+		            <th>Raum</th>
+                    <th></th>
 		        </tr>
 		    </thead>
 			<tbody>
 			{foreach from=$listResult item=component}
 			        <tr>
-			            <td>{$component.ComponentId}_{$component.ComponentName}, {$component.ComponentType}</td>
-			            <td>{$component.Warrantyduration}</td>
-			            <td>{$component.Note}</td>
-			            <td>{$component.Room.Name}</td>
-			            <td><a class="submitChoice" onclick="submitChoice({$component.ComponentId})">ausw&auml;hlen</a></td>
+			            <td>{$component->getId()}_{$component->getName()}</td>
+                        <td>{$component->getComponentType()}</td>
+			            <td>{$component->getWarrantyDuration()}</td>
+			            <td>{$component->getNote()}</td>
+			            <td>{DataManagement::getInstance()->getRoomById($component->getRoom())->getName()}</td>
+			            <td><a class="submitChoice" onclick="submitChoice({$component->getId()}, $('#filterValue').attr('data-updateid'))">ausw&auml;hlen</a></td>
 			        </tr>
 			{/foreach}
 			</tbody>
