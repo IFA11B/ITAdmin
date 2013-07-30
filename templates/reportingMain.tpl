@@ -23,7 +23,6 @@
     </div>
     <div class="clear"></div>
     
-    <!-- Software 
     <div id="software">
         <div class="header contentHeading fullWidth">
             <div class="headerTitle">Software</div>
@@ -35,7 +34,7 @@
         <div class="repContent"></div>
     </div>
     <div class="clear"></div>
-    -->
+    
     <!-- Hardware -->
     <div id="hardware">
         <div class="header contentHeading fullWidth">
